@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
+		FAA191AF1F6739CF0076CDC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AE1F6739CF0076CDC7 /* ViewController.swift */; };
+		FAA191B21F6739CF0076CDC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B01F6739CF0076CDC7 /* Main.storyboard */; };
+		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
+		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
+		FAA191C21F6739CF0076CDC7 /* McberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191C11F6739CF0076CDC7 /* McberTests.swift */; };
+		FAA191CD1F6739CF0076CDC7 /* McberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191CC1F6739CF0076CDC7 /* McberUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA191BE1F6739CF0076CDC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA191A11F6739CF0076CDC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA191A81F6739CF0076CDC7;
+			remoteInfo = Mcber;
+		};
+		FAA191C91F6739CF0076CDC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA191A11F6739CF0076CDC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA191A81F6739CF0076CDC7;
+			remoteInfo = Mcber;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAA191AE1F6739CF0076CDC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAA191B11F6739CF0076CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAA191B61F6739CF0076CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAA191B81F6739CF0076CDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA191BD1F6739CF0076CDC7 /* McberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA191C11F6739CF0076CDC7 /* McberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McberTests.swift; sourceTree = "<group>"; };
+		FAA191C31F6739CF0076CDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA191C81F6739CF0076CDC7 /* McberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA191CC1F6739CF0076CDC7 /* McberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McberUITests.swift; sourceTree = "<group>"; };
+		FAA191CE1F6739CF0076CDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAA191A61F6739CF0076CDC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191BA1F6739CF0076CDC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191C51F6739CF0076CDC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAA191A01F6739CF0076CDC7 = {
+			isa = PBXGroup;
+			children = (
+				FAA191AB1F6739CF0076CDC7 /* Mcber */,
+				FAA191C01F6739CF0076CDC7 /* McberTests */,
+				FAA191CB1F6739CF0076CDC7 /* McberUITests */,
+				FAA191AA1F6739CF0076CDC7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAA191AA1F6739CF0076CDC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191A91F6739CF0076CDC7 /* Mcber.app */,
+				FAA191BD1F6739CF0076CDC7 /* McberTests.xctest */,
+				FAA191C81F6739CF0076CDC7 /* McberUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAA191AB1F6739CF0076CDC7 /* Mcber */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */,
+				FAA191AE1F6739CF0076CDC7 /* ViewController.swift */,
+				FAA191B01F6739CF0076CDC7 /* Main.storyboard */,
+				FAA191B31F6739CF0076CDC7 /* Assets.xcassets */,
+				FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */,
+				FAA191B81F6739CF0076CDC7 /* Info.plist */,
+			);
+			path = Mcber;
+			sourceTree = "<group>";
+		};
+		FAA191C01F6739CF0076CDC7 /* McberTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191C11F6739CF0076CDC7 /* McberTests.swift */,
+				FAA191C31F6739CF0076CDC7 /* Info.plist */,
+			);
+			path = McberTests;
+			sourceTree = "<group>";
+		};
+		FAA191CB1F6739CF0076CDC7 /* McberUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191CC1F6739CF0076CDC7 /* McberUITests.swift */,
+				FAA191CE1F6739CF0076CDC7 /* Info.plist */,
+			);
+			path = McberUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAA191A81F6739CF0076CDC7 /* Mcber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA191D11F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "Mcber" */;
+			buildPhases = (
+				FAA191A51F6739CF0076CDC7 /* Sources */,
+				FAA191A61F6739CF0076CDC7 /* Frameworks */,
+				FAA191A71F6739CF0076CDC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mcber;
+			productName = Mcber;
+			productReference = FAA191A91F6739CF0076CDC7 /* Mcber.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAA191BC1F6739CF0076CDC7 /* McberTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA191D41F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberTests" */;
+			buildPhases = (
+				FAA191B91F6739CF0076CDC7 /* Sources */,
+				FAA191BA1F6739CF0076CDC7 /* Frameworks */,
+				FAA191BB1F6739CF0076CDC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA191BF1F6739CF0076CDC7 /* PBXTargetDependency */,
+			);
+			name = McberTests;
+			productName = McberTests;
+			productReference = FAA191BD1F6739CF0076CDC7 /* McberTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FAA191C71F6739CF0076CDC7 /* McberUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA191D71F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberUITests" */;
+			buildPhases = (
+				FAA191C41F6739CF0076CDC7 /* Sources */,
+				FAA191C51F6739CF0076CDC7 /* Frameworks */,
+				FAA191C61F6739CF0076CDC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA191CA1F6739CF0076CDC7 /* PBXTargetDependency */,
+			);
+			name = McberUITests;
+			productName = McberUITests;
+			productReference = FAA191C81F6739CF0076CDC7 /* McberUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAA191A11F6739CF0076CDC7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Alex Skorulis";
+				TargetAttributes = {
+					FAA191A81F6739CF0076CDC7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = X4S6MUZL2D;
+						ProvisioningStyle = Automatic;
+					};
+					FAA191BC1F6739CF0076CDC7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = X4S6MUZL2D;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FAA191A81F6739CF0076CDC7;
+					};
+					FAA191C71F6739CF0076CDC7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = X4S6MUZL2D;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FAA191A81F6739CF0076CDC7;
+					};
+				};
+			};
+			buildConfigurationList = FAA191A41F6739CF0076CDC7 /* Build configuration list for PBXProject "Mcber" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAA191A01F6739CF0076CDC7;
+			productRefGroup = FAA191AA1F6739CF0076CDC7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAA191A81F6739CF0076CDC7 /* Mcber */,
+				FAA191BC1F6739CF0076CDC7 /* McberTests */,
+				FAA191C71F6739CF0076CDC7 /* McberUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAA191A71F6739CF0076CDC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */,
+				FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */,
+				FAA191B21F6739CF0076CDC7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191BB1F6739CF0076CDC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191C61F6739CF0076CDC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAA191A51F6739CF0076CDC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA191AF1F6739CF0076CDC7 /* ViewController.swift in Sources */,
+				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191B91F6739CF0076CDC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA191C21F6739CF0076CDC7 /* McberTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA191C41F6739CF0076CDC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA191CD1F6739CF0076CDC7 /* McberUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAA191BF1F6739CF0076CDC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA191A81F6739CF0076CDC7 /* Mcber */;
+			targetProxy = FAA191BE1F6739CF0076CDC7 /* PBXContainerItemProxy */;
+		};
+		FAA191CA1F6739CF0076CDC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA191A81F6739CF0076CDC7 /* Mcber */;
+			targetProxy = FAA191C91F6739CF0076CDC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAA191B01F6739CF0076CDC7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA191B11F6739CF0076CDC7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA191B61F6739CF0076CDC7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAA191CF1F6739CF0076CDC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAA191D01F6739CF0076CDC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAA191D21F6739CF0076CDC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = Mcber/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.Mcber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		FAA191D31F6739CF0076CDC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = Mcber/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.Mcber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		FAA191D51F6739CF0076CDC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = McberTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.McberTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mcber.app/Mcber";
+			};
+			name = Debug;
+		};
+		FAA191D61F6739CF0076CDC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = McberTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.McberTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mcber.app/Mcber";
+			};
+			name = Release;
+		};
+		FAA191D81F6739CF0076CDC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = McberUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.McberUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Mcber;
+			};
+			name = Debug;
+		};
+		FAA191D91F6739CF0076CDC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = X4S6MUZL2D;
+				INFOPLIST_FILE = McberUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skorulis.McberUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Mcber;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAA191A41F6739CF0076CDC7 /* Build configuration list for PBXProject "Mcber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA191CF1F6739CF0076CDC7 /* Debug */,
+				FAA191D01F6739CF0076CDC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA191D11F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "Mcber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA191D21F6739CF0076CDC7 /* Debug */,
+				FAA191D31F6739CF0076CDC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FAA191D41F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA191D51F6739CF0076CDC7 /* Debug */,
+				FAA191D61F6739CF0076CDC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FAA191D71F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA191D81F6739CF0076CDC7 /* Debug */,
+				FAA191D91F6739CF0076CDC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAA191A11F6739CF0076CDC7 /* Project object */;
+}
