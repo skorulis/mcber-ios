@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0AF146A29E4F2E585AD97E /* Pods_Mcber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FE5D50B3DFDE52674FC3DA /* Pods_Mcber.framework */; };
+		63BA630D774EA2A9F34D8183 /* Pods_McberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596BB4177A51AEAA41ABFD10 /* Pods_McberTests.framework */; };
+		FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */; };
+		FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1101F688AEC0026D126 /* ReferenceService.swift */; };
+		FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1121F688B060026D126 /* MainAPIService.swift */; };
+		FA6CF1161F688D180026D126 /* SkillReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */; };
+		FA6CF1181F688D2B0026D126 /* ResourceReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
-		FAA191AF1F6739CF0076CDC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AE1F6739CF0076CDC7 /* ViewController.swift */; };
-		FAA191B21F6739CF0076CDC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B01F6739CF0076CDC7 /* Main.storyboard */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
 		FAA191C21F6739CF0076CDC7 /* McberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191C11F6739CF0076CDC7 /* McberTests.swift */; };
 		FAA191CD1F6739CF0076CDC7 /* McberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191CC1F6739CF0076CDC7 /* McberUITests.swift */; };
+		FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DC1F673A4B0076CDC7 /* BaseCollectionViewController.swift */; };
+		FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DD1F673A4B0076CDC7 /* BaseViewController.swift */; };
+		FAA191EC1F673A4B0076CDC7 /* CollectionViewSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DE1F673A4B0076CDC7 /* CollectionViewSectionController.swift */; };
+		FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */; };
+		FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */; };
+		FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E41F673A4B0076CDC7 /* ThemedCollectionReusableView.swift */; };
+		FAA191F01F673A4B0076CDC7 /* ThemedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E51F673A4B0076CDC7 /* ThemedCollectionViewCell.swift */; };
+		FAA191F11F673A4B0076CDC7 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E61F673A4B0076CDC7 /* ThemeService.swift */; };
+		FAA191F21F673A4B0076CDC7 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */; };
+		FAA191FA1F673BF40076CDC7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191F91F673BF40076CDC7 /* RootViewController.swift */; };
+		FAA191FD1F673EAB0076CDC7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FC1F673EAB0076CDC7 /* UserModel.swift */; };
+		FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */; };
+		FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA192001F673F200076CDC7 /* RealmModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +52,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F52C8BAE7D2F539995A526F /* Pods-Mcber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mcber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mcber/Pods-Mcber.release.xcconfig"; sourceTree = "<group>"; };
+		596BB4177A51AEAA41ABFD10 /* Pods_McberTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_McberTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D5E48B446C98391A8AE2E5B /* Pods-Mcber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mcber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mcber/Pods-Mcber.debug.xcconfig"; sourceTree = "<group>"; };
+		A2A7EAC70B0497B85FE44831 /* Pods-McberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-McberTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-McberTests/Pods-McberTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AEFFE4BAF05448C99A8D8564 /* Pods-McberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-McberTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-McberTests/Pods-McberTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5FE5D50B3DFDE52674FC3DA /* Pods_Mcber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mcber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		FA6CF1101F688AEC0026D126 /* ReferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceService.swift; sourceTree = "<group>"; };
+		FA6CF1121F688B060026D126 /* MainAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
+		FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillReferenceModel.swift; sourceTree = "<group>"; };
+		FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceReferenceModel.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAA191AE1F6739CF0076CDC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FAA191B11F6739CF0076CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA191B61F6739CF0076CDC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAA191B81F6739CF0076CDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +74,19 @@
 		FAA191C81F6739CF0076CDC7 /* McberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = McberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191CC1F6739CF0076CDC7 /* McberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McberUITests.swift; sourceTree = "<group>"; };
 		FAA191CE1F6739CF0076CDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA191DC1F673A4B0076CDC7 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		FAA191DD1F673A4B0076CDC7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FAA191DE1F673A4B0076CDC7 /* CollectionViewSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionController.swift; sourceTree = "<group>"; };
+		FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetAPIService.swift; sourceTree = "<group>"; };
+		FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		FAA191E41F673A4B0076CDC7 /* ThemedCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedCollectionReusableView.swift; sourceTree = "<group>"; };
+		FAA191E51F673A4B0076CDC7 /* ThemedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAA191E61F673A4B0076CDC7 /* ThemeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
+		FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
+		FAA191F91F673BF40076CDC7 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		FAA191FC1F673EAB0076CDC7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		FAA192001F673F200076CDC7 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D0AF146A29E4F2E585AD97E /* Pods_Mcber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BA630D774EA2A9F34D8183 /* Pods_McberTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +116,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9B5581EAE52FC19A6D35E61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6D5E48B446C98391A8AE2E5B /* Pods-Mcber.debug.xcconfig */,
+				1F52C8BAE7D2F539995A526F /* Pods-Mcber.release.xcconfig */,
+				A2A7EAC70B0497B85FE44831 /* Pods-McberTests.debug.xcconfig */,
+				AEFFE4BAF05448C99A8D8564 /* Pods-McberTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BA7293087E059A0C905E3A3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5FE5D50B3DFDE52674FC3DA /* Pods_Mcber.framework */,
+				596BB4177A51AEAA41ABFD10 /* Pods_McberTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA6CF1141F688D180026D126 /* ref */ = {
+			isa = PBXGroup;
+			children = (
+				FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */,
+				FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */,
+			);
+			path = ref;
+			sourceTree = "<group>";
+		};
 		FAA191A01F6739CF0076CDC7 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +152,8 @@
 				FAA191C01F6739CF0076CDC7 /* McberTests */,
 				FAA191CB1F6739CF0076CDC7 /* McberUITests */,
 				FAA191AA1F6739CF0076CDC7 /* Products */,
+				A9B5581EAE52FC19A6D35E61 /* Pods */,
+				BA7293087E059A0C905E3A3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,9 +170,12 @@
 		FAA191AB1F6739CF0076CDC7 /* Mcber */ = {
 			isa = PBXGroup;
 			children = (
+				FAA191DA1F673A4B0076CDC7 /* controllers */,
+				FAA191DF1F673A4B0076CDC7 /* model */,
+				FAA191E01F673A4B0076CDC7 /* services */,
+				FAA191E71F673A4B0076CDC7 /* util */,
+				FAA191E91F673A4B0076CDC7 /* views */,
 				FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */,
-				FAA191AE1F6739CF0076CDC7 /* ViewController.swift */,
-				FAA191B01F6739CF0076CDC7 /* Main.storyboard */,
 				FAA191B31F6739CF0076CDC7 /* Assets.xcassets */,
 				FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */,
 				FAA191B81F6739CF0076CDC7 /* Info.plist */,
@@ -125,6 +201,130 @@
 			path = McberUITests;
 			sourceTree = "<group>";
 		};
+		FAA191DA1F673A4B0076CDC7 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191F31F673BE30076CDC7 /* activity */,
+				FAA191F41F673BE30076CDC7 /* avatar */,
+				FAA191F51F673BE30076CDC7 /* bot */,
+				FAA191F61F673BE30076CDC7 /* explore */,
+				FAA191F71F673BE30076CDC7 /* root */,
+				FAA191F81F673BE30076CDC7 /* user */,
+				FAA191DB1F673A4B0076CDC7 /* base */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		FAA191DB1F673A4B0076CDC7 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191DC1F673A4B0076CDC7 /* BaseCollectionViewController.swift */,
+				FAA191DD1F673A4B0076CDC7 /* BaseViewController.swift */,
+				FAA191DE1F673A4B0076CDC7 /* CollectionViewSectionController.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		FAA191DF1F673A4B0076CDC7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191FB1F673E9C0076CDC7 /* api */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		FAA191E01F673A4B0076CDC7 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				FA6CF1121F688B060026D126 /* MainAPIService.swift */,
+				FA6CF1101F688AEC0026D126 /* ReferenceService.swift */,
+				FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */,
+				FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */,
+				FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */,
+				FAA191E31F673A4B0076CDC7 /* theme */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		FAA191E31F673A4B0076CDC7 /* theme */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191E41F673A4B0076CDC7 /* ThemedCollectionReusableView.swift */,
+				FAA191E51F673A4B0076CDC7 /* ThemedCollectionViewCell.swift */,
+				FAA191E61F673A4B0076CDC7 /* ThemeService.swift */,
+			);
+			path = theme;
+			sourceTree = "<group>";
+		};
+		FAA191E71F673A4B0076CDC7 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		FAA191E91F673A4B0076CDC7 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		FAA191F31F673BE30076CDC7 /* activity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = activity;
+			sourceTree = "<group>";
+		};
+		FAA191F41F673BE30076CDC7 /* avatar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = avatar;
+			sourceTree = "<group>";
+		};
+		FAA191F51F673BE30076CDC7 /* bot */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bot;
+			sourceTree = "<group>";
+		};
+		FAA191F61F673BE30076CDC7 /* explore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = explore;
+			sourceTree = "<group>";
+		};
+		FAA191F71F673BE30076CDC7 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				FAA191F91F673BF40076CDC7 /* RootViewController.swift */,
+			);
+			path = root;
+			sourceTree = "<group>";
+		};
+		FAA191F81F673BE30076CDC7 /* user */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		FAA191FB1F673E9C0076CDC7 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				FA6CF1141F688D180026D126 /* ref */,
+				FAA191FC1F673EAB0076CDC7 /* UserModel.swift */,
+				FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */,
+				FAA192001F673F200076CDC7 /* RealmModel.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +332,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAA191D11F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "Mcber" */;
 			buildPhases = (
+				435379563707C88A0F6D370C /* [CP] Check Pods Manifest.lock */,
 				FAA191A51F6739CF0076CDC7 /* Sources */,
 				FAA191A61F6739CF0076CDC7 /* Frameworks */,
 				FAA191A71F6739CF0076CDC7 /* Resources */,
+				FDDF7CA809D01844ED8CB310 /* [CP] Embed Pods Frameworks */,
+				A22B779430F7C1820E942EF2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +352,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAA191D41F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberTests" */;
 			buildPhases = (
+				E37FB3082D0760356C9D1CEB /* [CP] Check Pods Manifest.lock */,
 				FAA191B91F6739CF0076CDC7 /* Sources */,
 				FAA191BA1F6739CF0076CDC7 /* Frameworks */,
 				FAA191BB1F6739CF0076CDC7 /* Resources */,
+				E133CA77FC8CFF1ED5283287 /* [CP] Embed Pods Frameworks */,
+				E6FA76D5842842EBC9BB0F9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,7 +443,6 @@
 			files = (
 				FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */,
 				FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */,
-				FAA191B21F6739CF0076CDC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,13 +462,123 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		435379563707C88A0F6D370C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A22B779430F7C1820E942EF2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mcber/Pods-Mcber-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E133CA77FC8CFF1ED5283287 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-McberTests/Pods-McberTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E37FB3082D0760356C9D1CEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E6FA76D5842842EBC9BB0F9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-McberTests/Pods-McberTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDDF7CA809D01844ED8CB310 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mcber/Pods-Mcber-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FAA191A51F6739CF0076CDC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAA191AF1F6739CF0076CDC7 /* ViewController.swift in Sources */,
+				FAA191F21F673A4B0076CDC7 /* ObserverSet.swift in Sources */,
+				FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */,
+				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
+				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
+				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
+				FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */,
+				FAA191FA1F673BF40076CDC7 /* RootViewController.swift in Sources */,
+				FAA191F11F673A4B0076CDC7 /* ThemeService.swift in Sources */,
+				FAA191EC1F673A4B0076CDC7 /* CollectionViewSectionController.swift in Sources */,
+				FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */,
+				FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
+				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
+				FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */,
+				FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */,
+				FA6CF1181F688D2B0026D126 /* ResourceReferenceModel.swift in Sources */,
+				FAA191FD1F673EAB0076CDC7 /* UserModel.swift in Sources */,
+				FAA191F01F673A4B0076CDC7 /* ThemedCollectionViewCell.swift in Sources */,
+				FA6CF1161F688D180026D126 /* SkillReferenceModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,14 +614,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FAA191B01F6739CF0076CDC7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FAA191B11F6739CF0076CDC7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -413,6 +720,7 @@
 		};
 		FAA191D21F6739CF0076CDC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D5E48B446C98391A8AE2E5B /* Pods-Mcber.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X4S6MUZL2D;
@@ -426,6 +734,7 @@
 		};
 		FAA191D31F6739CF0076CDC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F52C8BAE7D2F539995A526F /* Pods-Mcber.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X4S6MUZL2D;
@@ -439,6 +748,7 @@
 		};
 		FAA191D51F6739CF0076CDC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2A7EAC70B0497B85FE44831 /* Pods-McberTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -454,6 +764,7 @@
 		};
 		FAA191D61F6739CF0076CDC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEFFE4BAF05448C99A8D8564 /* Pods-McberTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -514,6 +825,7 @@
 				FAA191D31F6739CF0076CDC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAA191D41F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +834,7 @@
 				FAA191D61F6739CF0076CDC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAA191D71F6739CF0076CDC7 /* Build configuration list for PBXNativeTarget "McberUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +843,7 @@
 				FAA191D91F6739CF0076CDC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

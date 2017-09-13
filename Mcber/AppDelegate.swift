@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import Fabric
+import FontAwesomeKit
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var services: ServiceLocator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        Fabric.with([Crashlytics.self])
+        FAKFontAwesome.iconFont(withSize: 1)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        self.services = ServiceLocator()
+        window?.rootViewController = RootViewController(services: self.services)
+        
+        window?.backgroundColor = UIColor.white
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
