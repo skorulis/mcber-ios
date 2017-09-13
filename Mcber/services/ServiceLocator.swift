@@ -8,6 +8,8 @@ class ServiceLocator: NSObject {
     let theme:ThemeService
     let analytics:AnalyticsService
     let ref:ReferenceService
+    let api:MainAPIService
+    let login:LoginService
     
     override init() {
         theme = ThemeService()
@@ -17,6 +19,9 @@ class ServiceLocator: NSObject {
         
         ref = ReferenceService()
         _ = ref.getAllReferenceData()
+        
+        api = MainAPIService()
+        login = LoginService(api: api)
     }
     
 }

@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         FAKFontAwesome.iconFont(withSize: 1)
-        window = UIWindow(frame: UIScreen.main.bounds)
         self.services = ServiceLocator()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = RootViewController(services: self.services)
         
         window?.backgroundColor = UIColor.white
