@@ -29,7 +29,18 @@ class RootViewController: BaseViewController {
     }
     
     func showMainUI() {
+        let user = UserDetailsViewController(services: self.services)
+        let activites = ActivityListViewController(services: self.services)
+        let avatars = AvatarListViewController(services: self.services)
         
+        let controllers:[UIViewController] = [user,activites,avatars]
+        let tab = UITabBarController()
+        tab.viewControllers = controllers.map { UINavigationController(rootViewController: $0) }
+        self.view.addSubview(tab.view)
+        tab.view.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        self.addChildViewController(tab)
     }
     
     func showLogin() {
