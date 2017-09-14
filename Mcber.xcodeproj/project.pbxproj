@@ -20,6 +20,8 @@
 		FA6CF12D1F69DEDD0026D126 /* AvatarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF12C1F69DEDD0026D126 /* AvatarListViewController.swift */; };
 		FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF12E1F69DF010026D126 /* UserDetailsViewController.swift */; };
 		FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1301F69DF210026D126 /* ActivityListViewController.swift */; };
+		FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1321F69E0FD0026D126 /* GameStateService.swift */; };
+		FA6CF1351F69E1560026D126 /* AvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1341F69E1560026D126 /* AvatarModel.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -75,6 +77,8 @@
 		FA6CF12C1F69DEDD0026D126 /* AvatarListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarListViewController.swift; sourceTree = "<group>"; };
 		FA6CF12E1F69DF010026D126 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		FA6CF1301F69DF210026D126 /* ActivityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListViewController.swift; sourceTree = "<group>"; };
+		FA6CF1321F69E0FD0026D126 /* GameStateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStateService.swift; sourceTree = "<group>"; };
+		FA6CF1341F69E1560026D126 /* AvatarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarModel.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 		FAA191E01F673A4B0076CDC7 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				FA6CF1321F69E0FD0026D126 /* GameStateService.swift */,
 				FA6CF12A1F693E850026D126 /* LoginService.swift */,
 				FA6CF1121F688B060026D126 /* MainAPIService.swift */,
 				FA6CF1101F688AEC0026D126 /* ReferenceService.swift */,
@@ -347,6 +352,7 @@
 				FAA191FC1F673EAB0076CDC7 /* UserModel.swift */,
 				FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */,
 				FAA192001F673F200076CDC7 /* RealmModel.swift */,
+				FA6CF1341F69E1560026D126 /* AvatarModel.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -589,6 +595,7 @@
 				FAA191F21F673A4B0076CDC7 /* ObserverSet.swift in Sources */,
 				FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */,
 				FA6CF12D1F69DEDD0026D126 /* AvatarListViewController.swift in Sources */,
+				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
@@ -605,6 +612,7 @@
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
 				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
 				FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */,
+				FA6CF1351F69E1560026D126 /* AvatarModel.swift in Sources */,
 				FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */,
 				FA6CF12B1F693E850026D126 /* LoginService.swift in Sources */,
 				FA6CF1181F688D2B0026D126 /* ResourceReferenceModel.swift in Sources */,

@@ -22,6 +22,9 @@ class RootViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.services.login.isLoggedIn {
+            _ = services.api.getCurrentUser().then { response -> Void in
+                self.services.state.resetState(user: response.user)
+            }
             self.showMainUI()
         } else {
             self.showLogin()

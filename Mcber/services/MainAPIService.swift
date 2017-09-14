@@ -70,4 +70,9 @@ class MainAPIService: NetAPIService {
         return promise
     }
     
+    func getCurrentUser() -> Promise<UserResponse> {
+        let req = self.request(path: "user/current")
+        return doRequest(req: req)
+    }
+    
 }
