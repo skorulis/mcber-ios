@@ -19,6 +19,7 @@ class ServiceLocator: NSObject {
         analytics = AnalyticsService()
         
         ref = ReferenceService()
+        ReferenceService.instance = ref
         _ = ref.getAllReferenceData()
         
         state = GameStateService()

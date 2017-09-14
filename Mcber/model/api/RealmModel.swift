@@ -14,4 +14,9 @@ class RealmModel: ImmutableMappable {
         level = try map.value("level") //TODO Handle maximum level values (or just change the name on the server)
     }
     
+    init(elementId:Int,level:Int) {
+        self.elementId = elementId
+        self.level = level
+    }
+    
 }

@@ -56,6 +56,11 @@ class MainAPIService: NetAPIService {
         return doLoginRequest(req: req)
     }
     
+    func login(email:String,password:String) -> Promise<LoginResponse> {
+        let req = self.formPostRequst(path: "login/password", dict: ["email":email,"password":password])
+        return doLoginRequest(req: req)
+    }
+    
     func refreshToken() -> Promise<LoginResponse> {
         var req = self.jsonPostRequest(path: "user/refreshToken", dict: [:])
         req.setValue("Bearer \(self.tokenWriter!.bearerToken!)", forHTTPHeaderField: "Authorization")

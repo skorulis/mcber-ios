@@ -30,8 +30,17 @@ class LoginService {
         return promise
     }
     
+    func login(email:String,password:String) -> Promise<LoginResponse> {
+        let promise = api.login(email: email, password: password)
+        _ = promise.then {[unowned self] (response) -> Void in
+            self.state.resetState(user: response.user)
+            self.userDidLogin.notify(parameters: self)
+        }
+        return promise
+    }
+    
     func logout() {
-        //TODO: Add logout here
+        self.state.clearState()
         api.tokenWriter?.saveToken(token: nil, expiry: nil)
         userDidLogout.notify(parameters: self)
     }

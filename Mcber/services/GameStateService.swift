@@ -14,6 +14,10 @@ class GameStateService: NSObject {
         return user != nil
     }
     
+    func clearState() {
+        self.user = nil
+    }
+    
     func resetState(user:UserModel) {
         self.user = user
         didChangeState.notify(parameters: user)

@@ -9,6 +9,11 @@ class UserDetailsViewController: BaseCollectionViewController {
         super.viewDidLoad()
 
         self.title = "Users"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed(sender:)))
+    }
+    
+    func logoutPressed(sender:UIBarButtonItem) {
+        self.services.login.logout()
     }
 
 }

@@ -114,9 +114,11 @@ public class NetAPIService: NSObject {
     }
     
     public func handleResponse<T: BaseMappable>(dataPromise:URLDataPromise) -> Promise<T> {
-        return dataPromise.then {[unowned self] data -> Promise<T> in
+        let dp:Promise<T> = dataPromise.then {[unowned self] data -> Promise<T> in
             return self.parseData(data: data, connectionError: nil)
         }
+        
+        return dp
     }
     
     public func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {

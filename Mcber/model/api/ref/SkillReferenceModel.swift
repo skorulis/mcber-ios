@@ -8,7 +8,7 @@ class ElementalSkillModel: ImmutableMappable {
     let name:String
     let shortName:String
     let damageModifiers:[Double]
-    //let index:Int
+    let index:Int
     let healthModifier:Double
     let speedModifier:Double
     //TODO: Put resources here?
@@ -19,6 +19,7 @@ class ElementalSkillModel: ImmutableMappable {
         damageModifiers = try map.value("damageModifiers")
         healthModifier = try map.value("healthModifier")
         speedModifier = try map.value("speedModifier")
+        index = try map.value("index")
     }
 }
 

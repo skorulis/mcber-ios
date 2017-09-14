@@ -6,6 +6,8 @@ import PromiseKit
 
 class ReferenceService: NetAPIService {
     
+    static var instance:ReferenceService!
+    
     var skills:SkillsReferenceModel?
     var resources:ResourceListRefModel?
     
@@ -44,6 +46,18 @@ class ReferenceService: NetAPIService {
             self.resources = resources.resources
         }
         return promise
+    }
+    
+    func element(_ elementId:Int) -> ElementalSkillModel {
+        return self.skills!.elements[elementId]
+    }
+    
+    func allElements() -> [ElementalSkillModel] {
+        return self.skills?.elements ?? []
+    }
+    
+    func allRealms() -> [RealmModel] {
+        return self.allElements().map { RealmModel(elementId: $0.index, level: 0) }
     }
     
 }
