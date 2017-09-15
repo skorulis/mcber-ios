@@ -8,6 +8,7 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
 
     let label = UILabel()
     let chevron = UILabel()
+    let gesture = UITapGestureRecognizer(target: nil, action: nil)
     
     
     override func buildView(theme: ThemeService) {
@@ -22,7 +23,7 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
         self.addSubview(chevron)
         chevron.attributedText = icon?.attributedString()
         
-        
+        self.addGestureRecognizer(gesture)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -47,8 +48,8 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
     }
     
     func addTapTarget(target:Any, action:Selector) {
-        let gesture = UITapGestureRecognizer(target: target, action: action)
-        self.addGestureRecognizer(gesture)
+        gesture.removeTarget(nil, action: nil)
+        gesture.addTarget(target, action: action)
     }
 
 

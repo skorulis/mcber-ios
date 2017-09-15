@@ -9,11 +9,13 @@ class UserModel: ImmutableMappable {
     let _id:String
     let email:String?
     let avatars:[AvatarModel]
+    let realms:[RealmModel]
     
     required init(map: Map) throws {
         _id = try map.value("_id")
         email = try? map.value("email")
         avatars = try map.value("avatars")
+        realms = try map.value("realms")
     }
     
 }

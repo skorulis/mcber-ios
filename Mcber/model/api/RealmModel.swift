@@ -8,15 +8,19 @@ class RealmModel: ImmutableMappable {
 
     let elementId:Int
     let level:Int
+    let maximumLevel:Int?
     
     required init(map: Map) throws {
         elementId = try map.value("elementId")
-        level = try map.value("level") //TODO Handle maximum level values (or just change the name on the server)
+        let max:Int? = try? map.value("maximumLevel")
+        maximumLevel = max
+        level = (try? map.value("level")) ?? max ?? 1
     }
     
-    init(elementId:Int,level:Int) {
+    init(elementId:Int,level:Int,maximumLevel:Int?) {
         self.elementId = elementId
         self.level = level
+        self.maximumLevel = maximumLevel
     }
     
 }

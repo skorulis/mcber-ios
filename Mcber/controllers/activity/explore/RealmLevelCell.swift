@@ -11,6 +11,9 @@ class RealmLevelCell: ThemedCollectionViewCell {
         label.textAlignment = .center
         self.contentView.addSubview(label)
         
+        self.backgroundColor = theme.color.deselectedColor
+        self.selectedBackgroundView = UIView()
+        self.selectedBackgroundView?.backgroundColor = theme.color.selectedColor
     }
     
     override func buildLayout(theme: ThemeService) {

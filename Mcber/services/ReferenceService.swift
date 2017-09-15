@@ -56,8 +56,4 @@ class ReferenceService: NetAPIService {
         return self.skills?.elements ?? []
     }
     
-    func allRealms() -> [RealmModel] {
-        return self.allElements().map { RealmModel(elementId: $0.index, level: 0) }
-    }
-    
 }

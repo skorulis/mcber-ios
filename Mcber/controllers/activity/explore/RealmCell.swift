@@ -10,11 +10,13 @@ class RealmCell: ThemedCollectionViewCell, UICollectionViewDelegate, UICollectio
     let layout = UICollectionViewFlowLayout()
     var collectionView:UICollectionView!
     
+    var didSelectLevel: ((Int) -> () )?
+    
     var realm:RealmModel? {
         didSet {
             if let r = realm {
                 let skill = ref.element(r.elementId)
-                label.text = "\(skill.name) \(r.level)"
+                label.text = "\(skill.name) Realm"
             }
         }
     }
@@ -44,17 +46,18 @@ class RealmCell: ThemedCollectionViewCell, UICollectionViewDelegate, UICollectio
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return realm!.maximumLevel!
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:RealmLevelCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme!)
         cell.label.text = "\(indexPath.row+1)"
+        cell.isSelected = indexPath.row == realm!.level
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        didSelectLevel?(indexPath.row+1)
     }
 
 }

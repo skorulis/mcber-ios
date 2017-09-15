@@ -50,18 +50,13 @@ public class ThemeImages: NSObject {
 
 public class ThemeColors: NSObject {
     
-    public let facebookBlue = UIColor(netHex: 0x3b5998)
-    public let twitterBlue = UIColor(netHex: 0x4099FF)
-    public let untappdYellow = UIColor(netHex: 0xFFCD00)
-    public let instagramPurple = UIColor(netHex: 0x7D3CB4)
-    public let phoneGreen = UIColor(netHex: 0x5AE66E)
-    
     public let defaultText = UIColor(netHex: 0x252525)
     
     public let defaultBackground:UIColor
     
-    public let favouriteOff = UIColor(netHex: 0x888888)
-    public let favouriteOn = UIColor(netHex: 0x0E21E5C)
+    public let deselectedColor = UIColor(netHex: 0xAAAAAA)
+    public let selectedColor = UIColor(netHex: 0x3333BB)
+
     
     public override init() {
         defaultBackground = UIColor.white

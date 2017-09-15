@@ -5,6 +5,8 @@ import UIKit
 
 class AvatarListViewController: BaseCollectionViewController {
 
+    var didSelectAvatar: ((AvatarListViewController,AvatarModel) -> () )?
+    
     var avatars:[AvatarModel] {
         return self.services.state.user?.avatars ?? []
     }
@@ -17,6 +19,11 @@ class AvatarListViewController: BaseCollectionViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 60)
+    }
+    
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.avatars.count
     }
@@ -25,6 +32,12 @@ class AvatarListViewController: BaseCollectionViewController {
         let cell:AvatarCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
         cell.model = avatars[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let select = didSelectAvatar {
+            select(self,self.avatars[indexPath.row])
+        }
     }
     
 

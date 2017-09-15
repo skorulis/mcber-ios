@@ -3,6 +3,7 @@
 
 import UIKit
 import PromiseKit
+import ObjectMapper
 
 //TODO: Make this a bit more secure
 private class TokenWriter: NetAPITokenWriter {
@@ -75,9 +76,17 @@ class MainAPIService: NetAPIService {
         return promise
     }
     
+    func doAuthRequest<T: BaseMappable>(req:URLRequest) -> Promise<T> {
+        var mutable = req
+        if let token = self.tokenWriter?.bearerToken {
+            mutable.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        return doRequest(req: mutable)
+    }
+    
     func getCurrentUser() -> Promise<UserResponse> {
         let req = self.request(path: "user/current")
-        return doRequest(req: req)
+        return doAuthRequest(req: req)
     }
     
 }
