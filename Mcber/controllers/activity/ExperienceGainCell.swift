@@ -5,7 +5,7 @@ import UIKit
 
 struct ExperienceGainViewModel {
     let xp:ExperienceGainModel
-    let skill:ElementalSkillModel
+    let skill:SkillModel
 }
 
 class ExperienceGainCell: ThemedCollectionViewCell, SimpleModelCell {

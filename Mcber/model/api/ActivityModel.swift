@@ -5,14 +5,14 @@ import UIKit
 import ObjectMapper
 
 class ExperienceGainModel: ImmutableMappable {
-    let type:String //Replace with enum
+    let type:SkillType
     let xp:Int
-    let elementId:Int?
+    let skillId:Int
     
     required init(map: Map) throws {
         type = try map.value("type")
         xp = try map.value("xp")
-        elementId = try? map.value("elementId")
+        skillId = try map.value("skillId")
     }
 }
 

@@ -4,14 +4,13 @@
 import UIKit
 import ObjectMapper
 
-class ElementalSkillModel: ImmutableMappable {
+class SkillModel: ImmutableMappable {
     let name:String
     let shortName:String
     let damageModifiers:[Double]
     let index:Int
     let healthModifier:Double
     let speedModifier:Double
-    //TODO: Put resources here?
     
     required init(map: Map) throws {
         name = try map.value("name")
@@ -24,10 +23,12 @@ class ElementalSkillModel: ImmutableMappable {
 }
 
 class SkillsReferenceModel: ImmutableMappable {
-    let elements:[ElementalSkillModel]
+    let elements:[SkillModel]
+    let trades:[SkillModel]
     
     required init(map: Map) throws {
         elements = try map.value("elements")
+        trades = try map.value("trades")
     }
     
 }

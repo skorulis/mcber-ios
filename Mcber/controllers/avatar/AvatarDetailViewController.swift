@@ -11,6 +11,18 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         return avatar.skills.elements
     }
     
+    var trades:[SkillProgressModel] {
+        return avatar.skills.trades
+    }
+    
+    func elementAt(indexPath:IndexPath) -> (SkillProgressModel,SkillModel) {
+        return self.services.ref.filledSkill(progress: self.elements[indexPath.row])
+    }
+    
+    func tradeAt(indexPath:IndexPath) -> (SkillProgressModel,SkillModel) {
+        return self.services.ref.filledSkill(progress: self.trades[indexPath.row])
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +30,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
 
         self.collectionView.register(clazz: AvatarCell.self)
         self.collectionView.register(clazz: AvatarSkillCell.self)
+        self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let topSection = SectionController()
         topSection.fixedHeight = 90
@@ -27,19 +40,22 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
             return cell
         }
         
-        let skillsSection = SectionController()
-        skillsSection.fixedCellCount = elements.count
-        skillsSection.fixedHeight = 90
-        skillsSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let cell:AvatarSkillCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-            let progress = self.elements[indexPath.row]
-            let skill = self.services.ref.element(progress.elementId)
-            cell.model = (progress,skill)
-            return cell
-        }
+        let elementSkillsSection = skillSection(title: "Elemental Skills", count: elements.count, skillAt: elementAt(indexPath:))
+        let tradeSkillsSection = skillSection(title: "Trade Skills", count: trades.count, skillAt: tradeAt(indexPath:))
         
         self.sections.append(topSection)
-        self.sections.append(skillsSection)
+        self.sections.append(elementSkillsSection)
+        self.sections.append(tradeSkillsSection)
+    }
+    
+    func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> (SkillProgressModel,SkillModel)) -> SectionController {
+        let skillsSection = SectionController()
+        skillsSection.fixedCellCount = count
+        skillsSection.fixedHeight = 90
+        skillsSection.cellForItemAt = AvatarSkillCell.curriedDefaultCell(getModel: skillAt)
+        skillsSection.fixedHeaderHeight = 40
+        skillsSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text:title)
+        return skillsSection
     }
 
 }

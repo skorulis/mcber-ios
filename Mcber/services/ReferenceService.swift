@@ -48,9 +48,23 @@ class ReferenceService: NetAPIService {
         return promise
     }
     
-    func element(_ elementId:Int) -> ElementalSkillModel {
+    func element(_ elementId:Int) -> SkillModel {
         return self.skills!.elements[elementId]
     }
+    
+    func trade(_ tradeId:Int) -> SkillModel {
+        return self.skills!.trades[tradeId]
+    }
+    
+    func skill(_ skillId:Int,type:SkillType) -> SkillModel {
+        switch(type) {
+        case .element:
+            return element(skillId)
+        case .trade:
+            return trade(skillId)
+        }
+    }
+    
     
     func elementResource(_ resourceId:String) -> ResourceRefModel {
         return self.resources!.elemental[resourceId]!
@@ -60,8 +74,17 @@ class ReferenceService: NetAPIService {
         return (resource,self.elementResource(resource.resourceId) )
     }
     
-    func allElements() -> [ElementalSkillModel] {
+    func filledSkill(progress:SkillProgressModel) -> (SkillProgressModel, SkillModel) {
+        let skill = self.skill(progress.skillId, type: progress.type)
+        return (progress, skill)
+    }
+    
+    func allElements() -> [SkillModel] {
         return self.skills?.elements ?? []
+    }
+    
+    func allTrades() -> [SkillModel] {
+        return self.skills?.trades ?? []
     }
     
 }

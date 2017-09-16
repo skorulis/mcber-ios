@@ -3,13 +3,14 @@
 
 import UIKit
 
-class AvatarSkillCell: ThemedCollectionViewCell {
+class AvatarSkillCell: ThemedCollectionViewCell, SimpleModelCell {
 
     let nameLabel = UILabel()
     let levelLabel = UILabel()
     let progressView = ProgressView()
     
-    var model:(SkillProgressModel,ElementalSkillModel)? {
+    typealias ModelType = (SkillProgressModel,SkillModel)
+    var model:(SkillProgressModel,SkillModel)? {
         didSet {
             if let skill = model?.1, let progress = model?.0 {
                 nameLabel.text = skill.name

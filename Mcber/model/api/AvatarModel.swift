@@ -3,6 +3,11 @@
 import UIKit
 import ObjectMapper
 
+enum SkillType: String {
+    case element = "elemental"
+    case trade = "trade"
+}
+
 class SkillProgressAPIModel: ImmutableMappable {
     
     let level:Int
@@ -24,15 +29,18 @@ class SkillProgressAPIModel: ImmutableMappable {
 
 class SkillProgressModel: SkillProgressAPIModel {
     
-    let elementId:Int
+    let skillId:Int
+    let type:SkillType
     
-    init(net:SkillProgressAPIModel,elementId:Int) {
-        self.elementId = elementId
+    init(net:SkillProgressAPIModel,skillId:Int,type:SkillType) {
+        self.skillId = skillId
+        self.type = type
         super.init(level: net.level, xp: net.xp, xpNext:net.xpNext)
     }
     
     required init(map: Map) throws {
-        self.elementId = try map.value("elementId")
+        skillId = try map.value("skillId")
+        type = try map.value("skillType")
         try super.init(map: map)
     }
     
@@ -41,11 +49,17 @@ class SkillProgressModel: SkillProgressAPIModel {
 class AvatarSkills: ImmutableMappable {
     
     let elements:[SkillProgressModel]
+    let trades:[SkillProgressModel];
     
     required init(map: Map) throws {
         let netElements:[SkillProgressAPIModel] = try map.value("elements")
         elements = netElements.enumerated().map { (index, element) in
-            return SkillProgressModel(net: element, elementId: index)
+            return SkillProgressModel(net: element, skillId: index,type:.element)
+        }
+        
+        let netTrades:[SkillProgressAPIModel] = try map.value("trades")
+        trades = netTrades.enumerated().map { (index, element) in
+            return SkillProgressModel(net: element, skillId: index,type:.trade)
         }
     }
 }

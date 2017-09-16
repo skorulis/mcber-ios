@@ -42,7 +42,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
     
     func xpAt(indexPath:IndexPath) -> ExperienceGainViewModel {
         let xp = result.experience[indexPath.row]
-        let skill = self.services.ref.element(xp.elementId!)
+        let skill = self.services.ref.skill(xp.skillId, type: xp.type)
         return ExperienceGainViewModel(xp: xp, skill: skill)
     }
     
