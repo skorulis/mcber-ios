@@ -37,6 +37,10 @@ class AvatarListViewController: BaseCollectionViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let select = didSelectAvatar {
             select(self,self.avatars[indexPath.row])
+        } else {
+            let vc = AvatarDetailViewController(services: self.services)
+            vc.avatar = self.avatars[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

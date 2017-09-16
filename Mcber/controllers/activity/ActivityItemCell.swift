@@ -6,9 +6,7 @@ import UIKit
 class ActivityItemCell: ThemedCollectionViewCell {
 
     let typeLabel = UILabel()
-    let remainingLabel = UILabel()
-    let emptyProgressBar = UIView()
-    let fullProgressBar = UIView()
+    let progress = ProgressView()
     
     let cancelButton = UIButton()
     let completeButton = UIButton()
@@ -25,9 +23,6 @@ class ActivityItemCell: ThemedCollectionViewCell {
     }
     
     override func buildView(theme: ThemeService) {
-        fullProgressBar.backgroundColor = UIColor.gray
-        emptyProgressBar.backgroundColor = UIColor.orange
-        
         cancelButton.setTitle("Cancel", for: .normal)
         completeButton.setTitle("Complete", for: .normal)
         
@@ -37,10 +32,8 @@ class ActivityItemCell: ThemedCollectionViewCell {
         cancelButton.addTarget(self, action: #selector(cancelPressed(sender:)), for: .touchUpInside)
         completeButton.addTarget(self, action: #selector(completePressed(sender:)), for: .touchUpInside)
         
-        self.emptyProgressBar.addSubview(fullProgressBar)
-        self.contentView.addSubview(emptyProgressBar)
+        self.contentView.addSubview(progress)
         self.contentView.addSubview(typeLabel)
-        self.contentView.addSubview(remainingLabel)
         self.contentView.addSubview(completeButton)
         self.contentView.addSubview(cancelButton)
     }
@@ -49,16 +42,12 @@ class ActivityItemCell: ThemedCollectionViewCell {
         typeLabel.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().inset(theme.padding.edges)
         }
-        emptyProgressBar.snp.makeConstraints { (make) in
+        progress.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview().inset(theme.padding.edges)
             make.height.equalTo(20)
         }
-        remainingLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(emptyProgressBar)
-            make.left.equalTo(emptyProgressBar).offset(20)
-        }
         completeButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(emptyProgressBar.snp.top).offset(4)
+            make.bottom.equalTo(progress.snp.top).offset(4)
             make.right.equalToSuperview().inset(theme.padding.edges)
         }
         cancelButton.snp.makeConstraints { (make) in
@@ -78,19 +67,14 @@ class ActivityItemCell: ThemedCollectionViewCell {
         if let a = activity {
             let currentTime = Date().timeIntervalSince1970
             let remaining = max(Int(a.finishTimestamp - currentTime),0)
-            self.remainingLabel.text = "\(remaining)"
+            self.progress.label.text = "\(remaining)"
         }
     }
     
     private func updateProgressFrame() {
         if let a = activity {
-            let totalTime = a.finishTimestamp - a.startTimestamp
-            let currentTime = Date().timeIntervalSince1970
-            let remaining = a.finishTimestamp - currentTime
-            let remainingFrac = max(0, remaining / totalTime)
-            let width = emptyProgressBar.frame.width * CGFloat(1-remainingFrac)
-            fullProgressBar.frame = CGRect(x: 0, y: 0, width: width, height: fullProgressBar.frame.height)
-            
+            let currentTime:Double = Date().timeIntervalSince1970
+            self.progress.set(startValue: a.startTimestamp, finishValue: a.finishTimestamp, currentValue: currentTime)
         }
     }
     

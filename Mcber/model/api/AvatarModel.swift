@@ -3,7 +3,7 @@
 import UIKit
 import ObjectMapper
 
-class SkillProgressModel: ImmutableMappable {
+class SkillProgressAPIModel: ImmutableMappable {
     
     let level:Int
     let xp:Int
@@ -12,6 +12,27 @@ class SkillProgressModel: ImmutableMappable {
         level = try map.value("level")
         xp = try map.value("xp")
     }
+    
+    init(level:Int,xp:Int) {
+        self.level = level
+        self.xp = xp
+    }
+}
+
+class SkillProgressModel: SkillProgressAPIModel {
+    
+    let elementId:Int
+    
+    init(net:SkillProgressAPIModel,elementId:Int) {
+        self.elementId = elementId
+        super.init(level: net.level, xp: net.xp)
+    }
+    
+    required init(map: Map) throws {
+        self.elementId = try map.value("elementId")
+        try super.init(map: map)
+    }
+    
 }
 
 class AvatarSkills: ImmutableMappable {
@@ -19,7 +40,10 @@ class AvatarSkills: ImmutableMappable {
     let elements:[SkillProgressModel]
     
     required init(map: Map) throws {
-        elements = try map.value("elements")
+        let netElements:[SkillProgressAPIModel] = try map.value("elements")
+        elements = netElements.enumerated().map { (index, element) in
+            return SkillProgressModel(net: element, elementId: index)
+        }
     }
 }
 
