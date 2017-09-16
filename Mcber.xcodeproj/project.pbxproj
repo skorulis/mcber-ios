@@ -57,6 +57,7 @@
 		FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */; };
 		FAD01BD81F6D15A900DE39B3 /* ActivityResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */; };
 		FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */; };
+		FAD01BDC1F6D283700DE39B3 /* ExperienceGainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
 		FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityResultViewController.swift; sourceTree = "<group>"; };
 		FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelpers.swift; sourceTree = "<group>"; };
+		FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceGainCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 				FA6CF1301F69DF210026D126 /* ActivityListViewController.swift */,
 				FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */,
 				FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */,
+				FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */,
 			);
 			path = activity;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				FA6CF12D1F69DEDD0026D126 /* AvatarListViewController.swift in Sources */,
 				FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */,
 				FAD01BD21F6CDBF000DE39B3 /* AvatarSkillCell.swift in Sources */,
+				FAD01BDC1F6D283700DE39B3 /* ExperienceGainCell.swift in Sources */,
 				FAD01BD81F6D15A900DE39B3 /* ActivityResultViewController.swift in Sources */,
 				FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */,
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,

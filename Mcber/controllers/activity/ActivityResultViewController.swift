@@ -13,6 +13,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         self.title = "Result"
         
         collectionView.register(clazz: ResourceCell.self)
+        collectionView.register(clazz: ExperienceGainCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let resourceModel = self.services.ref.filledResource(resource: result.resource)
@@ -22,7 +23,27 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
         
+        let xpSection = SectionController()
+        xpSection.simpleNumberOfItemsInSection = xpCount
+        xpSection.cellForItemAt = ExperienceGainCell.curriedDefaultCell(getModel: xpAt(indexPath:))
+        xpSection.fixedHeaderHeight = 40
+        xpSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Experience")
+        
+        
         self.sections.append(resourceSection)
+        self.sections.append(xpSection)
+    }
+    
+    //MARK: Data access
+    
+    func xpCount() -> Int {
+        return result.experience.count
+    }
+    
+    func xpAt(indexPath:IndexPath) -> ExperienceGainViewModel {
+        let xp = result.experience[indexPath.row]
+        let skill = self.services.ref.element(xp.elementId!)
+        return ExperienceGainViewModel(xp: xp, skill: skill)
     }
     
 }
