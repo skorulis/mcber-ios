@@ -10,7 +10,9 @@ enum ActivityType: String {
 
 class ActivityListViewController: BaseSectionCollectionViewController {
 
-    
+    var activities:[ActivityModel] {
+        return self.services.state.activities
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,8 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         let types:[ActivityType] = [.explore, .battle]
         
         self.collectionView.register(clazz: ForwardNavigationCell.self)
+        self.collectionView.register(clazz: ActivityItemCell.self)
+        self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let startSection = SectionController()
         startSection.fixedCellCount = types.count
@@ -42,8 +46,22 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             }
         }
         
+        let activitySection = SectionController()
+        activitySection.numberOfItemsInSection = {[unowned self] (c:UICollectionView,s:Int) in
+            return self.activities.count
+        }
+        activitySection.fixedHeight = 100
+        activitySection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let cell:ActivityItemCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
+            cell.activity = self.activities[indexPath.row]
+            return cell
+        }
+        activitySection.fixedHeaderHeight = 40
+        activitySection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "In Progress")
         
+
         self.sections.append(startSection)
+        self.sections.append(activitySection)
     }
 
 }

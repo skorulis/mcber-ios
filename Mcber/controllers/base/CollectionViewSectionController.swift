@@ -14,7 +14,7 @@ class SectionController: NSObject {
     var cellForItemAt: ((UICollectionView,IndexPath) -> UICollectionViewCell)!
     var didSelectItemAt: ((UICollectionView,IndexPath) -> () )?
     var sizeForItemAt: ((UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize)?
-    var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)?
+    var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
     
     convenience init(fixedHeight:CGFloat,cellForItemAt:((UICollectionView,IndexPath) -> UICollectionViewCell)!) {

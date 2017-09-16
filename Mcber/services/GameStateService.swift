@@ -14,6 +14,10 @@ class GameStateService {
         return user != nil
     }
     
+    var activities: [ActivityModel] {
+        return user?.activities ?? []
+    }
+    
     func clearState() {
         self.user = nil
     }

@@ -49,6 +49,8 @@
 		FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA192001F673F200076CDC7 /* RealmModel.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
+		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
+		FAD01BCE1F6CC3DF00DE39B3 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCD1F6CC3DF00DE39B3 /* SectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		FAA192001F673F200076CDC7 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
+		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
+		FAD01BCD1F6CC3DF00DE39B3 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +329,7 @@
 		FAA191E91F673A4B0076CDC7 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				FAD01BCD1F6CC3DF00DE39B3 /* SectionHeaderView.swift */,
 				FA6CF1661F6A93550026D126 /* ForwardNavigationCell.swift */,
 				FA6CF1681F6A94EF0026D126 /* ForwardNavigationHeader.swift */,
 			);
@@ -336,6 +341,7 @@
 			children = (
 				FA6CF1631F6A8C2E0026D126 /* explore */,
 				FA6CF1301F69DF210026D126 /* ActivityListViewController.swift */,
+				FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */,
 			);
 			path = activity;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
+				FAD01BCE1F6CC3DF00DE39B3 /* SectionHeaderView.swift in Sources */,
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
 				FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */,
@@ -648,6 +655,7 @@
 				FA6CF16F1F6B2EBD0026D126 /* RealmListViewController.swift in Sources */,
 				FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */,
 				FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */,
+				FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */,
 				FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
