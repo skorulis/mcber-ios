@@ -4,6 +4,15 @@
 import UIKit
 import ObjectMapper
 
+class ActivityResult: ImmutableMappable {
+    
+    //TODO: Add fields
+    
+    required init(map: Map) throws {
+        
+    }
+}
+
 class ActivityModel: ImmutableMappable {
 
     let finishTimestamp:Double
@@ -30,5 +39,17 @@ class ActivityResponse: ImmutableMappable {
     
     required init(map: Map) throws {
         activity = try map.value("activity")
+    }
+}
+
+class ActivityCompleteResponse: ImmutableMappable {
+    let activities:[ActivityModel]
+    let result:ActivityResult
+    let avatar:AvatarModel
+    
+    required init(map: Map) throws {
+        activities = try map.value("activities")
+        result = try map.value("result")
+        avatar = try map.value("avatar")
     }
 }

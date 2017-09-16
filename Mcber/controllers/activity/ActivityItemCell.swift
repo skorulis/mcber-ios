@@ -10,6 +10,12 @@ class ActivityItemCell: ThemedCollectionViewCell {
     let emptyProgressBar = UIView()
     let fullProgressBar = UIView()
     
+    let cancelButton = UIButton()
+    let completeButton = UIButton()
+    
+    var completeBlock: ((ActivityModel) -> ())?
+    var cancelBlock: ((ActivityModel) -> ())?
+    
     var activity:ActivityModel? {
         didSet {
             typeLabel.text = activity?.activityType
@@ -22,10 +28,21 @@ class ActivityItemCell: ThemedCollectionViewCell {
         fullProgressBar.backgroundColor = UIColor.gray
         emptyProgressBar.backgroundColor = UIColor.orange
         
+        cancelButton.setTitle("Cancel", for: .normal)
+        completeButton.setTitle("Complete", for: .normal)
+        
+        cancelButton.setTitleColor(UIColor.black, for: .normal)
+        completeButton.setTitleColor(UIColor.black, for: .normal)
+        
+        cancelButton.addTarget(self, action: #selector(cancelPressed(sender:)), for: .touchUpInside)
+        completeButton.addTarget(self, action: #selector(completePressed(sender:)), for: .touchUpInside)
+        
         self.emptyProgressBar.addSubview(fullProgressBar)
         self.contentView.addSubview(emptyProgressBar)
         self.contentView.addSubview(typeLabel)
         self.contentView.addSubview(remainingLabel)
+        self.contentView.addSubview(completeButton)
+        self.contentView.addSubview(cancelButton)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -40,6 +57,15 @@ class ActivityItemCell: ThemedCollectionViewCell {
             make.top.bottom.equalTo(emptyProgressBar)
             make.left.equalTo(emptyProgressBar).offset(20)
         }
+        completeButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(emptyProgressBar.snp.top).offset(4)
+            make.right.equalToSuperview().inset(theme.padding.edges)
+        }
+        cancelButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(completeButton)
+            make.left.equalToSuperview().inset(theme.padding.edges)
+        }
+        
         
     }
     
@@ -66,7 +92,16 @@ class ActivityItemCell: ThemedCollectionViewCell {
             fullProgressBar.frame = CGRect(x: 0, y: 0, width: width, height: fullProgressBar.frame.height)
             
         }
-        
+    }
+    
+    //MARK: Actions
+    
+    func cancelPressed(sender:Any) {
+        cancelBlock?(self.activity!)
+    }
+    
+    func completePressed(sender:Any) {
+        completeBlock?(self.activity!)
     }
 
 }

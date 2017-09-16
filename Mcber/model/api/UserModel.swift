@@ -8,7 +8,7 @@ class UserModel: ImmutableMappable {
 
     let _id:String
     let email:String?
-    let avatars:[AvatarModel]
+    var avatars:[AvatarModel]
     let realms:[RealmModel]
     var activities:[ActivityModel]
     

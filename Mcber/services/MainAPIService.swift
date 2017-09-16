@@ -95,4 +95,10 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func complete(activityId:String) -> Promise<ActivityCompleteResponse> {
+        let dict = ["activityId":activityId]
+        let req = self.jsonPostRequest(path: "action/complete", dict: dict)
+        return doAuthRequest(req: req)
+    }
+    
 }

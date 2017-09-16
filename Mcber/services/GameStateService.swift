@@ -32,4 +32,17 @@ class GameStateService {
         didChangeState.notify(parameters: user!)
     }
     
+    func update(activities:[ActivityModel]) {
+        user?.activities = activities
+        didChangeState.notify(parameters: user!)
+    }
+    
+    func update(avatar:AvatarModel) {
+        if let u = user {
+            let index = u.avatars.index { $0._id == avatar._id }!
+            u.avatars[index] = avatar
+            didChangeState.notify(parameters: u)
+        }
+    }
+    
 }

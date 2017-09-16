@@ -18,7 +18,16 @@ class ActivityService: NSObject {
     func explore(avatarId:String,realm:RealmModel) -> Promise<ActivityResponse> {
         let promise = api.explore(avatarId:avatarId,realm:realm)
         _ = promise.then { [unowned self] response -> Void in
-            
+            self.state.add(activity:response.activity)
+        }
+        return promise
+    }
+    
+    func complete(activity:ActivityModel) -> Promise<ActivityCompleteResponse> {
+        let promise = api.complete(activityId:activity._id)
+        _ = promise.then { [unowned self] response -> Void in
+            self.state.update(activities:response.activities)
+            self.state.update(avatar:response.avatar)
         }
         return promise
     }
