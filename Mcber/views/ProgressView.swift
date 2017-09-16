@@ -43,7 +43,7 @@ class ProgressView: UIView {
         fullView.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.height)
     }
     
-    func set(startValue:Double,finishValue:Double,currentValue:Double) {
+    func setFraction(startValue:Double,finishValue:Double,currentValue:Double) {
         let total = finishValue - startValue
         let remaining = finishValue - currentValue
         self.completeFraction = max(0, remaining / total)

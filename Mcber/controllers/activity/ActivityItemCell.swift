@@ -74,7 +74,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
     private func updateProgressFrame() {
         if let a = activity {
             let currentTime:Double = Date().timeIntervalSince1970
-            self.progress.set(startValue: a.startTimestamp, finishValue: a.finishTimestamp, currentValue: currentTime)
+            self.progress.setFraction(startValue: a.startTimestamp, finishValue: a.finishTimestamp, currentValue: currentTime)
         }
     }
     

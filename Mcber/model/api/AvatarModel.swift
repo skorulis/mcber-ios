@@ -7,15 +7,18 @@ class SkillProgressAPIModel: ImmutableMappable {
     
     let level:Int
     let xp:Int
+    let xpNext:Int
     
     required init(map: Map) throws {
         level = try map.value("level")
         xp = try map.value("xp")
+        xpNext = try map.value("xpNext")
     }
     
-    init(level:Int,xp:Int) {
+    init(level:Int,xp:Int,xpNext:Int) {
         self.level = level
         self.xp = xp
+        self.xpNext = xpNext
     }
 }
 
@@ -25,7 +28,7 @@ class SkillProgressModel: SkillProgressAPIModel {
     
     init(net:SkillProgressAPIModel,elementId:Int) {
         self.elementId = elementId
-        super.init(level: net.level, xp: net.xp)
+        super.init(level: net.level, xp: net.xp, xpNext:net.xpNext)
     }
     
     required init(map: Map) throws {

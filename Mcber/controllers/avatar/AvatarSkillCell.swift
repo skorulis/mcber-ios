@@ -7,13 +7,15 @@ class AvatarSkillCell: ThemedCollectionViewCell {
 
     let nameLabel = UILabel()
     let levelLabel = UILabel()
-    let progress = ProgressView()
+    let progressView = ProgressView()
     
     var model:(SkillProgressModel,ElementalSkillModel)? {
         didSet {
             if let skill = model?.1, let progress = model?.0 {
                 nameLabel.text = skill.name
-                levelLabel.text = "\(progress.level)"
+                levelLabel.text = "Level: \(progress.level)"
+                progressView.label.text = "\(progress.xp) / \(progress.xpNext)"
+                progressView.setFraction(startValue: 0, finishValue: Double(progress.xpNext), currentValue: Double(progress.xp))
             }
         }
     }
@@ -21,7 +23,7 @@ class AvatarSkillCell: ThemedCollectionViewCell {
     override func buildView(theme: ThemeService) {
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(levelLabel)
-        self.contentView.addSubview(progress)
+        self.contentView.addSubview(progressView)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -32,7 +34,7 @@ class AvatarSkillCell: ThemedCollectionViewCell {
             make.left.equalTo(nameLabel)
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
         }
-        progress.snp.makeConstraints { (make) in
+        progressView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
             make.height.equalTo(40)
         }

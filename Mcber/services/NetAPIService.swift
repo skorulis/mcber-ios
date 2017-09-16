@@ -26,7 +26,7 @@ public protocol NetAPITokenWriter: class {
 
 public class NetAPIService: NSObject {
 
-    
+    var logResponses:Bool = true
     
     let baseURL:String?
     let session:URLSession
@@ -124,6 +124,10 @@ public class NetAPIService: NSObject {
     public func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
         do {
             if let d = data {
+                if logResponses {
+                    let text = String(data:d, encoding:String.Encoding.utf8) ?? "UTF conversion error"
+                    print("Got DATA: \(text)")
+                }
                 let json = try JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String:Any]
                 let result:T? = Mapper(context: nil).map(JSON: json)
                 print("Got response \(String(describing: result))")

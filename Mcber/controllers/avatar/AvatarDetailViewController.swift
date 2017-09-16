@@ -29,7 +29,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         
         let skillsSection = SectionController()
         skillsSection.fixedCellCount = elements.count
-        skillsSection.fixedHeight = 80
+        skillsSection.fixedHeight = 90
         skillsSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:AvatarSkillCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             let progress = self.elements[indexPath.row]

@@ -10,6 +10,8 @@ enum ActivityType: String {
 
 class ActivityListViewController: BaseSectionCollectionViewController {
 
+    var refreshTimer:Timer?
+    
     var activities:[ActivityModel] {
         return self.services.state.activities
     }
@@ -66,9 +68,19 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         self.sections.append(activitySection)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.collectionView.reloadData()
+        self.refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            self.collectionView.reloadData()
+        })
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.refreshTimer?.invalidate()
+        self.refreshTimer = nil
     }
     
     func complete(activity:ActivityModel) {
