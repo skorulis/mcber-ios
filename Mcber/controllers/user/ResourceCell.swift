@@ -3,10 +3,12 @@
 
 import UIKit
 
-class ResourceCell: ThemedCollectionViewCell {
+class ResourceCell: ThemedCollectionViewCell, SimpleModelCell {
 
     let nameLabel = UILabel()
     let quantityLabel = UILabel()
+    
+    typealias ModelType = (ResourceModel, ResourceRefModel)
     
     var model: (ResourceModel, ResourceRefModel)? {
         didSet {

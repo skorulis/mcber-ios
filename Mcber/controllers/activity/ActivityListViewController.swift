@@ -85,7 +85,13 @@ class ActivityListViewController: BaseSectionCollectionViewController {
     
     func complete(activity:ActivityModel) {
         _ = self.services.activity.complete(activity: activity).then { [weak self] response -> Void in
-            self?.collectionView.reloadData()
+            guard let strongSelf = self else {
+                return
+            }
+            let vc = ActivityResultViewController(services: strongSelf.services)
+            vc.result = response.result
+            strongSelf.navigationController?.pushViewController(vc, animated: true)
+            strongSelf.collectionView.reloadData()
         }
     }
 

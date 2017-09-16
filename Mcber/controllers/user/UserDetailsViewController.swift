@@ -13,6 +13,11 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         return resources.count
     }
     
+    func resourceAt(indexPath:IndexPath) -> (ResourceModel,ResourceRefModel) {
+        let resource = self.resources[indexPath.row]
+        return self.services.ref.filledResource(resource: resource)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,16 +25,11 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed(sender:)))
         
         collectionView.register(clazz: ResourceCell.self)
-        self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let resourceSection = SectionController()
         resourceSection.simpleNumberOfItemsInSection = resourceCount
-        resourceSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let cell:ResourceCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-            let resource = self.resources[indexPath.row]
-            cell.model = (resource,self.services.ref.elementResource(resource.resourceId) )
-            return cell
-        }
+        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: resourceAt(indexPath:))
         
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
