@@ -47,6 +47,8 @@
 		FAA191FD1F673EAB0076CDC7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FC1F673EAB0076CDC7 /* UserModel.swift */; };
 		FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */; };
 		FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA192001F673F200076CDC7 /* RealmModel.swift */; };
+		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
+		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		FAA191FC1F673EAB0076CDC7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		FAA192001F673F200076CDC7 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6CF1321F69E0FD0026D126 /* GameStateService.swift */,
+				FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */,
 				FA6CF12A1F693E850026D126 /* LoginService.swift */,
 				FA6CF1121F688B060026D126 /* MainAPIService.swift */,
 				FA6CF1101F688AEC0026D126 /* ReferenceService.swift */,
@@ -382,6 +387,7 @@
 				FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */,
 				FAA192001F673F200076CDC7 /* RealmModel.swift */,
 				FA6CF1341F69E1560026D126 /* AvatarModel.swift */,
+				FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -626,7 +632,9 @@
 				FA6CF1651F6A91640026D126 /* StartExploreViewController.swift in Sources */,
 				FA6CF15C1F6A66DA0026D126 /* AvatarCell.swift in Sources */,
 				FA6CF12D1F69DEDD0026D126 /* AvatarListViewController.swift in Sources */,
+				FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */,
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
+				FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,

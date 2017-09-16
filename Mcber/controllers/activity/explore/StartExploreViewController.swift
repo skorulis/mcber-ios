@@ -9,6 +9,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     var selectedAvatar:AvatarModel?
     let realmSection = SectionController()
     let avatarSection = SectionController()
+    let startSection = SectionController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,6 @@ class StartExploreViewController: BaseSectionCollectionViewController {
             return cell;
         }
         
-        sections.append(realmSection)
-        
-        
         avatarSection.fixedHeaderHeight = 40
         avatarSection.fixedCellCount = 0
         avatarSection.fixedHeight = 60
@@ -50,7 +48,18 @@ class StartExploreViewController: BaseSectionCollectionViewController {
             return cell
         }
         
+        startSection.fixedHeaderHeight = 40
+        startSection.fixedCellCount = 0
+        startSection.fixedHeight = 60
+        startSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
+            let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Start Exploring!")(collectionView,kind,indexPath)
+            header.addTapTarget(target: self, action: #selector(self.startPressed(id:)))
+            return header
+        }
+        
+        sections.append(realmSection)
         sections.append(avatarSection)
+        sections.append(startSection)
     }
     
     func update() {
@@ -77,5 +86,22 @@ class StartExploreViewController: BaseSectionCollectionViewController {
             self.update()
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func clear() {
+        selectedRealm = nil
+        selectedAvatar = nil
+        self.update()
+    }
+    
+    func startPressed(id:Any) {
+        if let avatar = selectedAvatar, let realm = selectedRealm {
+            _ = self.services.activity.explore(avatarId: avatar._id, realm: realm).then { [weak self] (response) -> Void in
+                self?.clear()
+                self?.presentBasicAlert(title: "Explore", message: "Explore started")
+            }.catch { [weak self] error in
+                self?.show(error: error)
+            }
+        }
     }
 }

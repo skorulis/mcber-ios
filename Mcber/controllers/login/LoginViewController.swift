@@ -65,7 +65,7 @@ class LoginViewController: BaseViewController {
     func loginPressed(sender:Any) {
         if let email = emailField.text, let password = passwordField.text {
             self.services.login.login(email:email,password:password).catch(execute: { (error) in
-                self.showError(error: error)
+                self.show(error: error)
             })
         }
         

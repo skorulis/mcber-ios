@@ -4,7 +4,7 @@
 import UIKit
 
 //This service is purely for storing and notifying about state changes. It should not be doing any logic except for merging partial states
-class GameStateService: NSObject {
+class GameStateService {
 
     let didChangeState = ObserverSet<UserModel>()
     
@@ -21,6 +21,11 @@ class GameStateService: NSObject {
     func resetState(user:UserModel) {
         self.user = user
         didChangeState.notify(parameters: user)
+    }
+    
+    func add(activity:ActivityModel) {
+        user?.activities.append(activity)
+        didChangeState.notify(parameters: user!)
     }
     
 }
