@@ -16,6 +16,7 @@ class SectionController: NSObject {
     var sizeForItemAt: ((UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize)?
     var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
+    var simpleNumberOfItemsInSection: (() ->Int)?
     
     convenience init(fixedHeight:CGFloat,cellForItemAt:((UICollectionView,IndexPath) -> UICollectionViewCell)!) {
         self.init()
@@ -26,6 +27,9 @@ class SectionController: NSObject {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let block = numberOfItemsInSection {
             return block(collectionView,section)
+        }
+        if let block = simpleNumberOfItemsInSection {
+            return block()
         }
         return fixedCellCount
     }

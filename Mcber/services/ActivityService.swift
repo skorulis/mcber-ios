@@ -28,6 +28,7 @@ class ActivityService: NSObject {
         _ = promise.then { [unowned self] response -> Void in
             self.state.update(activities:response.activities)
             self.state.update(avatar:response.avatar)
+            self.state.add(resource:response.result.resource)
         }
         return promise
     }

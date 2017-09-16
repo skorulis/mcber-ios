@@ -24,6 +24,11 @@ class AvatarListViewController: BaseCollectionViewController {
         self.layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 60)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.avatars.count
     }

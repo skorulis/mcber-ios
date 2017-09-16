@@ -18,6 +18,10 @@ class GameStateService {
         return user?.activities ?? []
     }
     
+    var resources: [ResourceModel] {
+        return user?.resources ?? []
+    }
+    
     func clearState() {
         self.user = nil
     }
@@ -30,6 +34,16 @@ class GameStateService {
     func add(activity:ActivityModel) {
         user?.activities.append(activity)
         didChangeState.notify(parameters: user!)
+    }
+    
+    func add(resource:ResourceModel) {
+        if let index = user?.resources.index(where: { $0.resourceId == resource.resourceId }) {
+            let existing = user!.resources[index]
+            let resourceTotal = ResourceModel(quantity: existing.quantity + resource.quantity, resourceId: existing.resourceId)
+            user?.resources[index] = resourceTotal
+        } else {
+            user?.resources.append(resource)
+        }
     }
     
     func update(activities:[ActivityModel]) {

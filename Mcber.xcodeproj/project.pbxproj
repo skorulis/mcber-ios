@@ -54,6 +54,7 @@
 		FAD01BD01F6CD96100DE39B3 /* AvatarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCF1F6CD96100DE39B3 /* AvatarDetailViewController.swift */; };
 		FAD01BD21F6CDBF000DE39B3 /* AvatarSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD11F6CDBF000DE39B3 /* AvatarSkillCell.swift */; };
 		FAD01BD41F6CDE3F00DE39B3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD31F6CDE3F00DE39B3 /* ProgressView.swift */; };
+		FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		FAD01BCF1F6CD96100DE39B3 /* AvatarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDetailViewController.swift; sourceTree = "<group>"; };
 		FAD01BD11F6CDBF000DE39B3 /* AvatarSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarSkillCell.swift; sourceTree = "<group>"; };
 		FAD01BD31F6CDE3F00DE39B3 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6CF12E1F69DF010026D126 /* UserDetailsViewController.swift */,
+				FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
 				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
+				FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */,
 				FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */,
 				FA6CF1351F69E1560026D126 /* AvatarModel.swift in Sources */,
 				FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */,

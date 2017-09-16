@@ -4,12 +4,26 @@
 import UIKit
 import ObjectMapper
 
-class ActivityResult: ImmutableMappable {
-    
-    //TODO: Add fields
+class ExperienceGainModel: ImmutableMappable {
+    let type:String //Replace with enum
+    let xp:Int
+    let elementId:Int?
     
     required init(map: Map) throws {
-        
+        type = try map.value("type")
+        xp = try map.value("xp")
+        elementId = try? map.value("elementId")
+    }
+}
+
+class ActivityResult: ImmutableMappable {
+    
+    let experience:[ExperienceGainModel]
+    let resource:ResourceModel
+    
+    required init(map: Map) throws {
+        experience = try map.value("experience")
+        resource = try map.value("resource")
     }
 }
 

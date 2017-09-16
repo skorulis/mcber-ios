@@ -13,6 +13,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Explore"
         
         collectionView.register(clazz: RealmCell.self)
         collectionView.register(clazz: AvatarCell.self)
@@ -98,7 +99,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         if let avatar = selectedAvatar, let realm = selectedRealm {
             _ = self.services.activity.explore(avatarId: avatar._id, realm: realm).then { [weak self] (response) -> Void in
                 self?.clear()
-                self?.presentBasicAlert(title: "Explore", message: "Explore started")
+                self?.navigationController?.popViewController(animated: true)
             }.catch { [weak self] error in
                 self?.show(error: error)
             }
