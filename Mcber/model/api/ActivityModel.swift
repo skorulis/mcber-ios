@@ -42,6 +42,7 @@ class ActivityModel: ImmutableMappable {
     let avatarId:String
     let activityType:ActivityType
     let realm:RealmModel?
+    var autoRepeat:Bool = false
     
     required init(map: Map) throws {
         finishTimestamp = try map.value("finishTimestamp")

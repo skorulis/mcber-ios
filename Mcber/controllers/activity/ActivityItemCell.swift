@@ -11,8 +11,12 @@ class ActivityItemCell: ThemedCollectionViewCell {
     let cancelButton = UIButton()
     let completeButton = UIButton()
     
+    let autoRepeatSwitch = UISwitch()
+    let autoRepeatLabel = UILabel()
+    
     var completeBlock: ((ActivityModel) -> ())?
     var cancelBlock: ((ActivityModel) -> ())?
+    var autoChangeBlock: ((ActivityModel,Bool) -> ())?
     
     let ref = ReferenceService.instance!
     
@@ -20,6 +24,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
         didSet {
             guard let activity = self.activity else { return }
             typeLabel.text = self.activityText(activity: activity)
+            autoRepeatSwitch.isOn = activity.autoRepeat
             updateProgressFrame()
             updateRemainingLabel()
         }
@@ -46,10 +51,14 @@ class ActivityItemCell: ThemedCollectionViewCell {
         cancelButton.addTarget(self, action: #selector(cancelPressed(sender:)), for: .touchUpInside)
         completeButton.addTarget(self, action: #selector(completePressed(sender:)), for: .touchUpInside)
         
+        autoRepeatSwitch.addTarget(self, action: #selector(autoRepeatChanged(sender:)), for: .valueChanged)
+        
         self.contentView.addSubview(progress)
         self.contentView.addSubview(typeLabel)
         self.contentView.addSubview(completeButton)
         self.contentView.addSubview(cancelButton)
+        self.contentView.addSubview(autoRepeatSwitch)
+        self.contentView.addSubview(autoRepeatLabel)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -68,8 +77,15 @@ class ActivityItemCell: ThemedCollectionViewCell {
             make.centerY.equalTo(completeButton)
             make.left.equalToSuperview().inset(theme.padding.edges)
         }
+        autoRepeatLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(typeLabel)
+            make.centerY.equalTo(autoRepeatSwitch)
+        }
         
-        
+        autoRepeatSwitch.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().inset(theme.padding.edges)
+            make.top.equalTo(typeLabel.snp.bottom).offset(2)
+        }
     }
     
     override func layoutSubviews() {
@@ -93,6 +109,11 @@ class ActivityItemCell: ThemedCollectionViewCell {
     }
     
     //MARK: Actions
+    
+    func autoRepeatChanged(sender:UISwitch) {
+        self.activity?.autoRepeat = sender.isOn
+        autoChangeBlock?(self.activity!,sender.isOn)
+    }
     
     func cancelPressed(sender:Any) {
         cancelBlock?(self.activity!)
