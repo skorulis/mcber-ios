@@ -14,6 +14,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         
         collectionView.register(clazz: ResourceCell.self)
         collectionView.register(clazz: ExperienceGainCell.self)
+        collectionView.register(clazz: RealmUnlockCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         if let unlock = self.result.realmUnlock {

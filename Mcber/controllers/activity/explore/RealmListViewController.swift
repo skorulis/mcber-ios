@@ -32,7 +32,9 @@ class RealmListViewController: BaseCollectionViewController {
         let cell:RealmCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
         cell.realm = realmAt(indexPath: indexPath)
         cell.didSelectLevel = { [unowned self] (level:Int) in
-            self.didSelectRealm?(self,self.realmAt(indexPath: indexPath))
+            let mainRealm = self.realmAt(indexPath: indexPath)
+            let realm = RealmModel(elementId: mainRealm.elementId, level: level, maximumLevel: mainRealm.maximumLevel)
+            self.didSelectRealm?(self,realm)
         }
         return cell
     }

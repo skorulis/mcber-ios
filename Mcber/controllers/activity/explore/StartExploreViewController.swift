@@ -32,6 +32,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         realmSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:RealmCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.realm = self.selectedRealm!
+            cell.selectedLevel = self.selectedRealm!.level
             return cell;
         }
         

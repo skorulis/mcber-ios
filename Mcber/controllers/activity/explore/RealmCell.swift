@@ -12,6 +12,12 @@ class RealmCell: ThemedCollectionViewCell, UICollectionViewDelegate, UICollectio
     
     var didSelectLevel: ((Int) -> () )?
     
+    var selectedLevel:Int? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
     var realm:RealmModel? {
         didSet {
             if let r = realm {
@@ -52,11 +58,12 @@ class RealmCell: ThemedCollectionViewCell, UICollectionViewDelegate, UICollectio
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:RealmLevelCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme!)
         cell.label.text = "\(indexPath.row+1)"
-        cell.isSelected = indexPath.row == realm!.level
+        cell.isSelected = (indexPath.row+1) == selectedLevel
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedLevel = (indexPath.row + 1)
         didSelectLevel?(indexPath.row+1)
     }
 

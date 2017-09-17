@@ -80,7 +80,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
     private func updateRemainingLabel() {
         if let a = activity {
             let currentTime = Date().timeIntervalSince1970
-            let remaining = max(Int(a.finishTimestamp - currentTime),0)
+            let remaining = max(Int(a.finishTimestamp - currentTime) + 1,0)
             self.progress.label.text = "\(remaining)"
         }
     }
