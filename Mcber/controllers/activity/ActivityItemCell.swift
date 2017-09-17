@@ -14,11 +14,25 @@ class ActivityItemCell: ThemedCollectionViewCell {
     var completeBlock: ((ActivityModel) -> ())?
     var cancelBlock: ((ActivityModel) -> ())?
     
+    let ref = ReferenceService.instance!
+    
     var activity:ActivityModel? {
         didSet {
-            typeLabel.text = activity?.activityType
+            guard let activity = self.activity else { return }
+            typeLabel.text = self.activityText(activity: activity)
             updateProgressFrame()
             updateRemainingLabel()
+        }
+    }
+    
+    func activityText(activity:ActivityModel) -> String {
+        switch (activity.activityType) {
+        case .explore:
+            let realm = activity.realm!
+            let element = ref.element(realm.elementId)
+            return "Explore \(element.name) realm level \(realm.level)"
+        case .battle:
+            return "Unimplemented"
         }
     }
     

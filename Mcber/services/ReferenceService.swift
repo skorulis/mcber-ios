@@ -9,6 +9,11 @@ struct JoinedSkill {
     let ref:SkillModel
 }
 
+struct JoinedRealm {
+    let realm:RealmModel
+    let skill:SkillModel
+}
+
 class ReferenceService: NetAPIService {
     
     static var instance:ReferenceService!
@@ -82,6 +87,11 @@ class ReferenceService: NetAPIService {
     func filledSkill(progress:SkillProgressModel) -> JoinedSkill {
         let skill = self.skill(progress.skillId, type: progress.type)
         return JoinedSkill(progress: progress, ref: skill)
+    }
+    
+    func filledRealm(realm:RealmModel) -> JoinedRealm {
+        let skill = self.element(realm.elementId)
+        return JoinedRealm(realm: realm, skill: skill)
     }
     
     func allElements() -> [SkillModel] {

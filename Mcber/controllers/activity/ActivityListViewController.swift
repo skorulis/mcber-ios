@@ -3,11 +3,6 @@
 
 import UIKit
 
-enum ActivityType: String {
-    case explore = "explore"
-    case battle = "battle"
-}
-
 class ActivityListViewController: BaseSectionCollectionViewController {
 
     var refreshTimer:Timer?
@@ -44,7 +39,6 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             case .battle:
                 
                 break
-            
             }
         }
         

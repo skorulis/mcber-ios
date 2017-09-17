@@ -8,35 +8,15 @@ struct ExperienceGainViewModel {
     let skill:SkillModel
 }
 
-class ExperienceGainCell: ThemedCollectionViewCell, SimpleModelCell {
-
-    let nameLabel = UILabel()
-    let amountLabel = UILabel()
+class ExperienceGainCell: BasicKeyValueCell, SimpleModelCell {
     
     typealias ModelType = ExperienceGainViewModel
     var model:ExperienceGainViewModel? {
         didSet {
             guard let m = model else {return}
             nameLabel.text = m.skill.name
-            amountLabel.text = "+\(m.xp.xp) XP"
+            valueLabel.text = "+\(m.xp.xp) XP"
         }
     }
     
-    override func buildView(theme: ThemeService) {
-        self.contentView.addSubview(nameLabel)
-        self.contentView.addSubview(amountLabel)
-    }
-    
-    override func buildLayout(theme: ThemeService) {
-        nameLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview()
-            make.left.equalToSuperview().inset(theme.padding.edges)
-        }
-        
-        amountLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview()
-            make.right.equalToSuperview().inset(theme.padding.edges)
-        }
-    }
-
 }

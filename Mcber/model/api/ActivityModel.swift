@@ -4,6 +4,11 @@
 import UIKit
 import ObjectMapper
 
+enum ActivityType: String {
+    case explore = "explore"
+    case battle = "battle"
+}
+
 class ExperienceGainModel: ImmutableMappable {
     let type:SkillType
     let xp:Int
@@ -20,10 +25,12 @@ class ActivityResult: ImmutableMappable {
     
     let experience:[ExperienceGainModel]
     let resource:ResourceModel
+    let realmUnlock:RealmModel?
     
     required init(map: Map) throws {
         experience = try map.value("experience")
         resource = try map.value("resource")
+        realmUnlock = try? map.value("realmUnlock")
     }
 }
 
@@ -33,7 +40,7 @@ class ActivityModel: ImmutableMappable {
     let startTimestamp:Double
     let _id:String
     let avatarId:String
-    let activityType:String //TODO: Move to enum
+    let activityType:ActivityType
     let realm:RealmModel?
     
     required init(map: Map) throws {

@@ -16,8 +16,15 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ExperienceGainCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
-        let resourceModel = self.services.ref.filledResource(resource: result.resource)
+        if let unlock = self.result.realmUnlock {
+            let unlockSection = SectionController()
+            unlockSection.fixedHeaderHeight = 40
+            unlockSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Unlocked Realms")
+            unlockSection.cellForItemAt = RealmUnlockCell.curriedDefaultCell(withModel: self.services.ref.filledRealm(realm: unlock))
+            self.sections.append(unlockSection)
+        }
         
+        let resourceModel = self.services.ref.filledResource(resource: result.resource)
         let resourceSection = SectionController()
         resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(withModel: resourceModel)
         resourceSection.fixedHeaderHeight = 40

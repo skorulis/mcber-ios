@@ -110,6 +110,9 @@ public class NetAPIService: NSObject {
     
     public func doRequest<T: BaseMappable>(req:URLRequest) -> Promise<T> {
         let p = dataPromise(req: req)
+        p.catch { error in
+            print(error)
+        }
         return self.handleResponse(dataPromise: p)
     }
     
