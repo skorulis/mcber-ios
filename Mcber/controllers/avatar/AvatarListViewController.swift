@@ -15,13 +15,12 @@ class AvatarListViewController: BaseCollectionViewController {
         super.viewDidLoad()
 
         self.title = "Avatars"
-        self.collectionView.register(clazz: AvatarCell.self)
-        
+        self.collectionView.register(clazz: AvatarCell.self)   
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 60)
+        self.layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 120)
     }
     
     override func viewWillAppear(_ animated: Bool) {

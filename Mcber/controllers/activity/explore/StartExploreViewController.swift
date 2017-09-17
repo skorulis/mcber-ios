@@ -37,18 +37,14 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         
         avatarSection.fixedHeaderHeight = 40
         avatarSection.fixedCellCount = 0
-        avatarSection.fixedHeight = 60
+        avatarSection.fixedHeight = 120
         avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)
             header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(id:)))
             return header
         }
-        avatarSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let cell:AvatarCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-            cell.model = self.selectedAvatar
-            return cell
-        }
-        
+        avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
+            
         startSection.fixedHeaderHeight = 40
         startSection.fixedCellCount = 0
         startSection.fixedHeight = 60

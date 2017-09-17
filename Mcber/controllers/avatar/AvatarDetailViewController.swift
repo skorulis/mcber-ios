@@ -15,11 +15,11 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         return avatar.skills.trades
     }
     
-    func elementAt(indexPath:IndexPath) -> (SkillProgressModel,SkillModel) {
+    func elementAt(indexPath:IndexPath) -> JoinedSkill {
         return self.services.ref.filledSkill(progress: self.elements[indexPath.row])
     }
     
-    func tradeAt(indexPath:IndexPath) -> (SkillProgressModel,SkillModel) {
+    func tradeAt(indexPath:IndexPath) -> JoinedSkill {
         return self.services.ref.filledSkill(progress: self.trades[indexPath.row])
     }
     
@@ -33,12 +33,8 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let topSection = SectionController()
-        topSection.fixedHeight = 90
-        topSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let cell:AvatarCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-            cell.model = self.avatar
-            return cell
-        }
+        topSection.fixedHeight = 120
+        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(withModel: self.avatar)
         
         let elementSkillsSection = skillSection(title: "Elemental Skills", count: elements.count, skillAt: elementAt(indexPath:))
         let tradeSkillsSection = skillSection(title: "Trade Skills", count: trades.count, skillAt: tradeAt(indexPath:))
@@ -48,7 +44,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         self.sections.append(tradeSkillsSection)
     }
     
-    func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> (SkillProgressModel,SkillModel)) -> SectionController {
+    func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> JoinedSkill) -> SectionController {
         let skillsSection = SectionController()
         skillsSection.fixedCellCount = count
         skillsSection.fixedHeight = 90

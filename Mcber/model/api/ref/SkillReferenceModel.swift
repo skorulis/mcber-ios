@@ -11,6 +11,8 @@ class SkillModel: ImmutableMappable {
     let index:Int
     let healthModifier:Double
     let speedModifier:Double
+    let colorString:String
+    let color:UIColor
     
     required init(map: Map) throws {
         name = try map.value("name")
@@ -19,6 +21,10 @@ class SkillModel: ImmutableMappable {
         healthModifier = try map.value("healthModifier")
         speedModifier = try map.value("speedModifier")
         index = try map.value("index")
+        colorString = try map.value("color")
+        
+        let colorNumber = Int(colorString,radix:16)!
+        color = UIColor(netHex: colorNumber)
     }
 }
 

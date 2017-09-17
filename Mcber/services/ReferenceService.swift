@@ -4,6 +4,11 @@
 import UIKit
 import PromiseKit
 
+struct JoinedSkill {
+    let progress:SkillProgressModel
+    let ref:SkillModel
+}
+
 class ReferenceService: NetAPIService {
     
     static var instance:ReferenceService!
@@ -74,9 +79,9 @@ class ReferenceService: NetAPIService {
         return (resource,self.elementResource(resource.resourceId) )
     }
     
-    func filledSkill(progress:SkillProgressModel) -> (SkillProgressModel, SkillModel) {
+    func filledSkill(progress:SkillProgressModel) -> JoinedSkill {
         let skill = self.skill(progress.skillId, type: progress.type)
-        return (progress, skill)
+        return JoinedSkill(progress: progress, ref: skill)
     }
     
     func allElements() -> [SkillModel] {

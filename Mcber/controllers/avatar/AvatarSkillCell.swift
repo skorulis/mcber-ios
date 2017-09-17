@@ -9,10 +9,10 @@ class AvatarSkillCell: ThemedCollectionViewCell, SimpleModelCell {
     let levelLabel = UILabel()
     let progressView = ProgressView()
     
-    typealias ModelType = (SkillProgressModel,SkillModel)
-    var model:(SkillProgressModel,SkillModel)? {
+    typealias ModelType = JoinedSkill
+    var model:JoinedSkill? {
         didSet {
-            if let skill = model?.1, let progress = model?.0 {
+            if let skill = model?.ref, let progress = model?.progress {
                 nameLabel.text = skill.name
                 levelLabel.text = "Level: \(progress.level)"
                 progressView.label.text = "\(progress.xp) / \(progress.xpNext)"
