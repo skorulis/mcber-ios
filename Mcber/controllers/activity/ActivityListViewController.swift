@@ -46,7 +46,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         activitySection.numberOfItemsInSection = {[unowned self] (c:UICollectionView,s:Int) in
             return self.activities.count
         }
-        activitySection.fixedHeight = 100
+        activitySection.fixedHeight = 120
         activitySection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:ActivityItemCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.activity = self.activities[indexPath.row]
