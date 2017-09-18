@@ -7,20 +7,24 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
 
     var avatar:AvatarModel!
     
-    var elements:[SkillProgressModel] {
-        return avatar.skills.elements
+    var joinedSkills:[JoinedSkill] {
+        return avatar.skills.map { self.services.ref.filledSkill(progress:$0) }
     }
     
-    var trades:[SkillProgressModel] {
-        return avatar.skills.trades
+    var elements:[JoinedSkill] {
+        return joinedSkills.filter { $0.ref.type == .element }
+    }
+    
+    var trades:[JoinedSkill] {
+        return joinedSkills.filter { $0.ref.type == .trade }
     }
     
     func elementAt(indexPath:IndexPath) -> JoinedSkill {
-        return self.services.ref.filledSkill(progress: self.elements[indexPath.row])
+        return self.elements[indexPath.row]
     }
     
     func tradeAt(indexPath:IndexPath) -> JoinedSkill {
-        return self.services.ref.filledSkill(progress: self.trades[indexPath.row])
+        return self.trades[indexPath.row]
     }
     
     override func viewDidLoad() {

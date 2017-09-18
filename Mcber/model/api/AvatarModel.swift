@@ -8,59 +8,25 @@ enum SkillType: String {
     case trade = "trade"
 }
 
-class SkillProgressAPIModel: ImmutableMappable {
+class SkillProgressModel: ImmutableMappable {
     
     let level:Int
     let xp:Int
     let xpNext:Int
+    let skillId:Int
     
     required init(map: Map) throws {
         level = try map.value("level")
         xp = try map.value("xp")
         xpNext = try map.value("xpNext")
+        skillId = try map.value("id")
     }
     
-    init(level:Int,xp:Int,xpNext:Int) {
+    init(level:Int,xp:Int,xpNext:Int,skillId:Int) {
         self.level = level
         self.xp = xp
         self.xpNext = xpNext
-    }
-}
-
-class SkillProgressModel: SkillProgressAPIModel {
-    
-    let skillId:Int
-    let type:SkillType
-    
-    init(net:SkillProgressAPIModel,skillId:Int,type:SkillType) {
         self.skillId = skillId
-        self.type = type
-        super.init(level: net.level, xp: net.xp, xpNext:net.xpNext)
-    }
-    
-    required init(map: Map) throws {
-        skillId = try map.value("skillId")
-        type = try map.value("skillType")
-        try super.init(map: map)
-    }
-    
-}
-
-class AvatarSkills: ImmutableMappable {
-    
-    let elements:[SkillProgressModel]
-    let trades:[SkillProgressModel];
-    
-    required init(map: Map) throws {
-        let netElements:[SkillProgressAPIModel] = try map.value("elements")
-        elements = netElements.enumerated().map { (index, element) in
-            return SkillProgressModel(net: element, skillId: index,type:.element)
-        }
-        
-        let netTrades:[SkillProgressAPIModel] = try map.value("trades")
-        trades = netTrades.enumerated().map { (index, element) in
-            return SkillProgressModel(net: element, skillId: index,type:.trade)
-        }
     }
 }
 
@@ -70,7 +36,7 @@ class AvatarModel: ImmutableMappable {
     let level:Int
     let health:Int
     let speed:Int
-    let skills:AvatarSkills
+    let skills:[SkillProgressModel]
     
     required init(map: Map) throws {
         _id = try map.value("_id")

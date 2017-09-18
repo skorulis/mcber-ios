@@ -21,7 +21,7 @@ class RealmCell: ThemedCollectionViewCell, UICollectionViewDelegate, UICollectio
     var realm:RealmModel? {
         didSet {
             if let r = realm {
-                let skill = ref.element(r.elementId)
+                let skill = ref.skill(r.elementId)
                 label.text = "\(skill.name) Realm"
             }
         }

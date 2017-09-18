@@ -8,11 +8,12 @@ class SkillModel: ImmutableMappable {
     let name:String
     let shortName:String
     let damageModifiers:[Double]
-    let index:Int
+    let id:Int
     let healthModifier:Double
     let speedModifier:Double
     let colorString:String
     let color:UIColor
+    let type:SkillType
     
     required init(map: Map) throws {
         name = try map.value("name")
@@ -20,8 +21,9 @@ class SkillModel: ImmutableMappable {
         damageModifiers = try map.value("damageModifiers")
         healthModifier = try map.value("healthModifier")
         speedModifier = try map.value("speedModifier")
-        index = try map.value("index")
+        id = try map.value("id")
         colorString = try map.value("color")
+        type = try map.value("type")
         
         let colorNumber = Int(colorString,radix:16)!
         color = UIColor(netHex: colorNumber)
@@ -29,12 +31,15 @@ class SkillModel: ImmutableMappable {
 }
 
 class SkillsReferenceModel: ImmutableMappable {
+    let skills:[SkillModel]
+    
     let elements:[SkillModel]
     let trades:[SkillModel]
     
     required init(map: Map) throws {
-        elements = try map.value("elements")
-        trades = try map.value("trades")
+        skills = try map.value("skills")
+        elements = skills.filter { $0.type == .element }
+        trades = skills.filter { $0.type == .trade }
     }
     
 }

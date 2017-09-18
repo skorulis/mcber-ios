@@ -40,11 +40,11 @@ class ReferenceService: NetAPIService {
         }
     }
     
-    func getSkills() -> Promise<SkillsRefResponse> {
+    func getSkills() -> Promise<SkillsReferenceModel> {
         let req = self.request(path: "skills.json")
-        let promise:Promise<SkillsRefResponse> = self.doRequest(req: req)
+        let promise:Promise<SkillsReferenceModel> = self.doRequest(req: req)
         _ = promise.then { skills in
-            self.skills = skills.skills
+            self.skills = skills
         }
         return promise
     }
@@ -58,23 +58,11 @@ class ReferenceService: NetAPIService {
         return promise
     }
     
-    func element(_ elementId:Int) -> SkillModel {
-        return self.skills!.elements[elementId]
+    func skill(_ skillId:Int) -> SkillModel {
+        return skills!.skills.first(where: { (s) -> Bool in
+            return s.id == skillId
+        })!
     }
-    
-    func trade(_ tradeId:Int) -> SkillModel {
-        return self.skills!.trades[tradeId]
-    }
-    
-    func skill(_ skillId:Int,type:SkillType) -> SkillModel {
-        switch(type) {
-        case .element:
-            return element(skillId)
-        case .trade:
-            return trade(skillId)
-        }
-    }
-    
     
     func elementResource(_ resourceId:String) -> ResourceRefModel {
         return self.resources!.elemental[resourceId]!
@@ -85,12 +73,12 @@ class ReferenceService: NetAPIService {
     }
     
     func filledSkill(progress:SkillProgressModel) -> JoinedSkill {
-        let skill = self.skill(progress.skillId, type: progress.type)
+        let skill = self.skill(progress.skillId)
         return JoinedSkill(progress: progress, ref: skill)
     }
     
     func filledRealm(realm:RealmModel) -> JoinedRealm {
-        let skill = self.element(realm.elementId)
+        let skill = self.skill(realm.elementId)
         return JoinedRealm(realm: realm, skill: skill)
     }
     
