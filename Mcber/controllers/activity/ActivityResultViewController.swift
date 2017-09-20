@@ -21,7 +21,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
             let unlockSection = SectionController()
             unlockSection.fixedHeaderHeight = 40
             unlockSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Unlocked Realms")
-            unlockSection.cellForItemAt = RealmUnlockCell.curriedDefaultCell(withModel: self.services.ref.filledRealm(realm: unlock))
+            unlockSection.cellForItemAt = RealmUnlockCell.curriedDefaultCell(withModel: unlock)
             self.sections.append(unlockSection)
         }
         

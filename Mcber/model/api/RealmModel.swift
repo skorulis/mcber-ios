@@ -4,11 +4,13 @@
 import UIKit
 import ObjectMapper
 
-class RealmModel: ImmutableMappable {
+class RealmModel: ImmutableMappable, ReferenceFillable {
 
     let elementId:Int
     let level:Int
     let maximumLevel:Int?
+    
+    var refSkill:SkillModel!
     
     required init(map: Map) throws {
         elementId = try map.value("elementId")
@@ -21,6 +23,10 @@ class RealmModel: ImmutableMappable {
         self.elementId = elementId
         self.level = level
         self.maximumLevel = maximumLevel
+    }
+    
+    func fill(ref: ReferenceService) {
+        self.refSkill = ref.skill(self.elementId)
     }
     
 }

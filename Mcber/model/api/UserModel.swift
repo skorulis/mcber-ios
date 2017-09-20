@@ -4,10 +4,12 @@
 import UIKit
 import ObjectMapper
 
-class ResourceModel: ImmutableMappable {
+class ResourceModel: ImmutableMappable, ReferenceFillable {
     
     let quantity:Int
     let resourceId:String
+    
+    var refModel:ResourceRefModel!
     
     required init(map: Map) throws {
         quantity = try map.value("quantity")
@@ -19,9 +21,13 @@ class ResourceModel: ImmutableMappable {
         self.resourceId = resourceId
     }
     
+    func fill(ref: ReferenceService) {
+        self.refModel = ref.elementResource(self.resourceId)
+    }
+    
 }
 
-class UserModel: ImmutableMappable {
+class UserModel: ImmutableMappable, ReferenceFillable {
 
     let _id:String
     let email:String?
@@ -39,13 +45,25 @@ class UserModel: ImmutableMappable {
         resources = try map.value("resources")
     }
     
+    func fill(ref: ReferenceService) {
+        resources.forEach { $0.fill(ref: ref) }
+        realms.forEach { $0.fill(ref: ref) }
+        activities.forEach { $0.fill(ref: ref) }
+        resources.forEach { $0.fill(ref: ref) }
+        avatars.forEach { $0.fill(ref: ref) }
+    }
+    
 }
 
-class UserResponse: ImmutableMappable {
+class UserResponse: ImmutableMappable, ReferenceFillable {
     
     let user:UserModel
     
     required init(map: Map) throws {
         user = try map.value("user")
+    }
+    
+    func fill(ref: ReferenceService) {
+        user.fill(ref: ref)
     }
 }

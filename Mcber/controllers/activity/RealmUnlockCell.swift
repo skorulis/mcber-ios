@@ -5,12 +5,12 @@ import UIKit
 
 class RealmUnlockCell: BasicKeyValueCell, SimpleModelCell {
 
-    typealias ModelType = JoinedRealm
-    var model:JoinedRealm? {
+    typealias ModelType = RealmModel
+    var model:RealmModel? {
         didSet {
             guard let m = model else {return}
-            nameLabel.text = "Unlocked \(m.skill.name)"
-            valueLabel.text = "Level \(m.realm.level)"
+            nameLabel.text = "Unlocked \(m.refSkill.name)"
+            valueLabel.text = "Level \(m.level)"
         }
     }
 

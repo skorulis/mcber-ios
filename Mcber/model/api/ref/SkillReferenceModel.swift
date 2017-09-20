@@ -4,6 +4,7 @@
 import UIKit
 import ObjectMapper
 
+//TODO: Rename SkillRefModel
 class SkillModel: ImmutableMappable {
     let name:String
     let shortName:String

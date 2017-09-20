@@ -24,7 +24,7 @@ class ServiceLocator: NSObject {
         _ = ref.getAllReferenceData()
         
         state = GameStateService()
-        api = MainAPIService()
+        api = MainAPIService(ref: ref)
         login = LoginService(api: api,state:state)
         activity = ActivityService(api: api, state: state)
     }

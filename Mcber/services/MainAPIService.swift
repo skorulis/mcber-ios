@@ -40,7 +40,10 @@ private class TokenWriter: NetAPITokenWriter {
 
 class MainAPIService: NetAPIService {
 
-    init() {
+    let ref:ReferenceService
+    
+    init(ref:ReferenceService) {
+        
         var baseURL:String = ""
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             baseURL = "http://localhost:8811/api"
@@ -48,6 +51,7 @@ class MainAPIService: NetAPIService {
             baseURL = "http://192.168.1.2:8811/api"
         #endif
         
+        self.ref = ref
         super.init(baseURL: baseURL)
         self.tokenWriter = TokenWriter()
     }
@@ -99,6 +103,16 @@ class MainAPIService: NetAPIService {
         let dict = ["activityId":activityId]
         let req = self.jsonPostRequest(path: "action/complete", dict: dict)
         return doAuthRequest(req: req)
+    }
+    
+    override func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
+        let objPromise:Promise<T> = super.parseData(data: data, connectionError: connectionError)
+        _ = objPromise.then { T -> Void in
+            if let model = T as? ReferenceFillable {
+                model.fill(ref: self.ref)
+            }
+        }
+        return objPromise
     }
     
 }

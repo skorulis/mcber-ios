@@ -19,16 +19,16 @@ class AvatarBalanceView: UIView {
         }
     }
     
-    var models:[JoinedSkill]? {
+    var models:[SkillProgressModel]? {
         didSet {
             guard let list = models else {return}
             assert(list.count == columns.count)
             
-            let maxLevel:Double = Double(max(list.map { $0.progress.level }.max()!,1))
+            let maxLevel:Double = Double(max(list.map { $0.level }.max()!,1))
             for index in 0..<list.count {
                 let skill = list[index]
                 let col = self.columns[index]
-                let pct = Double(skill.progress.level) / maxLevel
+                let pct = Double(skill.level) / maxLevel
                 col.backgroundColor = skill.ref.color
                 col.snp.remakeConstraints({ (make) in
                     make.bottom.equalToSuperview()

@@ -8,12 +8,14 @@ enum SkillType: String {
     case trade = "trade"
 }
 
-class SkillProgressModel: ImmutableMappable {
+class SkillProgressModel: ImmutableMappable, ReferenceFillable {
     
     let level:Int
     let xp:Int
     let xpNext:Int
     let skillId:Int
+    
+    var ref:SkillModel!
     
     required init(map: Map) throws {
         level = try map.value("level")
@@ -28,9 +30,13 @@ class SkillProgressModel: ImmutableMappable {
         self.xpNext = xpNext
         self.skillId = skillId
     }
+    
+    func fill(ref: ReferenceService) {
+        self.ref = ref.skill(skillId)
+    }
 }
 
-class AvatarModel: ImmutableMappable {
+class AvatarModel: ImmutableMappable, ReferenceFillable {
 
     let _id:String
     let level:Int
@@ -44,6 +50,10 @@ class AvatarModel: ImmutableMappable {
         health = try map.value("health")
         speed = try map.value("speed")
         skills = try map.value("skills")
+    }
+    
+    func fill(ref: ReferenceService) {
+        skills.forEach { $0.fill(ref: ref) }
     }
     
 }

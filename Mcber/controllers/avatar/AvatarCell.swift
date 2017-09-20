@@ -22,8 +22,7 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
                 speedLabel.text = "Speed: \(m.speed)"
                 
                 //TODO: Filter to only elements
-                let skills = m.skills.map { ref.filledSkill(progress: $0) }
-                balance.models = skills.filter { $0.ref.type == .element }
+                balance.models = m.skills.filter { $0.ref.type == .element }
             }
         }
     }

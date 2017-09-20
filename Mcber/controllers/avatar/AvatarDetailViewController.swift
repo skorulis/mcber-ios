@@ -7,23 +7,19 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
 
     var avatar:AvatarModel!
     
-    var joinedSkills:[JoinedSkill] {
-        return avatar.skills.map { self.services.ref.filledSkill(progress:$0) }
+    var elements:[SkillProgressModel] {
+        return avatar.skills.filter { $0.ref.type == .element }
     }
     
-    var elements:[JoinedSkill] {
-        return joinedSkills.filter { $0.ref.type == .element }
+    var trades:[SkillProgressModel] {
+        return avatar.skills.filter { $0.ref.type == .trade }
     }
     
-    var trades:[JoinedSkill] {
-        return joinedSkills.filter { $0.ref.type == .trade }
-    }
-    
-    func elementAt(indexPath:IndexPath) -> JoinedSkill {
+    func elementAt(indexPath:IndexPath) -> SkillProgressModel {
         return self.elements[indexPath.row]
     }
     
-    func tradeAt(indexPath:IndexPath) -> JoinedSkill {
+    func tradeAt(indexPath:IndexPath) -> SkillProgressModel {
         return self.trades[indexPath.row]
     }
     
@@ -48,7 +44,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         self.sections.append(tradeSkillsSection)
     }
     
-    func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> JoinedSkill) -> SectionController {
+    func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> SkillProgressModel) -> SectionController {
         let skillsSection = SectionController()
         skillsSection.fixedCellCount = count
         skillsSection.fixedHeight = 90

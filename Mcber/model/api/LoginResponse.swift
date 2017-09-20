@@ -4,7 +4,7 @@
 import UIKit
 import ObjectMapper
 
-class LoginResponse: ImmutableMappable {
+class LoginResponse: ImmutableMappable, ReferenceFillable {
 
     let authToken:String
     let authExpiry:Double
@@ -15,6 +15,10 @@ class LoginResponse: ImmutableMappable {
         authToken = try map.value("auth.token")
         authExpiry = try map.value("auth.expiry")
         user = try map.value("user")
+    }
+    
+    func fill(ref:ReferenceService) {
+        user.fill(ref: ref)
     }
     
 }

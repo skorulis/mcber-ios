@@ -124,7 +124,7 @@ public class NetAPIService: NSObject {
         return dp
     }
     
-    public func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
+    open func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
         do {
             if let d = data {
                 if logResponses {
