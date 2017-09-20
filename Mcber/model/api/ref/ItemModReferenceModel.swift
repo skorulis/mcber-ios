@@ -13,7 +13,7 @@ enum ItemModType: String {
 
 class ItemModRef: ImmutableMappable {
 
-    let type:ItemModType
+    let type:String
     let postfix:String
     let elementalMultiplier:Int
     let tradeMultiplier:Int
@@ -35,9 +35,15 @@ class ItemModRef: ImmutableMappable {
 class ItemModsResponse: ImmutableMappable {
     
     let mods:[ItemModRef]
+    let idMap:[String:ItemModRef]
     
     required init(map: Map) throws {
         mods = try map.value("mods")
+        var map = [String:ItemModRef]()
+        for m in mods {
+            map[m.type] = m
+        }
+        idMap = map
     }
     
 }

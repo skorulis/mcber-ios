@@ -7,9 +7,14 @@ import ObjectMapper
 //TODO: Link up to reference items
 class ItemModel: ImmutableMappable, ReferenceFillable {
     
+    let id:String
+    let name:String
     let mods:[ItemModModel];
     
     required init(map: Map) throws {
+        id = try map.value("_id")
+        name = try map.value("name")
+        
         mods = try map.value("mods")
     }
     
@@ -20,12 +25,22 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
 
 class ItemModModel: ImmutableMappable, ReferenceFillable {
     
+    let id:String
+    let power:Int
+    let skillId:Int
+    
+    var refSkill:SkillRefModel!
+    var refMod:ItemModRef!
+    
     required init(map: Map) throws {
-        
+        id = try map.value("id")
+        power = try map.value("power")
+        skillId = try map.value("elementId")
     }
     
     func fill(ref: ReferenceService) {
-        
+        refSkill = ref.skill(skillId)
+        refMod = ref.itemMod(id)
     }
     
 }

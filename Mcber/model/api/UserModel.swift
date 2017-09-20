@@ -35,6 +35,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     let realms:[RealmModel]
     var activities:[ActivityModel]
     var resources:[ResourceModel]
+    var items:[ItemModel];
     
     required init(map: Map) throws {
         _id = try map.value("_id")
@@ -43,6 +44,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         realms = try map.value("realms")
         activities = try map.value("activities")
         resources = try map.value("resources")
+        items = try map.value("items")
     }
     
     func fill(ref: ReferenceService) {
@@ -51,6 +53,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         activities.forEach { $0.fill(ref: ref) }
         resources.forEach { $0.fill(ref: ref) }
         avatars.forEach { $0.fill(ref: ref) }
+        items.forEach { $0.fill(ref: ref) }
     }
     
 }

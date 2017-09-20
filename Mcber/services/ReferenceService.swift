@@ -74,6 +74,10 @@ class ReferenceService: NetAPIService {
         })!
     }
     
+    func itemMod(_ modId:String) -> ItemModRef {
+        return mods!.idMap[modId]!
+    }
+    
     func elementResource(_ resourceId:String) -> ResourceRefModel {
         return self.resources!.elemental[resourceId]!
     }
