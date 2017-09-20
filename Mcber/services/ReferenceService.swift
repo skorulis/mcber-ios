@@ -48,7 +48,7 @@ class ReferenceService: NetAPIService {
         return promise
     }
     
-    func skill(_ skillId:Int) -> SkillModel {
+    func skill(_ skillId:Int) -> SkillRefModel {
         return skills!.skills.first(where: { (s) -> Bool in
             return s.id == skillId
         })!
@@ -62,11 +62,11 @@ class ReferenceService: NetAPIService {
         return (resource,self.elementResource(resource.resourceId) )
     }
     
-    func allElements() -> [SkillModel] {
+    func allElements() -> [SkillRefModel] {
         return self.skills?.elements ?? []
     }
     
-    func allTrades() -> [SkillModel] {
+    func allTrades() -> [SkillRefModel] {
         return self.skills?.trades ?? []
     }
     

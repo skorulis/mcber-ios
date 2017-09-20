@@ -14,7 +14,7 @@ class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     let xp:Int
     let skillId:Int
     
-    var refSkill:SkillModel!
+    var refSkill:SkillRefModel!
     
     required init(map: Map) throws {
         type = try map.value("type")

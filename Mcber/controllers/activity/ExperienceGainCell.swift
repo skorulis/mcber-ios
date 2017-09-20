@@ -3,19 +3,15 @@
 
 import UIKit
 
-struct ExperienceGainViewModel {
-    let xp:ExperienceGainModel
-    let skill:SkillModel
-}
 
 class ExperienceGainCell: BasicKeyValueCell, SimpleModelCell {
     
-    typealias ModelType = ExperienceGainViewModel
-    var model:ExperienceGainViewModel? {
+    typealias ModelType = ExperienceGainModel
+    var model:ExperienceGainModel? {
         didSet {
             guard let m = model else {return}
-            nameLabel.text = m.skill.name
-            valueLabel.text = "+\(m.xp.xp) XP"
+            nameLabel.text = m.refSkill.name
+            valueLabel.text = "+\(m.xp) XP"
         }
     }
     

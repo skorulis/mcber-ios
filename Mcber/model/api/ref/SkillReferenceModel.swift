@@ -4,8 +4,7 @@
 import UIKit
 import ObjectMapper
 
-//TODO: Rename SkillRefModel
-class SkillModel: ImmutableMappable {
+class SkillRefModel: ImmutableMappable {
     let name:String
     let shortName:String
     let damageModifiers:[Double]
@@ -32,10 +31,10 @@ class SkillModel: ImmutableMappable {
 }
 
 class SkillsReferenceModel: ImmutableMappable {
-    let skills:[SkillModel]
+    let skills:[SkillRefModel]
     
-    let elements:[SkillModel]
-    let trades:[SkillModel]
+    let elements:[SkillRefModel]
+    let trades:[SkillRefModel]
     
     required init(map: Map) throws {
         skills = try map.value("skills")

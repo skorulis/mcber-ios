@@ -10,7 +10,7 @@ class RealmModel: ImmutableMappable, ReferenceFillable {
     let level:Int
     let maximumLevel:Int?
     
-    var refSkill:SkillModel!
+    var refSkill:SkillRefModel!
     
     required init(map: Map) throws {
         elementId = try map.value("elementId")
