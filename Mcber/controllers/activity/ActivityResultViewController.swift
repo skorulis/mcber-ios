@@ -25,9 +25,8 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
             self.sections.append(unlockSection)
         }
         
-        let resourceModel = self.services.ref.filledResource(resource: result.resource)
         let resourceSection = SectionController()
-        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(withModel: resourceModel)
+        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(withModel: result.resource)
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
         

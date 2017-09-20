@@ -13,9 +13,16 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         return resources.count
     }
     
-    func resourceAt(indexPath:IndexPath) -> (ResourceModel,ResourceRefModel) {
-        let resource = self.resources[indexPath.row]
-        return self.services.ref.filledResource(resource: resource)
+    func resourceAt(indexPath:IndexPath) -> ResourceModel {
+        return self.resources[indexPath.row]
+    }
+    
+    func itemCount() -> Int {
+        return self.services.state.items.count
+    }
+    
+    func itemAt(indexPath:IndexPath) -> ItemModel {
+        return self.services.state.items[indexPath.row]
     }
     
     override func viewDidLoad() {
@@ -25,6 +32,7 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed(sender:)))
         
         collectionView.register(clazz: ResourceCell.self)
+        collectionView.register(clazz: ItemCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let resourceSection = SectionController()
@@ -35,6 +43,15 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
         
         self.sections.append(resourceSection)
+        
+        let itemSection = SectionController()
+        itemSection.simpleNumberOfItemsInSection = itemCount
+        itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt(indexPath:))
+        
+        itemSection.fixedHeaderHeight = 40
+        itemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Items")
+        
+        self.sections.append(itemSection)
     }
     
     override func viewWillAppear(_ animated: Bool) {

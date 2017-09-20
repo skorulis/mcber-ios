@@ -22,6 +22,10 @@ class GameStateService {
         return user?.resources ?? []
     }
     
+    var items: [ItemModel] {
+        return user?.items ?? []
+    }
+    
     func clearState() {
         self.user = nil
     }

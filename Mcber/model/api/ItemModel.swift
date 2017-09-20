@@ -27,19 +27,22 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
     
     let id:String
     let power:Int
-    let skillId:Int
+    let skillId:Int?
     
-    var refSkill:SkillRefModel!
+    var refSkill:SkillRefModel?
     var refMod:ItemModRef!
     
     required init(map: Map) throws {
         id = try map.value("id")
         power = try map.value("power")
-        skillId = try map.value("elementId")
+        skillId = try? map.value("elementId")
     }
     
     func fill(ref: ReferenceService) {
-        refSkill = ref.skill(skillId)
+        if let sId = skillId {
+            refSkill = ref.skill(sId)
+        }
+        
         refMod = ref.itemMod(id)
     }
     

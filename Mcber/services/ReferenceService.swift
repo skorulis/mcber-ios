@@ -82,10 +82,6 @@ class ReferenceService: NetAPIService {
         return self.resources!.elemental[resourceId]!
     }
     
-    func filledResource(resource:ResourceModel) -> (ResourceModel,ResourceRefModel) {
-        return (resource,self.elementResource(resource.resourceId) )
-    }
-    
     func allElements() -> [SkillRefModel] {
         return self.skills?.elements ?? []
     }

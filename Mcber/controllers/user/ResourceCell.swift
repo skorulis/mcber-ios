@@ -5,14 +5,12 @@ import UIKit
 
 class ResourceCell: BasicKeyValueCell, SimpleModelCell {
 
-    typealias ModelType = (ResourceModel, ResourceRefModel)
-    var model: (ResourceModel, ResourceRefModel)? {
+    typealias ModelType = ResourceModel
+    var model: ResourceModel? {
         didSet {
-            if let resource = model?.0, let ref = model?.1 {
-                nameLabel.text = ref.name
-                valueLabel.text = "+\(resource.quantity)"
-            }
-            
+            guard let m = model else { return }
+            nameLabel.text = m.refModel.name
+            valueLabel.text = "+\(m.quantity)"
         }
     }
     
