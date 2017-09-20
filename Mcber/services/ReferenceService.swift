@@ -11,6 +11,7 @@ class ReferenceService: NetAPIService {
     var skills:SkillsReferenceModel?
     var resources:ResourceListRefModel?
     var items:ItemsReferenceModel?
+    var mods:ItemModsResponse?
     
     init() {
         var baseURL:String = ""
@@ -24,7 +25,7 @@ class ReferenceService: NetAPIService {
     }
     
     func getAllReferenceData() -> Promise<ReferenceService> {
-        let calls:[Promise<Void>] =  [getSkills().asVoid(),getResources().asVoid(),getItems().asVoid()]
+        let calls:[Promise<Void>] =  [getSkills().asVoid(),getResources().asVoid(),getItems().asVoid(),getItemMods().asVoid()]
         return when(fulfilled: calls).then { _ -> ReferenceService in
             print("Got all reference data")
             return self
@@ -54,6 +55,15 @@ class ReferenceService: NetAPIService {
         let promise:Promise<ItemReferenceResponse> = self.doRequest(req: req)
         _ = promise.then { items in
             self.items = items.items
+        }
+        return promise
+    }
+    
+    func getItemMods() -> Promise<ItemModsResponse> {
+        let req = self.request(path: "itemMods.json")
+        let promise:Promise<ItemModsResponse> = self.doRequest(req: req)
+        _ = promise.then { response in
+            self.mods = response
         }
         return promise
     }

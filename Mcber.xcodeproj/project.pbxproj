@@ -15,6 +15,7 @@
 		FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9451F71CC7E00A3646A /* ItemModel.swift */; };
 		FA49A9501F71DE1F00A3646A /* APIModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A94F1F71DE1F00A3646A /* APIModelProtocols.swift */; };
 		FA49A9931F72542200A3646A /* ItemsReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9921F72542200A3646A /* ItemsReferenceModel.swift */; };
+		FA49A9951F72567600A3646A /* ItemModReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9941F72567600A3646A /* ItemModReferenceModel.swift */; };
 		FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */; };
 		FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1101F688AEC0026D126 /* ReferenceService.swift */; };
 		FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1121F688B060026D126 /* MainAPIService.swift */; };
@@ -96,6 +97,7 @@
 		FA49A9451F71CC7E00A3646A /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		FA49A94F1F71DE1F00A3646A /* APIModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModelProtocols.swift; sourceTree = "<group>"; };
 		FA49A9921F72542200A3646A /* ItemsReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsReferenceModel.swift; sourceTree = "<group>"; };
+		FA49A9941F72567600A3646A /* ItemModReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModReferenceModel.swift; sourceTree = "<group>"; };
 		FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		FA6CF1101F688AEC0026D126 /* ReferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceService.swift; sourceTree = "<group>"; };
 		FA6CF1121F688B060026D126 /* MainAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */,
 				FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */,
 				FA49A9921F72542200A3646A /* ItemsReferenceModel.swift */,
+				FA49A9941F72567600A3646A /* ItemModReferenceModel.swift */,
 			);
 			path = ref;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */,
 				FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */,
 				FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */,
+				FA49A9951F72567600A3646A /* ItemModReferenceModel.swift in Sources */,
 				FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
