@@ -16,22 +16,25 @@ class RootViewController: BaseViewController {
         self.services.login.userDidLogout.add(object: self) { (login) in
             self.showLogin()
         }
+        
+        self.services.ref.didFetchReferenceData.add(object: self) { (ref) in
+            self.checkLoginState()
+        }
     }
     
-    //TODO: Why doesn't this work in view did appear?
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func checkLoginState() {
         if self.services.login.isLoggedIn {
             _ = services.api.getCurrentUser().then { response -> Void in
                 self.services.state.resetState(user: response.user)
-            }.catch(execute: { (error) in
-                print(error)
-            })
+                }.catch(execute: { (error) in
+                    print(error)
+                })
             self.showMainUI()
         } else {
             self.showLogin()
         }
     }
+    
     
     func showMainUI() {
         let user = UserDetailsViewController(services: self.services)

@@ -20,6 +20,7 @@ class ItemModRef: ImmutableMappable {
     let plainMultiplier:Int
     let baseMultiplier:Int
     let power:Int
+    let descriptionFormatter:String
     
     required init(map: Map) throws {
         type = try map.value("id")
@@ -29,6 +30,7 @@ class ItemModRef: ImmutableMappable {
         plainMultiplier = (try? map.value("plainMultiplier")) ?? 0
         baseMultiplier = try map.value("baseMultiplier")
         power = try map.value("power")
+        descriptionFormatter = try map.value("descriptionFormatter")
     }
 }
 

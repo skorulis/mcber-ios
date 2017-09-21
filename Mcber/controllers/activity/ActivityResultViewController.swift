@@ -3,9 +3,19 @@
 
 import UIKit
 
+extension CombinedActivityResult {
+    func resourceAt(indexPath:IndexPath) -> ResourceModel {
+        return resources[indexPath.row]
+    }
+    
+    func resourceCount() -> Int {
+        return resources.count
+    }
+}
+
 class ActivityResultViewController: BaseSectionCollectionViewController {
 
-    var result:ActivityResult!
+    var result:CombinedActivityResult!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +36,8 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         }
         
         let resourceSection = SectionController()
-        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(withModel: result.resource)
+        resourceSection.simpleNumberOfItemsInSection = result.resourceCount
+        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: result.resourceAt(indexPath:))
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
         

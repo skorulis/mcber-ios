@@ -18,17 +18,18 @@ class ActivityService: NSObject {
         self.refreshTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkActivities), userInfo: nil, repeats: true)
     }
     
-    func explore(avatarId:String,realm:RealmModel,autoRepeat:Bool) -> Promise<ActivityResponse> {
+    func explore(avatarId:String,realm:RealmModel,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
         let promise = api.explore(avatarId:avatarId,realm:realm)
         _ = promise.then { [unowned self] response -> Void in
-            response.activity.autoRepeat = autoRepeat
+            response.activity.autoRepeat = (continuing != nil)
+            response.activity.heldResults = continuing?.heldResults ?? CombinedActivityResult()
             self.state.add(activity:response.activity)
         }
         return promise
     }
     
     func restartActivity(activity:ActivityModel) -> Promise<ActivityResponse> {
-        return explore(avatarId: activity.avatarId, realm: activity.realm!,autoRepeat: true)
+        return explore(avatarId: activity.avatarId, realm: activity.realm!,continuing: activity)
     }
     
     func complete(activity:ActivityModel) -> Promise<ActivityCompleteResponse> {
@@ -37,7 +38,12 @@ class ActivityService: NSObject {
             self.state.update(activities:response.activities)
             self.state.update(avatar:response.avatar)
             self.state.add(resource:response.result.resource)
+            if let item = response.result.item {
+                self.state.add(item: item)
+            }
+            
             if activity.autoRepeat {
+                activity.heldResults.add(result:response.result)
                 _ = self.restartActivity(activity: activity)
             }
         }

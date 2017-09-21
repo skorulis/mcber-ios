@@ -50,9 +50,8 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         activitySection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:ActivityItemCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.activity = self.activities[indexPath.row]
-            cell.completeBlock = {[unowned self] (activity) in
-                self.complete(activity: activity)
-            }
+            cell.completeBlock = self.complete(activity:)
+            cell.takeResults = self.takeResults(activity:)
             return cell
         }
         activitySection.fixedHeaderHeight = 40
@@ -77,13 +76,21 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         self.refreshTimer = nil
     }
     
+    func takeResults(activity:ActivityModel) {
+        let vc = ActivityResultViewController(services: self.services)
+        vc.result = activity.heldResults
+        self.navigationController?.pushViewController(vc, animated: true)
+        activity.heldResults = CombinedActivityResult()
+        self.collectionView.reloadData()
+    }
+    
     func complete(activity:ActivityModel) {
         _ = self.services.activity.complete(activity: activity).then { [weak self] response -> Void in
             guard let strongSelf = self else {
                 return
             }
             let vc = ActivityResultViewController(services: strongSelf.services)
-            vc.result = response.result
+            vc.result = CombinedActivityResult(result: response.result)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
             strongSelf.collectionView.reloadData()
         }

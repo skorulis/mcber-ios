@@ -25,8 +25,13 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         return self.services.state.items[indexPath.row]
     }
     
+    let itemSizingCell = ItemCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        itemSizingCell.frame = self.view.bounds
+        itemSizingCell.setup(theme: self.theme)
 
         self.title = "User"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed(sender:)))
@@ -47,6 +52,12 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         let itemSection = SectionController()
         itemSection.simpleNumberOfItemsInSection = itemCount
         itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt(indexPath:))
+        itemSection.sizeForItemAt = { (collectionView:UICollectionView,layout:UICollectionViewLayout, indexPath:IndexPath) in
+            let width = self.collectionView.frame.width
+            self.itemSizingCell.frame = CGRect(x: 0, y: 0, width: width, height: 400)
+            let height = self.itemSizingCell.calculateHeight(model: self.itemAt(indexPath: indexPath))
+            return CGSize(width: width, height: height)
+        }
         
         itemSection.fixedHeaderHeight = 40
         itemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Items")

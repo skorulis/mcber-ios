@@ -4,12 +4,15 @@
 import UIKit
 import ObjectMapper
 
-//TODO: Link up to reference items
 class ItemModel: ImmutableMappable, ReferenceFillable {
     
     let id:String
     let name:String
     let mods:[ItemModModel];
+    
+    var totalPower:Int {
+        return mods.reduce(0, { $0.0 + $0.1.power })
+    }
     
     required init(map: Map) throws {
         id = try map.value("_id")
@@ -21,6 +24,12 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     func fill(ref: ReferenceService) {
         mods.forEach { $0.fill(ref: ref) }
     }
+    
+    func modDescriptions() -> String {
+        let a:[String] = self.mods.map { $0.userDescription() }
+        return a.joined(separator: "\n")
+    }
+       
 }
 
 class ItemModModel: ImmutableMappable, ReferenceFillable {
@@ -44,6 +53,18 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
         }
         
         refMod = ref.itemMod(id)
+    }
+    
+    func totalAmount() -> Int {
+        return self.power * refMod.baseMultiplier
+    }
+    
+    func userDescription() -> String {
+        var text = refMod.descriptionFormatter.replacingOccurrences(of: "{{power}}", with: String(totalAmount()))
+        if let refSkill = refSkill {
+            text = text.replacingOccurrences(of: "{{skill}}", with: refSkill.name)
+        }
+        return text
     }
     
 }

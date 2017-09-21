@@ -44,10 +44,16 @@ class GameStateService {
         if let index = user?.resources.index(where: { $0.resourceId == resource.resourceId }) {
             let existing = user!.resources[index]
             let resourceTotal = ResourceModel(quantity: existing.quantity + resource.quantity, resourceId: existing.resourceId)
+            resourceTotal.refModel = existing.refModel
             user?.resources[index] = resourceTotal
         } else {
             user?.resources.append(resource)
         }
+    }
+    
+    func add(item:ItemModel) {
+        user?.items.append(item)
+        didChangeState.notify(parameters: user!)
     }
     
     func update(activities:[ActivityModel]) {

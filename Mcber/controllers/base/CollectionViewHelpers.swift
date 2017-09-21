@@ -30,4 +30,5 @@ extension SimpleModelCell {
             return defaultCell(collectionView: collectionView, indexPath: indexPath, model: getModel(indexPath))
         }
     }
+    
 }

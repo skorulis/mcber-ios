@@ -8,6 +8,8 @@ class ReferenceService: NetAPIService {
     
     static var instance:ReferenceService!
     
+    let didFetchReferenceData = ObserverSet<ReferenceService>()
+    
     var skills:SkillsReferenceModel?
     var resources:ResourceListRefModel?
     var items:ItemsReferenceModel?
@@ -28,6 +30,7 @@ class ReferenceService: NetAPIService {
         let calls:[Promise<Void>] =  [getSkills().asVoid(),getResources().asVoid(),getItems().asVoid(),getItemMods().asVoid()]
         return when(fulfilled: calls).then { _ -> ReferenceService in
             print("Got all reference data")
+            self.didFetchReferenceData.notify(parameters: self)
             return self
         }
     }

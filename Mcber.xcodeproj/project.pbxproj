@@ -10,6 +10,7 @@
 		5D0AF146A29E4F2E585AD97E /* Pods_Mcber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FE5D50B3DFDE52674FC3DA /* Pods_Mcber.framework */; };
 		63BA630D774EA2A9F34D8183 /* Pods_McberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596BB4177A51AEAA41ABFD10 /* Pods_McberTests.framework */; };
 		FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */; };
+		FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */; };
 		FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */; };
 		FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */; };
 		FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9451F71CC7E00A3646A /* ItemModel.swift */; };
@@ -93,6 +94,7 @@
 		AEFFE4BAF05448C99A8D8564 /* Pods-McberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-McberTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-McberTests/Pods-McberTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5FE5D50B3DFDE52674FC3DA /* Pods_Mcber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mcber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBalanceView.swift; sourceTree = "<group>"; };
+		FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityResultModel.swift; sourceTree = "<group>"; };
 		FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicKeyValueCell.swift; sourceTree = "<group>"; };
 		FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmUnlockCell.swift; sourceTree = "<group>"; };
 		FA49A9451F71CC7E00A3646A /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */,
 				FA49A9451F71CC7E00A3646A /* ItemModel.swift */,
 				FA49A94F1F71DE1F00A3646A /* APIModelProtocols.swift */,
+				FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
 				FAD01BCE1F6CC3DF00DE39B3 /* SectionHeaderView.swift in Sources */,
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
+				FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
 				FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */,
 				FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */,

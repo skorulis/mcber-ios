@@ -94,7 +94,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     
     func startPressed(id:Any) {
         if let avatar = selectedAvatar, let realm = selectedRealm {
-            _ = self.services.activity.explore(avatarId: avatar._id, realm: realm, autoRepeat: false).then { [weak self] (response) -> Void in
+            _ = self.services.activity.explore(avatarId: avatar._id, realm: realm).then { [weak self] (response) -> Void in
                 self?.clear()
                 self?.navigationController?.popViewController(animated: true)
             }.catch { [weak self] error in

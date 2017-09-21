@@ -15,6 +15,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
     let autoRepeatLabel = UILabel()
     
     var completeBlock: ((ActivityModel) -> ())?
+    var takeResults: ((ActivityModel) -> ())?
     var cancelBlock: ((ActivityModel) -> ())?
     var autoChangeBlock: ((ActivityModel,Bool) -> ())?
     
@@ -25,8 +26,20 @@ class ActivityItemCell: ThemedCollectionViewCell {
             guard let activity = self.activity else { return }
             typeLabel.text = self.activityText(activity: activity)
             autoRepeatSwitch.isOn = activity.autoRepeat
+            updateCompleteButton()
             updateProgressFrame()
             updateRemainingLabel()
+        }
+    }
+    
+    func updateCompleteButton() {
+        guard let activity = self.activity else { return }
+        if activity.autoRepeat {
+            completeButton.alpha = activity.heldResults.experience.count > 0 ? 1 : 0
+            completeButton.setTitle("Unseen results", for: .normal)
+        } else {
+            completeButton.alpha = 1
+            completeButton.setTitle("Complete", for: .normal)
         }
     }
     
@@ -113,6 +126,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
     func autoRepeatChanged(sender:UISwitch) {
         self.activity?.autoRepeat = sender.isOn
         autoChangeBlock?(self.activity!,sender.isOn)
+        self.updateCompleteButton()
     }
     
     func cancelPressed(sender:Any) {
@@ -120,7 +134,12 @@ class ActivityItemCell: ThemedCollectionViewCell {
     }
     
     func completePressed(sender:Any) {
-        completeBlock?(self.activity!)
+        if (self.activity?.autoRepeat ?? false) {
+            takeResults?(self.activity!)
+        } else {
+            completeBlock?(self.activity!)
+        }
+        
     }
 
 }

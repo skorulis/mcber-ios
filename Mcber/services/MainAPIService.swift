@@ -109,6 +109,10 @@ class MainAPIService: NetAPIService {
         let objPromise:Promise<T> = super.parseData(data: data, connectionError: connectionError)
         _ = objPromise.then { T -> Void in
             if let model = T as? ReferenceFillable {
+                assert(self.ref.skills != nil)
+                assert(self.ref.items != nil)
+                assert(self.ref.mods != nil)
+                assert(self.ref.resources != nil)
                 model.fill(ref: self.ref)
             }
         }

@@ -11,7 +11,7 @@ enum ActivityType: String {
 
 class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     let type:SkillType
-    let xp:Int
+    var xp:Int
     let skillId:Int
     
     var refSkill:SkillRefModel!
@@ -27,28 +27,6 @@ class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     }
 }
 
-class ActivityResult: ImmutableMappable, ReferenceFillable {
-    
-    let experience:[ExperienceGainModel]
-    let resource:ResourceModel
-    let realmUnlock:RealmModel?
-    let item:ItemModel?
-    
-    required init(map: Map) throws {
-        experience = try map.value("experience")
-        resource = try map.value("resource")
-        realmUnlock = try? map.value("realmUnlock")
-        item = try? map.value("item")
-    }
-    
-    func fill(ref: ReferenceService) {
-        self.experience.forEach { $0.fill(ref: ref) }
-        resource.fill(ref: ref)
-        realmUnlock?.fill(ref: ref)
-        item?.fill(ref: ref)
-    }
-}
-
 class ActivityModel: ImmutableMappable, ReferenceFillable {
 
     let finishTimestamp:Double
@@ -58,6 +36,7 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
     let activityType:ActivityType
     let realm:RealmModel?
     var autoRepeat:Bool = false
+    var heldResults = CombinedActivityResult()
     
     required init(map: Map) throws {
         finishTimestamp = try map.value("finishTimestamp")

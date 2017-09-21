@@ -6,7 +6,7 @@ import ObjectMapper
 
 class ResourceModel: ImmutableMappable, ReferenceFillable {
     
-    let quantity:Int
+    var quantity:Int
     let resourceId:String
     
     var refModel:ResourceRefModel!
@@ -23,6 +23,7 @@ class ResourceModel: ImmutableMappable, ReferenceFillable {
     
     func fill(ref: ReferenceService) {
         self.refModel = ref.elementResource(self.resourceId)
+        assert(self.refModel != nil)
     }
     
 }
