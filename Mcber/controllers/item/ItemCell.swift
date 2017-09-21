@@ -12,7 +12,7 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
     var model: ItemModel? {
         didSet {
             guard let m = model else { return }
-            self.nameLabel.text = "Level \(m.totalPower) m.name"
+            self.nameLabel.text = "Level \(m.totalPower) \(m.name)"
             modTextLabel.text = m.modDescriptions()
         }
     }
@@ -22,8 +22,8 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(modTextLabel)
         
-        nameLabel.preferredMaxLayoutWidth = 300
-        modTextLabel.preferredMaxLayoutWidth = 300
+        //nameLabel.preferredMaxLayoutWidth = 300
+        //modTextLabel.preferredMaxLayoutWidth = 300
     }
     
     override func buildLayout(theme: ThemeService) {

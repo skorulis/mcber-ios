@@ -37,6 +37,8 @@ class RootViewController: BaseViewController {
     
     
     func showMainUI() {
+        let titles = ["User","Activities","Avatars","Realms","Test"]
+        
         let user = UserDetailsViewController(services: self.services)
         let activites = ActivityListViewController(services: self.services)
         let avatars = AvatarListViewController(services: self.services)
@@ -45,7 +47,13 @@ class RootViewController: BaseViewController {
         
         let controllers:[UIViewController] = [user,activites,avatars,realms,test]
         let tab = UITabBarController()
-        tab.viewControllers = controllers.map { UINavigationController(rootViewController: $0) }
+        
+        tab.viewControllers = controllers.enumerated().map { (offset,vc) -> UINavigationController in
+            let nav = UINavigationController(rootViewController: vc)
+            nav.tabBarItem = UITabBarItem(title: titles[offset], image: nil, tag: 0)
+            return nav
+        }
+        
         self.view.addSubview(tab.view)
         tab.view.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
