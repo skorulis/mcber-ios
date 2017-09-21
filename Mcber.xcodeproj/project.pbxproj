@@ -56,6 +56,8 @@
 		FAA191FD1F673EAB0076CDC7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FC1F673EAB0076CDC7 /* UserModel.swift */; };
 		FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */; };
 		FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA192001F673F200076CDC7 /* RealmModel.swift */; };
+		FABE08181F73CDC3006A6CD6 /* TestSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08171F73CDC3006A6CD6 /* TestSizeViewController.swift */; };
+		FABE081A1F73CE40006A6CD6 /* TestSizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08191F73CE40006A6CD6 /* TestSizeCell.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
@@ -146,6 +148,8 @@
 		FAA191FC1F673EAB0076CDC7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FAA191FE1F673ED00076CDC7 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		FAA192001F673F200076CDC7 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		FABE08171F73CDC3006A6CD6 /* TestSizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSizeViewController.swift; sourceTree = "<group>"; };
+		FABE08191F73CE40006A6CD6 /* TestSizeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSizeCell.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 		FAA191DA1F673A4B0076CDC7 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FABE08161F73CD37006A6CD6 /* test */,
 				FA49A9961F726E6D00A3646A /* item */,
 				FA6CF1251F6919150026D126 /* login */,
 				FAA191F31F673BE30076CDC7 /* activity */,
@@ -452,6 +457,15 @@
 				FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */,
 			);
 			path = api;
+			sourceTree = "<group>";
+		};
+		FABE08161F73CD37006A6CD6 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				FABE08171F73CDC3006A6CD6 /* TestSizeViewController.swift */,
+				FABE08191F73CE40006A6CD6 /* TestSizeCell.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -721,8 +735,10 @@
 				FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */,
 				FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */,
 				FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */,
+				FABE081A1F73CE40006A6CD6 /* TestSizeCell.swift in Sources */,
 				FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */,
 				FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */,
+				FABE08181F73CDC3006A6CD6 /* TestSizeViewController.swift in Sources */,
 				FA49A9951F72567600A3646A /* ItemModReferenceModel.swift in Sources */,
 				FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
