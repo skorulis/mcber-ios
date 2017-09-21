@@ -30,6 +30,8 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.layout.estimatedItemSize = CGSize(width: 1, height: 1)
+        
         itemSizingCell.frame = self.view.bounds
         itemSizingCell.setup(theme: self.theme)
 
@@ -53,10 +55,7 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         itemSection.simpleNumberOfItemsInSection = itemCount
         itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt(indexPath:))
         itemSection.sizeForItemAt = { (collectionView:UICollectionView,layout:UICollectionViewLayout, indexPath:IndexPath) in
-            let width = self.collectionView.frame.width
-            self.itemSizingCell.frame = CGRect(x: 0, y: 0, width: width, height: 400)
-            let height = self.itemSizingCell.calculateHeight(model: self.itemAt(indexPath: indexPath))
-            return CGSize(width: width, height: height)
+            return UICollectionViewFlowLayoutAutomaticSize
         }
         
         itemSection.fixedHeaderHeight = 40

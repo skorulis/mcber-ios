@@ -7,6 +7,7 @@ import UIKit
 class GameStateService {
 
     let didChangeState = ObserverSet<UserModel>()
+    let didChangeRealms = ObserverSet<UserModel>()
     
     var user:UserModel?
     
@@ -54,6 +55,12 @@ class GameStateService {
     func add(item:ItemModel) {
         user?.items.append(item)
         didChangeState.notify(parameters: user!)
+    }
+    
+    func add(realm:RealmModel) {
+        assert(realm.maximumLevel != nil)
+        let existing = user!.realms.filter { $0.elementId == realm.elementId }.first!
+        existing.maximumLevel! = max(existing.maximumLevel!, realm.maximumLevel!)
     }
     
     func update(activities:[ActivityModel]) {

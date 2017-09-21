@@ -33,7 +33,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     let _id:String
     let email:String?
     var avatars:[AvatarModel]
-    let realms:[RealmModel]
+    var realms:[RealmModel]
     var activities:[ActivityModel]
     var resources:[ResourceModel]
     var items:[ItemModel];

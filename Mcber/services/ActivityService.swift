@@ -38,6 +38,9 @@ class ActivityService: NSObject {
             self.state.update(activities:response.activities)
             self.state.update(avatar:response.avatar)
             self.state.add(resource:response.result.resource)
+            if let realm = response.result.realmUnlock {
+                self.state.add(realm:realm)
+            }
             if let item = response.result.item {
                 self.state.add(item: item)
             }

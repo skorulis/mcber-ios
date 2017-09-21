@@ -21,13 +21,29 @@ class ItemBaseTypeRef: ImmutableMappable {
     
 }
 
+class ItemSlotRef: ImmutableMappable {
+    
+    let id:String
+    let name:String
+    let types:[String]
+    
+    required init(map: Map) throws {
+        id = try map.value("id")
+        name = try map.value("name")
+        types = try map.value("types")
+    }
+    
+}
+
 
 class ItemsReferenceModel: ImmutableMappable {
     
     let baseTypes:[ItemBaseTypeRef]
+    let itemSlots:[ItemSlotRef]
     
     required init(map: Map) throws {
         baseTypes = try map.value("baseTypes")
+        itemSlots = try map.value("itemSlots")
     }
 }
 

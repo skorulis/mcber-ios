@@ -40,8 +40,9 @@ class RootViewController: BaseViewController {
         let user = UserDetailsViewController(services: self.services)
         let activites = ActivityListViewController(services: self.services)
         let avatars = AvatarListViewController(services: self.services)
+        let realms = RealmListViewController(services: self.services)
         
-        let controllers:[UIViewController] = [user,activites,avatars]
+        let controllers:[UIViewController] = [user,activites,avatars,realms]
         let tab = UITabBarController()
         tab.viewControllers = controllers.map { UINavigationController(rootViewController: $0) }
         self.view.addSubview(tab.view)

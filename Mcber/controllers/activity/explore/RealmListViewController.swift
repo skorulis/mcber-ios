@@ -12,6 +12,7 @@ class RealmListViewController: BaseCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Realms"
         self.collectionView.register(clazz: RealmCell.self)
     }
     

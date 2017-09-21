@@ -8,7 +8,7 @@ class RealmModel: ImmutableMappable, ReferenceFillable {
 
     let elementId:Int
     let level:Int
-    let maximumLevel:Int?
+    var maximumLevel:Int?
     
     var refSkill:SkillRefModel!
     

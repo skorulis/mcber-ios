@@ -21,6 +21,9 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
         modTextLabel.numberOfLines = 0
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(modTextLabel)
+        
+        nameLabel.preferredMaxLayoutWidth = 300
+        modTextLabel.preferredMaxLayoutWidth = 300
     }
     
     override func buildLayout(theme: ThemeService) {
