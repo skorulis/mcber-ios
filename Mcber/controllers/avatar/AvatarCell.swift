@@ -18,11 +18,10 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
         didSet {
             if let m = model {
                 levelLabel.text = "Level: \(m.level)"
-                healthLabel.text = "Health: \(m.health)"
-                speedLabel.text = "Speed: \(m.speed)"
+                healthLabel.text = "Health: \(m.stats.otherValue(type: .health))"
+                speedLabel.text = "Speed: \(m.stats.otherValue(type: .speed))"
                 
-                //TODO: Filter to only elements
-                balance.models = m.skills.filter { $0.ref.type == .element }
+                balance.models = m.stats.skills.filter { $0.ref.type == .element }
             }
         }
     }

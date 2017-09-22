@@ -19,7 +19,7 @@ class AvatarBalanceView: UIView {
         }
     }
     
-    var models:[SkillProgressModel]? {
+    var models:[StatSkill]? {
         didSet {
             guard let list = models else {return}
             assert(list.count == columns.count)

@@ -31,17 +31,35 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         self.collectionView.register(clazz: AvatarCell.self)
         self.collectionView.register(clazz: AvatarSkillCell.self)
         self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
         
         let topSection = SectionController()
         topSection.fixedHeight = 120
         topSection.cellForItemAt = AvatarCell.curriedDefaultCell(withModel: self.avatar)
         
+        let itemSection = SectionController()
+        itemSection.fixedHeaderHeight = 40
+        itemSection.fixedCellCount = 0
+        itemSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
+            let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Equipment")(collectionView,kind,indexPath)
+            header.addTapTarget(target: self, action: #selector(self.equipmentPressed(sender:)))
+            return header
+        }
+        
+        
         let elementSkillsSection = skillSection(title: "Elemental Skills", count: elements.count, skillAt: elementAt(indexPath:))
         let tradeSkillsSection = skillSection(title: "Trade Skills", count: trades.count, skillAt: tradeAt(indexPath:))
         
         self.sections.append(topSection)
+        self.sections.append(itemSection)
         self.sections.append(elementSkillsSection)
         self.sections.append(tradeSkillsSection)
+    }
+    
+    func equipmentPressed(sender:Any) {
+        let vc = AvatarEquipmentViewController(services: self.services)
+        vc.avatar = self.avatar
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func skillSection(title:String,count:Int,skillAt: @escaping (IndexPath) -> SkillProgressModel) -> SectionController {

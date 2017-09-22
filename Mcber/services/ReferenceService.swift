@@ -81,6 +81,12 @@ class ReferenceService: NetAPIService {
         return mods!.idMap[modId]!
     }
     
+    func slot(_ slotId:String) -> ItemSlotRef {
+        return items!.itemSlots.first(where: { (s) -> Bool in
+            return s.id == slotId
+        })!
+    }
+    
     func elementResource(_ resourceId:String) -> ResourceRefModel {
         return self.resources!.elemental[resourceId]!
     }
@@ -92,5 +98,6 @@ class ReferenceService: NetAPIService {
     func allTrades() -> [SkillRefModel] {
         return self.skills?.trades ?? []
     }
+    
     
 }

@@ -7,12 +7,20 @@ import ObjectMapper
 enum BaseItemType: String {
     case weapon = "weapon"
     case tool = "tool"
+    case shield = "shield"
+    case helmet = "helmet"
+    case hat = "hat"
+    case shoes = "shoes"
+    case boots = "boots"
+    case sandals = "sandals"
+    case shirt = "shirt"
+    case vest = "vest"
 }
 
 class ItemBaseTypeRef: ImmutableMappable {
     
     let name:String
-    let type:BaseItemType
+    let type:String
     
     required init(map: Map) throws {
         name = try map.value("name")

@@ -31,4 +31,17 @@ extension SimpleModelCell {
         }
     }
     
+    static func curriedSupplementaryView(withModel model:ModelType) -> (UICollectionView,String,IndexPath) -> Self {
+        return { collectionView,kind,indexPath in
+            let ident = String(describing: Self.self)
+            var view:Self = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ident, for: indexPath) as! Self
+            if let themedView = view as? ThemedCollectionReusableView {
+                themedView.setup(theme: ThemeService.theme)
+            }
+            view.model = model
+            return view
+        }
+    }
+
+    
 }

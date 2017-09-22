@@ -7,7 +7,7 @@ class RealmListViewController: BaseCollectionViewController {
 
     var didSelectRealm: ((RealmListViewController,RealmModel) -> () )?
     var realms:[RealmModel] {
-        return self.services.state.user!.realms
+        return self.services.state.user?.realms ?? []
     }
     
     override func viewDidLoad() {

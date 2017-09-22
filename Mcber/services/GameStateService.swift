@@ -58,9 +58,8 @@ class GameStateService {
     }
     
     func add(realm:RealmModel) {
-        assert(realm.maximumLevel != nil)
         let existing = user!.realms.filter { $0.elementId == realm.elementId }.first!
-        existing.maximumLevel! = max(existing.maximumLevel!, realm.maximumLevel!)
+        existing.maximumLevel! = max(existing.maximumLevel!, realm.level)
     }
     
     func update(activities:[ActivityModel]) {
