@@ -6,6 +6,7 @@ import UIKit
 class AvatarBalanceView: UIView {
     
     let columns:[UIView]
+    var reversed = false
     
     init(frame: CGRect,columnCount:Int) {
         var temp = [UIView]()
@@ -31,7 +32,12 @@ class AvatarBalanceView: UIView {
                 let pct = Double(skill.level) / maxLevel
                 col.backgroundColor = skill.ref.color
                 col.snp.remakeConstraints({ (make) in
-                    make.bottom.equalToSuperview()
+                    if self.reversed {
+                        make.top.equalToSuperview()
+                    } else {
+                        make.bottom.equalToSuperview()
+                    }
+                    
                     make.height.equalToSuperview().multipliedBy(pct).priority(750)
                     make.height.greaterThanOrEqualTo(1)
                     if index == 0 {

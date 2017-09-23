@@ -9,7 +9,8 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
     private let levelLabel = UILabel()
     private let healthLabel = UILabel()
     private let speedLabel = UILabel()
-    private let balance = AvatarBalanceView(frame: .zero, columnCount: 10)
+    private let elementBalance = AvatarBalanceView(frame: .zero, columnCount: 10)
+    private let tradeBalance = AvatarBalanceView(frame: .zero, columnCount: 5)
     
     private let ref = ReferenceService.instance!
     
@@ -21,17 +22,20 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
                 healthLabel.text = "Health: \(m.stats.otherValue(type: .health))"
                 speedLabel.text = "Speed: \(m.stats.otherValue(type: .speed))"
                 
-                balance.models = m.stats.skills.filter { $0.ref.type == .element }
+                elementBalance.models = m.stats.skills.filter { $0.ref.type == .element }
+                tradeBalance.models = m.stats.skills.filter { $0.ref.type == .trade }
             }
         }
     }
     
     override func buildView(theme: ThemeService) {
+        tradeBalance.reversed = true
+        
         self.contentView.addSubview(levelLabel)
         self.contentView.addSubview(healthLabel)
         self.contentView.addSubview(speedLabel)
-        self.contentView.addSubview(balance)
-        
+        self.contentView.addSubview(elementBalance)
+        self.contentView.addSubview(tradeBalance)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -49,9 +53,15 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
             make.left.equalTo(self.healthLabel)
         }
         
-        balance.snp.makeConstraints { (make) in
+        elementBalance.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(speedLabel.snp.bottom)
+        }
+        
+        tradeBalance.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(50)
+            make.top.equalTo(elementBalance.snp.bottom).offset(2)
+            make.height.equalTo(elementBalance)
         }
     }
 
