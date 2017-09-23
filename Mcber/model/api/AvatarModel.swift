@@ -53,7 +53,7 @@ class AvatarItemSlot: ImmutableMappable, ReferenceFillable {
     }
 }
 
-class AvatarModel: ImmutableMappable, ReferenceFillable {
+class AvatarModel: ImmutableMappable, ReferenceFillable, IdObjectProtocol {
 
     let _id:String
     let level:Int

@@ -5,14 +5,23 @@ import UIKit
 
 class AvatarDetailViewController: BaseSectionCollectionViewController {
 
-    var avatar:AvatarModel!
+    var avatar:MonitoredObject<AvatarModel>
+    
+    init(services: ServiceLocator,avatar:AvatarModel) {
+        self.avatar = services.state.monitor(avatar: avatar)
+        super.init(services: services)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var elements:[SkillProgressModel] {
-        return avatar.skills.filter { $0.ref.type == .element }
+        return avatar.value.skills.filter { $0.ref.type == .element }
     }
     
     var trades:[SkillProgressModel] {
-        return avatar.skills.filter { $0.ref.type == .trade }
+        return avatar.value.skills.filter { $0.ref.type == .trade }
     }
     
     func elementAt(indexPath:IndexPath) -> SkillProgressModel {
@@ -27,6 +36,10 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
         
         self.title = "Avatar"
+        self.avatar.valueDidChange = { old,new in
+            print("Got value change")
+            self.collectionView.reloadData()
+        }
 
         self.collectionView.register(clazz: AvatarCell.self)
         self.collectionView.register(clazz: AvatarSkillCell.self)
@@ -35,7 +48,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         
         let topSection = SectionController()
         topSection.fixedHeight = 120
-        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(withModel: self.avatar)
+        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: avatar.at(indexpath:))
         
         let itemSection = SectionController()
         itemSection.fixedHeaderHeight = 40
@@ -57,8 +70,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
     }
     
     func equipmentPressed(sender:Any) {
-        let vc = AvatarEquipmentViewController(services: self.services)
-        vc.avatar = self.avatar
+        let vc = AvatarEquipmentViewController(services: self.services,avatar:self.avatar.value)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

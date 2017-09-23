@@ -64,6 +64,7 @@
 		FABE08761F75CF93006A6CD6 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08751F75CF93006A6CD6 /* ItemSelectionViewController.swift */; };
 		FABE08781F75E6DD006A6CD6 /* AvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08771F75E6DD006A6CD6 /* AvatarService.swift */; };
 		FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */; };
+		FABE087C1F75FA8B006A6CD6 /* MonitoredObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
@@ -162,6 +163,7 @@
 		FABE08751F75CF93006A6CD6 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
 		FABE08771F75E6DD006A6CD6 /* AvatarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarService.swift; sourceTree = "<group>"; };
 		FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignItemResponse.swift; sourceTree = "<group>"; };
+		FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredObject.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */,
+				FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				FABE08181F73CDC3006A6CD6 /* TestSizeViewController.swift in Sources */,
 				FA49A9951F72567600A3646A /* ItemModReferenceModel.swift in Sources */,
 				FABE08741F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift in Sources */,
+				FABE087C1F75FA8B006A6CD6 /* MonitoredObject.swift in Sources */,
 				FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,

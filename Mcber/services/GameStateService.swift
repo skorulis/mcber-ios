@@ -8,6 +8,7 @@ class GameStateService {
 
     let didChangeState = ObserverSet<UserModel>()
     let didChangeRealms = ObserverSet<UserModel>()
+    let didChangeAvatar = ObserverSet<AvatarModel>()
     
     var user:UserModel?
     
@@ -71,12 +72,19 @@ class GameStateService {
         if let u = user {
             let index = u.avatars.index { $0._id == avatar._id }!
             u.avatars[index] = avatar
+            didChangeAvatar.notify(parameters: avatar)
             didChangeState.notify(parameters: u)
         }
     }
     
     func remove(item:ItemModel) {
         user!.items = user!.items.filter { $0.id != item.id }
+    }
+    
+    func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {
+        let m = MonitoredObject(initialValue: avatar)
+        didChangeAvatar.add(object: m, m.updateIfEqual(newValue:))
+        return m
     }
     
 }
