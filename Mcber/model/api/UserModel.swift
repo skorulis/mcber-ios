@@ -57,6 +57,10 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         items.forEach { $0.fill(ref: ref) }
     }
     
+    func itemsForSlot(slot:ItemSlotRef) -> [ItemModel] {
+        return items.filter { slot.types.contains($0.type) }
+    }
+    
 }
 
 class UserResponse: ImmutableMappable, ReferenceFillable {

@@ -26,6 +26,7 @@ class AvatarEquipmentViewController: BaseSectionCollectionViewController {
         
         self.title = "Equipment"
         
+        collectionView.register(clazz: ItemCell.self)
         collectionView.register(clazz: ItemSlotSelectionHeader.self, forKind: UICollectionElementKindSectionHeader)
         
         for slot in self.slots {
@@ -44,6 +45,7 @@ class AvatarEquipmentViewController: BaseSectionCollectionViewController {
                 let vc = ItemSelectionViewController(services: self.services)
                 vc.avatar = self.avatar
                 vc.slot = slot
+                vc.didSelectItem = self.didSelectItem(item:slot:)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             return header
@@ -55,6 +57,12 @@ class AvatarEquipmentViewController: BaseSectionCollectionViewController {
         section.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt(indexPath:))
         
         return section
+    }
+    
+    func didSelectItem(item:ItemModel?,slot:ItemSlotRef) {
+        _ = self.services.avatar.assignItem(item: item, slot: slot, avatar: self.avatar).then { response -> Void in
+            self.collectionView.reloadData()
+        }
     }
 
 }

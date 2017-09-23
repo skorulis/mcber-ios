@@ -8,6 +8,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     
     let id:String
     let name:String
+    let type:String
     let mods:[ItemModModel];
     
     var totalPower:Int {
@@ -17,6 +18,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     required init(map: Map) throws {
         id = try map.value("_id")
         name = try map.value("name")
+        type = try map.value("type")
         
         mods = try map.value("mods")
     }

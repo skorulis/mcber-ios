@@ -62,6 +62,8 @@
 		FABE08721F75C757006A6CD6 /* AvatarEquipmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08711F75C757006A6CD6 /* AvatarEquipmentViewController.swift */; };
 		FABE08741F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08731F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift */; };
 		FABE08761F75CF93006A6CD6 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08751F75CF93006A6CD6 /* ItemSelectionViewController.swift */; };
+		FABE08781F75E6DD006A6CD6 /* AvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08771F75E6DD006A6CD6 /* AvatarService.swift */; };
+		FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
@@ -158,6 +160,8 @@
 		FABE08711F75C757006A6CD6 /* AvatarEquipmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarEquipmentViewController.swift; sourceTree = "<group>"; };
 		FABE08731F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSlotSelectionHeader.swift; sourceTree = "<group>"; };
 		FABE08751F75CF93006A6CD6 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
+		FABE08771F75E6DD006A6CD6 /* AvatarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarService.swift; sourceTree = "<group>"; };
+		FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignItemResponse.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
@@ -352,6 +356,7 @@
 		FAA191E01F673A4B0076CDC7 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				FABE08771F75E6DD006A6CD6 /* AvatarService.swift */,
 				FA6CF1321F69E0FD0026D126 /* GameStateService.swift */,
 				FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */,
 				FA6CF12A1F693E850026D126 /* LoginService.swift */,
@@ -467,6 +472,7 @@
 				FA49A94F1F71DE1F00A3646A /* APIModelProtocols.swift */,
 				FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */,
 				FABE086F1F7513DE006A6CD6 /* AvatarStatsModel.swift */,
+				FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -759,6 +765,7 @@
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
+				FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */,
 				FABE08761F75CF93006A6CD6 /* ItemSelectionViewController.swift in Sources */,
 				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
 				FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */,
@@ -770,6 +777,7 @@
 				FA6CF12B1F693E850026D126 /* LoginService.swift in Sources */,
 				FA6CF1671F6A93550026D126 /* ForwardNavigationCell.swift in Sources */,
 				FA6CF16B1F6A9B3A0026D126 /* RealmCell.swift in Sources */,
+				FABE08781F75E6DD006A6CD6 /* AvatarService.swift in Sources */,
 				FA6CF1181F688D2B0026D126 /* ResourceReferenceModel.swift in Sources */,
 				FAA191FD1F673EAB0076CDC7 /* UserModel.swift in Sources */,
 				FAA191F01F673A4B0076CDC7 /* ThemedCollectionViewCell.swift in Sources */,

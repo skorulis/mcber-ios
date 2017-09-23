@@ -11,7 +11,11 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
     typealias ModelType = ItemModel
     var model: ItemModel? {
         didSet {
-            guard let m = model else { return }
+            guard let m = model else {
+                self.nameLabel.text = "No item"
+                self.modTextLabel.text = nil
+                return
+            }
             self.nameLabel.text = "Level \(m.totalPower) \(m.name)"
             modTextLabel.text = m.modDescriptions()
         }

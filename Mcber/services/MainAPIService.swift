@@ -105,6 +105,15 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func assignItem(itemId:String?,slot:String,avatarId:String) -> Promise<AssignItemResponse> {
+        var dict = ["avatarId":avatarId,"slot":slot]
+        if let itemId = itemId {
+            dict["itemId"] = itemId
+        }
+        let req = self.jsonPostRequest(path: "item/assign", dict: dict)
+        return doAuthRequest(req: req)
+    }
+    
     override func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
         let objPromise:Promise<T> = super.parseData(data: data, connectionError: connectionError)
         _ = objPromise.then { T -> Void in
