@@ -20,7 +20,6 @@
 		FA49A9981F726E7F00A3646A /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9971F726E7F00A3646A /* ItemCell.swift */; };
 		FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */; };
 		FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1101F688AEC0026D126 /* ReferenceService.swift */; };
-		FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1121F688B060026D126 /* MainAPIService.swift */; };
 		FA6CF1161F688D180026D126 /* SkillReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */; };
 		FA6CF1181F688D2B0026D126 /* ResourceReferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */; };
 		FA6CF1271F6919350026D126 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF1261F6919350026D126 /* LoginViewController.swift */; };
@@ -46,7 +45,6 @@
 		FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DC1F673A4B0076CDC7 /* BaseCollectionViewController.swift */; };
 		FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DD1F673A4B0076CDC7 /* BaseViewController.swift */; };
 		FAA191EC1F673A4B0076CDC7 /* CollectionViewSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191DE1F673A4B0076CDC7 /* CollectionViewSectionController.swift */; };
-		FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */; };
 		FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */; };
 		FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E41F673A4B0076CDC7 /* ThemedCollectionReusableView.swift */; };
 		FAA191F01F673A4B0076CDC7 /* ThemedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191E51F673A4B0076CDC7 /* ThemedCollectionViewCell.swift */; };
@@ -76,6 +74,9 @@
 		FAD01BD81F6D15A900DE39B3 /* ActivityResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */; };
 		FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */; };
 		FAD01BDC1F6D283700DE39B3 /* ExperienceGainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */; };
+		FAEE36581F774B470048CD8E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE36571F774B470048CD8E /* UserService.swift */; };
+		FAEE365C1F774BD50048CD8E /* NetAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365B1F774B740048CD8E /* NetAPIService.swift */; };
+		FAEE365D1F774BD70048CD8E /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365A1F774B740048CD8E /* MainAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,7 +114,6 @@
 		FA49A9971F726E7F00A3646A /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		FA6CF1101F688AEC0026D126 /* ReferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceService.swift; sourceTree = "<group>"; };
-		FA6CF1121F688B060026D126 /* MainAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
 		FA6CF1151F688D180026D126 /* SkillReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillReferenceModel.swift; sourceTree = "<group>"; };
 		FA6CF1171F688D2B0026D126 /* ResourceReferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceReferenceModel.swift; sourceTree = "<group>"; };
 		FA6CF1261F6919350026D126 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +145,6 @@
 		FAA191DC1F673A4B0076CDC7 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		FAA191DD1F673A4B0076CDC7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FAA191DE1F673A4B0076CDC7 /* CollectionViewSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionController.swift; sourceTree = "<group>"; };
-		FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetAPIService.swift; sourceTree = "<group>"; };
 		FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		FAA191E41F673A4B0076CDC7 /* ThemedCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedCollectionReusableView.swift; sourceTree = "<group>"; };
 		FAA191E51F673A4B0076CDC7 /* ThemedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -175,6 +174,9 @@
 		FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityResultViewController.swift; sourceTree = "<group>"; };
 		FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelpers.swift; sourceTree = "<group>"; };
 		FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceGainCell.swift; sourceTree = "<group>"; };
+		FAEE36571F774B470048CD8E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FAEE365A1F774B740048CD8E /* MainAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
+		FAEE365B1F774B740048CD8E /* NetAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,16 +360,16 @@
 		FAA191E01F673A4B0076CDC7 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				FAA191E31F673A4B0076CDC7 /* theme */,
+				FAEE36591F774B740048CD8E /* network */,
 				FABE08771F75E6DD006A6CD6 /* AvatarService.swift */,
 				FA6CF1321F69E0FD0026D126 /* GameStateService.swift */,
 				FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */,
 				FA6CF12A1F693E850026D126 /* LoginService.swift */,
-				FA6CF1121F688B060026D126 /* MainAPIService.swift */,
 				FA6CF1101F688AEC0026D126 /* ReferenceService.swift */,
 				FA6CF10E1F688A9B0026D126 /* AnalyticsService.swift */,
-				FAA191E11F673A4B0076CDC7 /* NetAPIService.swift */,
 				FAA191E21F673A4B0076CDC7 /* ServiceLocator.swift */,
-				FAA191E31F673A4B0076CDC7 /* theme */,
+				FAEE36571F774B470048CD8E /* UserService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -487,6 +489,15 @@
 				FABE08191F73CE40006A6CD6 /* TestSizeCell.swift */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		FAEE36591F774B740048CD8E /* network */ = {
+			isa = PBXGroup;
+			children = (
+				FAEE365A1F774B740048CD8E /* MainAPIService.swift */,
+				FAEE365B1F774B740048CD8E /* NetAPIService.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -633,13 +644,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mcber-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A22B779430F7C1820E942EF2 /* [CP] Copy Pods Resources */ = {
@@ -663,9 +677,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-McberTests/Pods-McberTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FontAwesomeKit/FontAwesomeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesomeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -678,13 +701,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-McberTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6FA76D5842842EBC9BB0F9F /* [CP] Copy Pods Resources */ = {
@@ -708,9 +734,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Mcber/Pods-Mcber-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FontAwesomeKit/FontAwesomeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesomeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -736,6 +771,7 @@
 				FAD01BD21F6CDBF000DE39B3 /* AvatarSkillCell.swift in Sources */,
 				FAD01BDC1F6D283700DE39B3 /* ExperienceGainCell.swift in Sources */,
 				FAD01BD81F6D15A900DE39B3 /* ActivityResultViewController.swift in Sources */,
+				FAEE365C1F774BD50048CD8E /* NetAPIService.swift in Sources */,
 				FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */,
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAD01BD01F6CD96100DE39B3 /* AvatarDetailViewController.swift in Sources */,
@@ -746,14 +782,15 @@
 				FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
 				FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */,
-				FA6CF1131F688B060026D126 /* MainAPIService.swift in Sources */,
 				FAD01BD41F6CDE3F00DE39B3 /* ProgressView.swift in Sources */,
 				FAA191FA1F673BF40076CDC7 /* RootViewController.swift in Sources */,
 				FAA191F11F673A4B0076CDC7 /* ThemeService.swift in Sources */,
 				FA6CF1691F6A94EF0026D126 /* ForwardNavigationHeader.swift in Sources */,
 				FA6CF1271F6919350026D126 /* LoginViewController.swift in Sources */,
+				FAEE36581F774B470048CD8E /* UserService.swift in Sources */,
 				FA6CF1291F69197D0026D126 /* RegisterViewController.swift in Sources */,
 				FAA191EC1F673A4B0076CDC7 /* CollectionViewSectionController.swift in Sources */,
+				FAEE365D1F774BD70048CD8E /* MainAPIService.swift in Sources */,
 				FA6CF16F1F6B2EBD0026D126 /* RealmListViewController.swift in Sources */,
 				FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */,
 				FA6CF1111F688AEC0026D126 /* ReferenceService.swift in Sources */,
@@ -773,7 +810,6 @@
 				FABE08761F75CF93006A6CD6 /* ItemSelectionViewController.swift in Sources */,
 				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
 				FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */,
-				FAA191ED1F673A4B0076CDC7 /* NetAPIService.swift in Sources */,
 				FA6CF1351F69E1560026D126 /* AvatarModel.swift in Sources */,
 				FA49A9501F71DE1F00A3646A /* APIModelProtocols.swift in Sources */,
 				FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */,

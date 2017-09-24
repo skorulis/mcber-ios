@@ -4,7 +4,7 @@ platform :ios, '9.0'
 def shared_pods
     use_frameworks!
     pod "FontAwesomeKit", :git => 'https://github.com/PrideChung/FontAwesomeKit'
-    pod 'SnapKit'
+    pod 'SnapKit', '~> 3.2'
     pod 'Fabric'
     pod 'Crashlytics'
     pod "PromiseKit"

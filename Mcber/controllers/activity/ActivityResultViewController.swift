@@ -25,6 +25,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ResourceCell.self)
         collectionView.register(clazz: ExperienceGainCell.self)
         collectionView.register(clazz: RealmUnlockCell.self)
+        collectionView.register(clazz: ItemCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         if let unlock = self.result.realmUnlock {
@@ -40,16 +41,30 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: result.resourceAt(indexPath:))
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
-        
-        let xpSection = SectionController()
-        xpSection.simpleNumberOfItemsInSection = xpCount
-        xpSection.cellForItemAt = ExperienceGainCell.curriedDefaultCell(getModel: xpAt(indexPath:))
-        xpSection.fixedHeaderHeight = 40
-        xpSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Experience")
-        
-        
         self.sections.append(resourceSection)
-        self.sections.append(xpSection)
+        
+        if (xpCount() > 0) {
+            let xpSection = SectionController()
+            xpSection.simpleNumberOfItemsInSection = xpCount
+            xpSection.cellForItemAt = ExperienceGainCell.curriedDefaultCell(getModel: xpAt(indexPath:))
+            xpSection.fixedHeaderHeight = 40
+            xpSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Experience")
+            self.sections.append(xpSection)
+        }
+        
+        if result.items.count > 0 {
+            let itemSection = SectionController()
+            itemSection.simpleNumberOfItemsInSection = result.itemCount
+            itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: result.itemAt(indexPath:))
+            /*itemSection.sizeForItemAt = { (collectionView:UICollectionView,layout:UICollectionViewLayout, indexPath:IndexPath) in
+             return CGSize(width: collectionView.frame.width, height: 50)
+             }*/
+            
+            itemSection.fixedHeaderHeight = 40
+            itemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Items")
+            
+            self.sections.append(itemSection)
+        }
     }
     
     //MARK: Data access

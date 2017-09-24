@@ -78,7 +78,7 @@ class GameStateService {
     }
     
     func remove(item:ItemModel) {
-        user!.items = user!.items.filter { $0.id != item.id }
+        user!.items = user!.items.filter { $0._id != item._id }
     }
     
     func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {

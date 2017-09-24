@@ -16,7 +16,7 @@ class AvatarService: NSObject {
     }
     
     func assignItem(item:ItemModel?,slot:ItemSlotRef,avatar:AvatarModel) -> Promise<AssignItemResponse>  {
-        let promise:Promise<AssignItemResponse> = self.api.assignItem(itemId: item?.id, slot: slot.id, avatarId: avatar._id)
+        let promise:Promise<AssignItemResponse> = self.api.assignItem(itemId: item?._id, slot: slot.id, avatarId: avatar._id)
         _ = promise.then { response -> Void in
             self.state.update(avatar: response.avatar)
             if let oldItem = response.removedItem {

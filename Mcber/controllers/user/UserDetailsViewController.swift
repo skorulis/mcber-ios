@@ -54,7 +54,19 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         
         let itemSection = SectionController()
         itemSection.simpleNumberOfItemsInSection = itemCount
-        itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt(indexPath:))
+        itemSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let cell = ItemCell.curriedDefaultCell(getModel: self.itemAt(indexPath:))(collectionView,indexPath)
+            cell.deleteBlock = {[unowned self] item in
+                _ = self.services.user.breakdown(item: item).then { [unowned self] response -> Void in
+                    self.collectionView.reloadData()
+                    let resultVC = ActivityResultViewController(services: self.services)
+                    resultVC.result = CombinedActivityResult(resources: response.resources)
+                    self.navigationController?.pushViewController(resultVC, animated: true)
+                }
+            }
+            return cell
+        }
+        
         /*itemSection.sizeForItemAt = { (collectionView:UICollectionView,layout:UICollectionViewLayout, indexPath:IndexPath) in
             return CGSize(width: collectionView.frame.width, height: 50)
         }*/

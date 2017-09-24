@@ -42,6 +42,11 @@ class CombinedActivityResult {
         self.add(result: result)
     }
     
+    convenience init(resources:[ResourceModel]) {
+        self.init()
+        self.resources = resources
+    }
+    
     func add(result:ActivityResult) {
         if let item = result.item {
             items.append(item)
@@ -63,6 +68,14 @@ class CombinedActivityResult {
         } else {
             resources.append(result.resource)
         }
+    }
+    
+    func itemCount() -> Int {
+        return items.count
+    }
+    
+    func itemAt(indexPath:IndexPath) -> ItemModel {
+        return items[indexPath.row]
     }
     
 }

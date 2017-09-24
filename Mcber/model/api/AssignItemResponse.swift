@@ -20,3 +20,16 @@ class AssignItemResponse: ImmutableMappable, ReferenceFillable {
     }
     
 }
+
+class BreakdownItemResponse: ImmutableMappable, ReferenceFillable {
+    
+    var resources:[ResourceModel]
+    
+    required init(map: Map) throws {
+        resources = try map.value("resources")
+    }
+    
+    func fill(ref:ReferenceService) {
+        resources.forEach { $0.fill(ref: ref)}
+    }
+}

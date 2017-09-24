@@ -6,7 +6,7 @@ import ObjectMapper
 
 class ItemModel: ImmutableMappable, ReferenceFillable {
     
-    let id:String
+    let _id:String
     let name:String
     let type:String
     let mods:[ItemModModel];
@@ -16,7 +16,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     }
     
     required init(map: Map) throws {
-        id = try map.value("_id")
+        _id = try map.value("_id")
         name = try map.value("name")
         type = try map.value("type")
         

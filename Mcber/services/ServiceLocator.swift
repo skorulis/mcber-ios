@@ -13,6 +13,7 @@ class ServiceLocator: NSObject {
     let state:GameStateService
     let activity:ActivityService
     let avatar:AvatarService
+    let user:UserService
     
     override init() {
         theme = ThemeService()
@@ -29,6 +30,7 @@ class ServiceLocator: NSObject {
         login = LoginService(api: api,state:state)
         activity = ActivityService(api: api, state: state)
         avatar = AvatarService(api: api, state: state)
+        user = UserService(api: api, state: state)
     }
     
 }
