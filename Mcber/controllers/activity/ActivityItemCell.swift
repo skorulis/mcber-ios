@@ -49,6 +49,8 @@ class ActivityItemCell: ThemedCollectionViewCell {
             let realm = activity.realm!
             let element = ref.skill(realm.elementId)
             return "Explore \(element.name) realm level \(realm.level)"
+        case .craft:
+            return "Craft"
         case .battle:
             return "Unimplemented"
         }

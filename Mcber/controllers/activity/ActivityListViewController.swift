@@ -15,7 +15,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
 
         self.title = "Activities"
-        let types:[ActivityType] = [.explore, .battle]
+        let types:[ActivityType] = [.explore, .battle, .craft]
         
         self.collectionView.register(clazz: ForwardNavigationCell.self)
         self.collectionView.register(clazz: ActivityItemCell.self)
@@ -37,8 +37,11 @@ class ActivityListViewController: BaseSectionCollectionViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             case .battle:
-                
                 break
+            case .craft:
+                let vc = StartCraftViewController(services: self.services)
+                self.navigationController?.pushViewController(vc, animated: true)
+                break;
             }
         }
         

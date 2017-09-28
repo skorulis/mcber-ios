@@ -21,10 +21,12 @@ class ItemBaseTypeRef: ImmutableMappable {
     
     let name:String
     let type:String
+    let resources:[ResourceModel]
     
     required init(map: Map) throws {
         name = try map.value("name")
         type = try map.value("type")
+        resources = try map.value("resources")
     }
     
 }

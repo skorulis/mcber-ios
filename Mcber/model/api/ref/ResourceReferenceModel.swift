@@ -7,31 +7,29 @@ import ObjectMapper
 class ResourceRefModel: ImmutableMappable {
 
     let name:String
-    let skill:Int
-    //let _id:String
+    let skillId:String
+    let id:String
     
     required init(map: Map) throws {
         name = try map.value("name")
-        skill = try map.value("skill")
+        skillId = try map.value("skill")
+        id = try map.value("id")
     }
     
-}
-
-class ResourceListRefModel: ImmutableMappable {
-    
-    let elemental:[String:ResourceRefModel]
-    
-    required init(map: Map) throws {
-        elemental = try map.value("elemental")
-    }
 }
 
 class ResourcesRefResponse: ImmutableMappable {
     
-    let resources:ResourceListRefModel
+    let resources:[ResourceRefModel]
+    let resourceMap:[String:ResourceRefModel]
     
     required init(map: Map) throws {
         resources = try map.value("resources")
+        var map = [String:ResourceRefModel]()
+        for r in resources {
+            map[r.id] = r
+        }
+        resourceMap = map
     }
     
 }

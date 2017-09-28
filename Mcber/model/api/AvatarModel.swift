@@ -13,7 +13,7 @@ class SkillProgressModel: ImmutableMappable, ReferenceFillable {
     let level:Int
     let xp:Int
     let xpNext:Int
-    let skillId:Int
+    let skillId:String
     
     var ref:SkillRefModel!
     
@@ -24,7 +24,7 @@ class SkillProgressModel: ImmutableMappable, ReferenceFillable {
         skillId = try map.value("id")
     }
     
-    init(level:Int,xp:Int,xpNext:Int,skillId:Int) {
+    init(level:Int,xp:Int,xpNext:Int,skillId:String) {
         self.level = level
         self.xp = xp
         self.xpNext = xpNext

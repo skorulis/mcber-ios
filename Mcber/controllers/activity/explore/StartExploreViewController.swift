@@ -19,7 +19,6 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: AvatarCell.self)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
         
-        
         realmSection.fixedHeaderHeight = 40
         realmSection.fixedCellCount = 0
         realmSection.fixedHeight = 70

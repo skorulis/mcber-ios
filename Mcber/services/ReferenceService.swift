@@ -11,7 +11,7 @@ class ReferenceService: NetAPIService {
     let didFetchReferenceData = ObserverSet<ReferenceService>()
     
     var skills:SkillsReferenceModel?
-    var resources:ResourceListRefModel?
+    var resources:ResourcesRefResponse?
     var items:ItemsReferenceModel?
     var mods:ItemModsResponse?
     
@@ -48,7 +48,7 @@ class ReferenceService: NetAPIService {
         let req = self.request(path: "resources.json")
         let promise:Promise<ResourcesRefResponse> = self.doRequest(req: req)
         _ = promise.then { resources in
-            self.resources = resources.resources
+            self.resources = resources
         }
         return promise
     }
@@ -71,7 +71,7 @@ class ReferenceService: NetAPIService {
         return promise
     }
     
-    func skill(_ skillId:Int) -> SkillRefModel {
+    func skill(_ skillId:String) -> SkillRefModel {
         return skills!.skills.first(where: { (s) -> Bool in
             return s.id == skillId
         })!
@@ -88,7 +88,7 @@ class ReferenceService: NetAPIService {
     }
     
     func elementResource(_ resourceId:String) -> ResourceRefModel {
-        return self.resources!.elemental[resourceId]!
+        return self.resources!.resourceMap[resourceId]!
     }
     
     func allElements() -> [SkillRefModel] {
@@ -97,6 +97,10 @@ class ReferenceService: NetAPIService {
     
     func allTrades() -> [SkillRefModel] {
         return self.skills?.trades ?? []
+    }
+    
+    func allItems() -> [ItemBaseTypeRef] {
+        return self.items?.baseTypes ?? []
     }
     
     

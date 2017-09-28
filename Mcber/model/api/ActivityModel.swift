@@ -7,12 +7,13 @@ import ObjectMapper
 enum ActivityType: String {
     case explore = "explore"
     case battle = "battle"
+    case craft = "craft"
 }
 
 class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     let type:SkillType
     var xp:Int
-    let skillId:Int
+    let skillId:String
     
     var refSkill:SkillRefModel!
     
@@ -27,28 +28,44 @@ class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     }
 }
 
+class ActivityCalculationsModel: ImmutableMappable {
+    
+    let duration:Double
+    let skillLevel:Int
+    
+    required init(map: Map) throws {
+        duration = try map.value("duration")
+        skillLevel = try map.value("skillLevel")
+    }
+}
+
 class ActivityModel: ImmutableMappable, ReferenceFillable {
 
-    let finishTimestamp:Double
     let startTimestamp:Double
     let _id:String
     let avatarId:String
     let activityType:ActivityType
+    let calculated:ActivityCalculationsModel
     let realm:RealmModel?
     var autoRepeat:Bool = false
+    
     var heldResults = CombinedActivityResult()
     
     required init(map: Map) throws {
-        finishTimestamp = try map.value("finishTimestamp")
         startTimestamp = try map.value("startTimestamp")
         _id = try map.value("_id")
         avatarId = try map.value("avatarId")
         activityType = try map.value("activityType")
         realm = try? map.value("realm")
+        calculated = try map.value("calculated")
     }
     
     func fill(ref: ReferenceService) {
         realm?.fill(ref: ref)
+    }
+    
+    var finishTimestamp:Double {
+        return startTimestamp + calculated.duration
     }
     
 }

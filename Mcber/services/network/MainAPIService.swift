@@ -99,6 +99,12 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func craft(avatarId:String,itemRefId:String) -> Promise<ActivityResponse> {
+        let dict = ["avatarId":avatarId,"itemName":itemRefId]
+        let req  = self.jsonPostRequest(path: "action/craft", dict: dict)
+        return doAuthRequest(req: req)
+    }
+    
     func complete(activityId:String) -> Promise<ActivityCompleteResponse> {
         let dict = ["activityId":activityId]
         let req = self.jsonPostRequest(path: "action/complete", dict: dict)

@@ -8,7 +8,7 @@ class SkillRefModel: ImmutableMappable {
     let name:String
     let shortName:String
     let damageModifiers:[Double]
-    let id:Int
+    let id:String
     let healthModifier:Double
     let speedModifier:Double
     let colorString:String

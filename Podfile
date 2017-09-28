@@ -8,7 +8,7 @@ def shared_pods
     pod 'Fabric'
     pod 'Crashlytics'
     pod "PromiseKit"
-    pod "ObjectMapper"
+    pod "ObjectMapper", '~> 2.2.8'
 end
 
 target 'Mcber' do

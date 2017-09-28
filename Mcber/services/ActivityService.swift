@@ -28,6 +28,14 @@ class ActivityService: NSObject {
         return promise
     }
     
+    func craft(avatar:AvatarModel,itemRef:ItemBaseTypeRef) -> Promise<ActivityResponse> {
+        let promise = api.craft(avatarId: avatar._id, itemRefId: itemRef.name)
+        _ = promise.then { response -> Void in
+            
+        }
+        return promise
+    }
+    
     func restartActivity(activity:ActivityModel) -> Promise<ActivityResponse> {
         return explore(avatarId: activity.avatarId, realm: activity.realm!,continuing: activity)
     }

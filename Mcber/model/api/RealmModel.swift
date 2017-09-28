@@ -6,7 +6,7 @@ import ObjectMapper
 
 class RealmModel: ImmutableMappable, ReferenceFillable {
 
-    let elementId:Int
+    let elementId:String
     let level:Int
     var maximumLevel:Int?
     
@@ -19,7 +19,7 @@ class RealmModel: ImmutableMappable, ReferenceFillable {
         level = (try? map.value("level")) ?? max ?? 1
     }
     
-    init(elementId:Int,level:Int,maximumLevel:Int?) {
+    init(elementId:String,level:Int,maximumLevel:Int?) {
         self.elementId = elementId
         self.level = level
         self.maximumLevel = maximumLevel

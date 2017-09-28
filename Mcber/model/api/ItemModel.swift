@@ -38,7 +38,7 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
     
     let id:String
     let power:Int
-    let skillId:Int?
+    let skillId:String?
     
     var refSkill:SkillRefModel?
     var refMod:ItemModRef!

@@ -11,7 +11,7 @@ enum StatType: String {
 
 class StatSkill: ImmutableMappable, ReferenceFillable {
     
-    let id:Int
+    let id:String
     let level:Int
     
     var ref:SkillRefModel!
