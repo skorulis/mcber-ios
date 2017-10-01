@@ -22,7 +22,7 @@ class RealmListViewController: BaseCollectionViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.layout.itemSize = CGSize(width: collectionView.frame.size.width, height: 70)
+        self.flowLayout?.itemSize = CGSize(width: collectionView.frame.size.width, height: 70)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

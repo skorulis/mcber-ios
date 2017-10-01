@@ -7,10 +7,11 @@ class TestSizeViewController: BaseCollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.autoFillWidth = true
 
         collectionView.register(clazz: TestSizeCell.self)
-        layout.estimatedItemSize = CGSize(width: 0, height: 0)
-        //layout.itemSize = UICollectionViewFlowLayoutAutomaticSize
+        self.flowLayout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        self.flowLayout?.itemSize = UICollectionViewFlowLayoutAutomaticSize
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -18,7 +19,9 @@ class TestSizeViewController: BaseCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:TestSizeCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: theme)
+        let cell:TestSizeCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: theme,fillWidth:true)
+        cell.contentView.backgroundColor = UIColor.lightGray
+        print("Layout for \(indexPath.row)")
         return cell
     }
 

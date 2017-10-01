@@ -20,7 +20,7 @@ class AvatarListViewController: BaseCollectionViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 120)
+        self.flowLayout?.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 120)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -6,18 +6,6 @@ import UIKit
 open class ThemedCollectionViewCell: UICollectionViewCell {
     
     var theme:ThemeService?
-    var fixedWidthConstraint:NSLayoutConstraint?
-    
-    @discardableResult open func setup(theme:ThemeService,withWidth:CGFloat) -> Bool {
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        if fixedWidthConstraint == nil {
-            fixedWidthConstraint = NSLayoutConstraint(item: self.contentView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: withWidth)
-            self.contentView.addConstraint(fixedWidthConstraint!)
-        } else {
-            fixedWidthConstraint?.constant = withWidth
-        }
-        return setup(theme: theme)
-    }
     
     @discardableResult open func setup(theme:ThemeService) -> Bool {
         if(self.theme != nil) {

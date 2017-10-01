@@ -27,9 +27,14 @@ extension UICollectionView {
         return view
     }
     
-    public func dequeueSetupCell<T:ThemedCollectionViewCell>(indexPath:IndexPath,theme:ThemeService) -> T {
+    public func dequeueSetupCell<T:ThemedCollectionViewCell>(indexPath:IndexPath,theme:ThemeService,fillWidth:Bool = false) -> T {
         let ident = String(describing: T.self)
         let cell:T = dequeueReusableCell(withReuseIdentifier: ident, for: indexPath) as! T
+        if fillWidth {
+            cell.contentView.snp.remakeConstraints { (make) in
+                make.width.equalTo(self.frame.size.width)
+            }
+        }
         cell.setup(theme: theme)
         return cell
     }
@@ -38,12 +43,20 @@ extension UICollectionView {
 
 open class BaseCollectionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    var layout:UICollectionViewLayout!
     public var collectionView:UICollectionView!
+    var autoFillWidth = false
+    
+    var flowLayout:UICollectionViewFlowLayout? {
+        return collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+    }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        if layout == nil {
+            layout = UICollectionViewFlowLayout()
+        }
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout!)
         collectionView.backgroundColor = UIColor.clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -56,8 +69,16 @@ open class BaseCollectionViewController: BaseViewController, UICollectionViewDat
     
     override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        if self.autoFillWidth {
+            collectionView?.visibleCells.forEach { (cell) in
+                cell.contentView.snp.remakeConstraints({ (make) in
+                    make.width.equalTo(size.width)
+                })
+                cell.setNeedsLayout()
+            }
+        }
         coordinator.animate(alongsideTransition: { (coord) in
-            self.layout.invalidateLayout()
+            self.layout?.invalidateLayout()
         }, completion: nil)
     }
     
