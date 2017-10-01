@@ -35,24 +35,26 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     var avatars:[AvatarModel]
     var realms:[RealmModel]
     var activities:[ActivityModel]
-    //var resources:[ResourceModel]
-    var items:[ItemModel];
-    var gems:[ItemModModel]
     
     let resources:MonitoredArray<ResourceModel>
+    let items:MonitoredArray<ItemModel>
+    let gems:MonitoredArray<ItemModModel>
     
     required init(map: Map) throws {
         let resourcesArray:[ResourceModel] = try map.value("resources");
+        let itemsArray:[ItemModel] = try map.value("items")
+        let gemsArray:[ItemModModel] = try map.value("gems")
         
         _id = try map.value("_id")
         email = try? map.value("email")
         avatars = try map.value("avatars")
         realms = try map.value("realms")
         activities = try map.value("activities")
-        items = try map.value("items")
-        gems = try map.value("gems")
+        
         
         self.resources = MonitoredArray(array: resourcesArray)
+        self.items = MonitoredArray(array: itemsArray)
+        self.gems = MonitoredArray(array: gemsArray)
     }
     
     func fill(ref: ReferenceService) {
@@ -65,7 +67,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     }
     
     func itemsForSlot(slot:ItemSlotRef) -> [ItemModel] {
-        return items.filter { slot.types.contains($0.type) }
+        return items.array.filter { slot.types.contains($0.type) }
     }
     
 }

@@ -8,11 +8,16 @@ import ObjectMapper
 class MonitoredArrayTests: XCTestCase {
     
     func testArrayChanges() {
-        var array = [String]()
         
-        let monitor = MonitoredArray(array:array)
-        array.append("TEST1")
-        array.append("TEST2")
+        var result = [String]()
+        
+        let monitor = MonitoredArray(array:[String]())
+        monitor.observers.add(object: self) { (monitoredArray) in
+            result = monitoredArray.array
+        }
+        monitor.array.append("TEST1")
+        
+        XCTAssertEqual(result, ["TEST1"])
     }
     
     

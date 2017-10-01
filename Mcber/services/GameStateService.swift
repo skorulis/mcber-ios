@@ -20,10 +20,6 @@ class GameStateService {
         return user?.activities ?? []
     }
     
-    var items: [ItemModel] {
-        return user?.items ?? []
-    }
-    
     func clearState() {
         self.user = nil
     }
@@ -74,7 +70,7 @@ class GameStateService {
     }
     
     func remove(item:ItemModel) {
-        user!.items = user!.items.filter { $0._id != item._id }
+        user!.items.array = user!.items.array.filter { $0._id != item._id }
     }
     
     func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {

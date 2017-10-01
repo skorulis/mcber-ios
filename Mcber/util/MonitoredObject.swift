@@ -34,7 +34,13 @@ class MonitoredObject<T:IdObjectProtocol> {
 
 class MonitoredArray<Element> {
     
-    private var array:[Element]
+    let observers = ObserverSet<MonitoredArray<Element>>()
+    
+    var array:[Element] {
+        didSet {
+            observers.notify(parameters: self)
+        }
+    }
     
     init(array:[Element]) {
         self.array = array
