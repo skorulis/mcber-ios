@@ -25,4 +25,15 @@ class UserService: NSObject {
         }
         return promise
     }
+    
+    func breakdown(gem:ItemModModel) -> Promise<BreakdownItemResponse> {
+        let promise = self.api.breakdown(gemId: gem._id)
+        _ = promise.then { response -> Void in
+            self.state.remove(gem: gem)
+            response.resources.forEach({ (res) in
+                self.state.add(resource:res)
+            })
+        }
+        return promise
+    }
 }

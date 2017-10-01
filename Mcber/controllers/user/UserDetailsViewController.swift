@@ -65,14 +65,14 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         gemSection.simpleNumberOfItemsInSection = gems.elementCount
         gemSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell = GemCell.curriedDefaultCell(getModel: self.gems.elementAt(indexPath:))(collectionView,indexPath)
-            /*cell.deleteBlock = {[unowned self] item in
-                _ = self.services.user.breakdown(item: item).then { [unowned self] response -> Void in
+            cell.deleteBlock = {[unowned self] gem in
+                _ = self.services.user.breakdown(gem: gem).then { [unowned self] response -> Void in
                     self.collectionView.reloadData()
                     let resultVC = ActivityResultViewController(services: self.services)
                     resultVC.result = CombinedActivityResult(resources: response.resources)
                     self.navigationController?.pushViewController(resultVC, animated: true)
                 }
-            }*/
+            }
             return cell
         }
     

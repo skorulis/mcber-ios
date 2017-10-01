@@ -125,6 +125,11 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func breakdown(gemId:String) -> Promise<BreakdownItemResponse> {
+        let req = self.jsonPostRequest(path: "item/breakdownGem", dict: ["gemId":gemId])
+        return doAuthRequest(req: req)
+    }
+    
     override func parseData<T: BaseMappable>(data:Data?,connectionError:Error?) -> Promise<T> {
         let objPromise:Promise<T> = super.parseData(data: data, connectionError: connectionError)
         _ = objPromise.then { T -> Void in

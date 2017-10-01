@@ -36,6 +36,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
 
 class ItemModModel: ImmutableMappable, ReferenceFillable {
     
+    let _id:String
     let refId:String
     let power:Int
     let skillId:String?
@@ -44,6 +45,7 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
     var refMod:ItemModRef!
     
     required init(map: Map) throws {
+        _id = try map.value("_id")
         refId = try map.value("refId")
         power = try map.value("power")
         skillId = try? map.value("elementId")

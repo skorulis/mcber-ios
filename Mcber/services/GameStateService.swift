@@ -78,6 +78,10 @@ class GameStateService {
         user!.items.array = user!.items.array.filter { $0._id != item._id }
     }
     
+    func remove(gem:ItemModModel) {
+        user!.gems.array = user!.gems.array.filter { $0._id != gem._id}
+    }
+    
     func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {
         let m = MonitoredObject(initialValue: avatar)
         didChangeAvatar.add(object: m, m.updateIfEqual(newValue:))
