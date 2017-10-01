@@ -31,3 +31,40 @@ class MonitoredObject<T:IdObjectProtocol> {
         return value
     }
 }
+
+class MonitoredArray<Element> {
+    
+    private var array:[Element]
+    
+    init(array:[Element]) {
+        self.array = array
+    }
+    
+    func elementAt(indexPath:IndexPath) -> Element {
+        return self.array[indexPath.row]
+    }
+    
+    func elementCount() -> Int {
+        return self.array.count
+    }
+    
+    func append(_ newElement: Element) {
+        self.array.append(newElement)
+    }
+    
+    func forEach(_ body: (Element) throws -> Void) rethrows {
+        try self.array.forEach(body)
+    }
+    
+    func index(where predicate: (Element) throws -> Bool) rethrows -> Int? {
+        return try self.array.index(where: predicate)
+    }
+    
+    subscript(index: Int) -> Element {
+        get { return self.array[index] }
+        set(newValue) { self.array[index] = newValue }
+    }
+
+
+
+}

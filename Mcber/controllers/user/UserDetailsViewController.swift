@@ -4,18 +4,8 @@
 import UIKit
 
 class UserDetailsViewController: BaseSectionCollectionViewController {
-
-    var resources:[ResourceModel] {
-        return self.services.state.resources
-    }
     
-    func resourceCount() -> Int {
-        return resources.count
-    }
-    
-    func resourceAt(indexPath:IndexPath) -> ResourceModel {
-        return self.resources[indexPath.row]
-    }
+    lazy var resources = self.services.state.user!.resources
     
     func itemCount() -> Int {
         return self.services.state.items.count
@@ -44,8 +34,8 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         let resourceSection = SectionController()
-        resourceSection.simpleNumberOfItemsInSection = resourceCount
-        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: resourceAt(indexPath:))
+        resourceSection.simpleNumberOfItemsInSection = resources.elementCount
+        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: resources.elementAt(indexPath:))
         
         resourceSection.fixedHeaderHeight = 40
         resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
@@ -75,6 +65,27 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         itemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Items")
         
         self.sections.append(itemSection)
+        
+        let gemSection = SectionController()
+        gemSection.simpleNumberOfItemsInSection = itemCount
+        gemSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let cell = ItemCell.curriedDefaultCell(getModel: self.itemAt(indexPath:))(collectionView,indexPath)
+            cell.deleteBlock = {[unowned self] item in
+                _ = self.services.user.breakdown(item: item).then { [unowned self] response -> Void in
+                    self.collectionView.reloadData()
+                    let resultVC = ActivityResultViewController(services: self.services)
+                    resultVC.result = CombinedActivityResult(resources: response.resources)
+                    self.navigationController?.pushViewController(resultVC, animated: true)
+                }
+            }
+            return cell
+        }
+        
+        
+        gemSection.fixedHeaderHeight = 40
+        gemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Gems")
+        
+        //self.sections.append(gemSection)
     }
     
     override func viewWillAppear(_ animated: Bool) {

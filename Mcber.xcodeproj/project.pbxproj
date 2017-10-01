@@ -40,6 +40,7 @@
 		FA6CF16B1F6A9B3A0026D126 /* RealmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF16A1F6A9B3A0026D126 /* RealmCell.swift */; };
 		FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF16C1F6B2DCF0026D126 /* RealmLevelCell.swift */; };
 		FA6CF16F1F6B2EBD0026D126 /* RealmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF16E1F6B2EBD0026D126 /* RealmListViewController.swift */; };
+		FA75CEF01F809A2B0001D08E /* MonitoredArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -137,6 +138,7 @@
 		FA6CF16A1F6A9B3A0026D126 /* RealmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCell.swift; sourceTree = "<group>"; };
 		FA6CF16C1F6B2DCF0026D126 /* RealmLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmLevelCell.swift; sourceTree = "<group>"; };
 		FA6CF16E1F6B2EBD0026D126 /* RealmListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmListViewController.swift; sourceTree = "<group>"; };
+		FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredArrayTests.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			children = (
 				FAA191C11F6739CF0076CDC7 /* McberTests.swift */,
 				FAA191C31F6739CF0076CDC7 /* Info.plist */,
+				FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */,
 			);
 			path = McberTests;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA191C21F6739CF0076CDC7 /* McberTests.swift in Sources */,
+				FA75CEF01F809A2B0001D08E /* MonitoredArrayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

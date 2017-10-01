@@ -20,10 +20,6 @@ class GameStateService {
         return user?.activities ?? []
     }
     
-    var resources: [ResourceModel] {
-        return user?.resources ?? []
-    }
-    
     var items: [ItemModel] {
         return user?.items ?? []
     }
