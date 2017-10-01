@@ -55,7 +55,7 @@ class GameStateService {
         existing.maximumLevel! = max(existing.maximumLevel!, realm.level)
     }
     
-    func add(gem:ItemModModel) {
+    func add(gem:ItemGemModel) {
         user?.gems.append(gem)
         didChangeState.notify(parameters: user!)
     }
@@ -78,7 +78,7 @@ class GameStateService {
         user!.items.array = user!.items.array.filter { $0._id != item._id }
     }
     
-    func remove(gem:ItemModModel) {
+    func remove(gem:ItemGemModel) {
         user!.gems.array = user!.gems.array.filter { $0._id != gem._id}
     }
     

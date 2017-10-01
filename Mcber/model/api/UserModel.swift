@@ -38,12 +38,12 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     
     let resources:MonitoredArray<ResourceModel>
     let items:MonitoredArray<ItemModel>
-    let gems:MonitoredArray<ItemModModel>
+    let gems:MonitoredArray<ItemGemModel>
     
     required init(map: Map) throws {
         let resourcesArray:[ResourceModel] = try map.value("resources");
         let itemsArray:[ItemModel] = try map.value("items")
-        let gemsArray:[ItemModModel] = try map.value("gems")
+        let gemsArray:[ItemGemModel] = try map.value("gems")
         
         _id = try map.value("_id")
         email = try? map.value("email")

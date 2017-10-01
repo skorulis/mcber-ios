@@ -10,7 +10,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     let resource:ResourceModel
     let realmUnlock:RealmModel?
     let item:ItemModel?
-    let gem:ItemModModel?
+    let gem:ItemGemModel?
     
     required init(map: Map) throws {
         experience = try map.value("experience")
@@ -35,7 +35,7 @@ class CombinedActivityResult {
     var resources:[ResourceModel] = []
     var realmUnlock:RealmModel?
     var items:[ItemModel] = []
-    var gems:[ItemModModel] = []
+    var gems:[ItemGemModel] = []
     
     init() {
         
@@ -90,7 +90,7 @@ class CombinedActivityResult {
         return gems.count
     }
     
-    func gemAt(indexPath:IndexPath) -> ItemModModel {
+    func gemAt(indexPath:IndexPath) -> ItemGemModel {
         return gems[indexPath.row]
     }
     

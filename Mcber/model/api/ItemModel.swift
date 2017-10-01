@@ -9,7 +9,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     let _id:String
     let name:String
     let type:String
-    let mods:[ItemModModel];
+    let mods:[ItemGemModel];
     
     var totalPower:Int {
         return mods.reduce(0, {x,y in  x + y.power })
@@ -32,45 +32,6 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
         return a.joined(separator: "\n")
     }
        
-}
-
-class ItemModModel: ImmutableMappable, ReferenceFillable {
-    
-    let _id:String
-    let refId:String
-    let power:Int
-    let skillId:String?
-    
-    var refSkill:SkillRefModel?
-    var refMod:ItemModRef!
-    
-    required init(map: Map) throws {
-        _id = try map.value("_id")
-        refId = try map.value("refId")
-        power = try map.value("power")
-        skillId = try? map.value("elementId")
-    }
-    
-    func fill(ref: ReferenceService) {
-        if let sId = skillId {
-            refSkill = ref.skill(sId)
-        }
-        
-        refMod = ref.itemMod(refId)
-    }
-    
-    func totalAmount() -> Int {
-        return self.power * refMod.powerMult
-    }
-    
-    func userDescription() -> String {
-        var text = refMod.descriptionFormatter.replacingOccurrences(of: "{{power}}", with: String(totalAmount()))
-        if let refSkill = refSkill {
-            text = text.replacingOccurrences(of: "{{skill}}", with: refSkill.name)
-        }
-        return text
-    }
-    
 }
 
 

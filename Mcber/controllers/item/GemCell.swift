@@ -10,14 +10,14 @@ class GemCell: ThemedCollectionViewCell, SimpleModelCell {
     
     let deleteButton = UIButton()
     
-    var deleteBlock: ((ItemModModel) -> ())? {
+    var deleteBlock: ((ItemGemModel) -> ())? {
         didSet {
             deleteButton.isHidden = deleteBlock == nil
         }
     }
     
-    typealias ModelType = ItemModModel
-    var model: ItemModModel? {
+    typealias ModelType = ItemGemModel
+    var model: ItemGemModel? {
         didSet {
             self.modTextLabel.text = model?.userDescription()
         }

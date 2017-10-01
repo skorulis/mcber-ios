@@ -42,6 +42,7 @@
 		FA6CF16F1F6B2EBD0026D126 /* RealmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6CF16E1F6B2EBD0026D126 /* RealmListViewController.swift */; };
 		FA75CEF01F809A2B0001D08E /* MonitoredArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */; };
 		FA75CEF21F80A5280001D08E /* GemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEF11F80A5280001D08E /* GemCell.swift */; };
+		FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E420B1F80CF9E00F343CD /* GemModel.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -141,6 +142,7 @@
 		FA6CF16E1F6B2EBD0026D126 /* RealmListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmListViewController.swift; sourceTree = "<group>"; };
 		FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredArrayTests.swift; sourceTree = "<group>"; };
 		FA75CEF11F80A5280001D08E /* GemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemCell.swift; sourceTree = "<group>"; };
+		FA7E420B1F80CF9E00F343CD /* GemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemModel.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */,
 				FABE086F1F7513DE006A6CD6 /* AvatarStatsModel.swift */,
 				FABE08791F75E887006A6CD6 /* AssignItemResponse.swift */,
+				FA7E420B1F80CF9E00F343CD /* GemModel.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
 				FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */,
+				FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */,
 				FABE08761F75CF93006A6CD6 /* ItemSelectionViewController.swift in Sources */,
 				FAA191EA1F673A4B0076CDC7 /* BaseCollectionViewController.swift in Sources */,
 				FAD01BD61F6D05A000DE39B3 /* ResourceCell.swift in Sources */,
