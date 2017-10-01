@@ -57,12 +57,12 @@ class LoginViewController: BaseViewController {
         
     }
     
-    func registerPressed(sender:Any) {
+    @objc func registerPressed(sender:Any) {
         let vc = RegisterViewController(services: self.services)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func loginPressed(sender:Any) {
+    @objc func loginPressed(sender:Any) {
         if let email = emailField.text, let password = passwordField.text {
             self.services.login.login(email:email,password:password).catch(execute: { (error) in
                 self.show(error: error)

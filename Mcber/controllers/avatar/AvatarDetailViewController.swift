@@ -69,7 +69,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         self.sections.append(tradeSkillsSection)
     }
     
-    func equipmentPressed(sender:Any) {
+    @objc func equipmentPressed(sender:Any) {
         let vc = AvatarEquipmentViewController(services: self.services,avatar:self.avatar.value)
         self.navigationController?.pushViewController(vc, animated: true)
     }

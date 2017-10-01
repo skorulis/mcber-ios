@@ -15,21 +15,17 @@ class ItemModRef: ImmutableMappable {
 
     let type:String
     let postfix:String
-    let elementalMultiplier:Int
-    let tradeMultiplier:Int
-    let plainMultiplier:Int
-    let baseMultiplier:Int
-    let power:Int
+    let skillType:String
+    let powerMult:Int
+    let levelMult:Int
     let descriptionFormatter:String
     
     required init(map: Map) throws {
         type = try map.value("id")
         postfix = try map.value("postfix")
-        elementalMultiplier = (try? map.value("elementalMultiplier")) ?? 0
-        tradeMultiplier = (try? map.value("tradeMultiplier")) ?? 0
-        plainMultiplier = (try? map.value("plainMultiplier")) ?? 0
-        baseMultiplier = try map.value("baseMultiplier")
-        power = try map.value("power")
+        skillType = try map.value("skillType")
+        levelMult = try map.value("levelMult")
+        powerMult = try map.value("power")
         descriptionFormatter = try map.value("descriptionFormatter")
     }
 }

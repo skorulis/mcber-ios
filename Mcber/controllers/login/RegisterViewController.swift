@@ -46,7 +46,7 @@ class RegisterViewController: BaseViewController {
         
     }
     
-    func registerPressed(sender:Any) {
+    @objc func registerPressed(sender:Any) {
         guard let email = emailField.text else {
             return
         }

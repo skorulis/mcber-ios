@@ -61,7 +61,7 @@ class ActivityService: NSObject {
         return promise
     }
     
-    func checkActivities() {
+    @objc func checkActivities() {
         let time = Date().timeIntervalSince1970
         for a in state.activities {
             if a.autoRepeat && a.finishTimestamp < time {

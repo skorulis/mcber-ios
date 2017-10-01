@@ -12,7 +12,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
     let mods:[ItemModModel];
     
     var totalPower:Int {
-        return mods.reduce(0, { $0.0 + $0.1.power })
+        return mods.reduce(0, {x,y in  x + y.power })
     }
     
     required init(map: Map) throws {
@@ -36,7 +36,7 @@ class ItemModel: ImmutableMappable, ReferenceFillable {
 
 class ItemModModel: ImmutableMappable, ReferenceFillable {
     
-    let id:String
+    let refId:String
     let power:Int
     let skillId:String?
     
@@ -44,7 +44,7 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
     var refMod:ItemModRef!
     
     required init(map: Map) throws {
-        id = try map.value("id")
+        refId = try map.value("refId")
         power = try map.value("power")
         skillId = try? map.value("elementId")
     }
@@ -54,11 +54,11 @@ class ItemModModel: ImmutableMappable, ReferenceFillable {
             refSkill = ref.skill(sId)
         }
         
-        refMod = ref.itemMod(id)
+        refMod = ref.itemMod(refId)
     }
     
     func totalAmount() -> Int {
-        return self.power * refMod.baseMultiplier
+        return self.power * refMod.powerMult
     }
     
     func userDescription() -> String {

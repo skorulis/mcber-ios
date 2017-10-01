@@ -20,7 +20,7 @@ class ItemSlotSelectionHeader: ForwardNavigationHeader, SimpleModelCell {
         self.addTapTarget(target: self, action: #selector(pressed(sender:)))
     }
     
-    func pressed(sender:Any) {
+    @objc func pressed(sender:Any) {
         selectBlock?(model!)
     }
     

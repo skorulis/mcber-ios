@@ -67,7 +67,7 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         sections.append(startSection)
     }
     
-    func selectAvatarPressed(id:Any) {
+    @objc func selectAvatarPressed(id:Any) {
         let vc = AvatarListViewController(services: self.services)
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)
@@ -77,7 +77,7 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func selectItemPressed(sender:Any) {
+    @objc func selectItemPressed(sender:Any) {
         let vc = ItemTypeSelectionViewController(services: self.services)
         vc.didSelectItem = { item in
             self.selectedItem = item
@@ -86,7 +86,7 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func startPressed(id:Any) {
+    @objc func startPressed(id:Any) {
         if let avatar = selectedAvatar, let item = selectedItem {
             _ = self.services.activity.craft(avatar: avatar, itemRef: item).then { [weak self] (response) -> Void in
                 self?.clear()

@@ -61,7 +61,7 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
         }
     }
     
-    func deletePressed(sender:Any) {
+    @objc func deletePressed(sender:Any) {
         deleteBlock?(self.model!)
     }
     

@@ -125,17 +125,17 @@ class ActivityItemCell: ThemedCollectionViewCell {
     
     //MARK: Actions
     
-    func autoRepeatChanged(sender:UISwitch) {
+    @objc func autoRepeatChanged(sender:UISwitch) {
         self.activity?.autoRepeat = sender.isOn
         autoChangeBlock?(self.activity!,sender.isOn)
         self.updateCompleteButton()
     }
     
-    func cancelPressed(sender:Any) {
+    @objc func cancelPressed(sender:Any) {
         cancelBlock?(self.activity!)
     }
     
-    func completePressed(sender:Any) {
+    @objc func completePressed(sender:Any) {
         if (self.activity?.autoRepeat ?? false) {
             takeResults?(self.activity!)
         } else {

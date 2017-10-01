@@ -18,7 +18,7 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
         label.textColor = theme.color.defaultText
         
         let icon = FAKFontAwesome.chevronRightIcon(withSize: 24)
-        icon?.addAttribute(NSForegroundColorAttributeName, value: theme.color.defaultText)
+        icon?.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: theme.color.defaultText)
         
         self.addSubview(chevron)
         chevron.attributedText = icon?.attributedString()

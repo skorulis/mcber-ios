@@ -4,11 +4,11 @@ platform :ios, '9.0'
 def shared_pods
     use_frameworks!
     pod "FontAwesomeKit", :git => 'https://github.com/PrideChung/FontAwesomeKit'
-    pod 'SnapKit', '~> 3.2'
+    pod 'SnapKit'
     pod 'Fabric'
     pod 'Crashlytics'
     pod "PromiseKit"
-    pod "ObjectMapper", '~> 2.2.8'
+    pod "ObjectMapper"
 end
 
 target 'Mcber' do

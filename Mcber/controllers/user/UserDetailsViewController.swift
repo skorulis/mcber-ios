@@ -83,7 +83,7 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     
     //MARK: Actions
     
-    func logoutPressed(sender:UIBarButtonItem) {
+    @objc func logoutPressed(sender:UIBarButtonItem) {
         self.services.login.logout()
     }
 

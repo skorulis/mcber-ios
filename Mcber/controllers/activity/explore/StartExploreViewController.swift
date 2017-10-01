@@ -65,7 +65,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         self.collectionView.reloadData()
     }
     
-    func selectRealmPressed(id:Any) {
+    @objc func selectRealmPressed(id:Any) {
         let vc = RealmListViewController(services: self.services)
         vc.didSelectRealm = {[unowned self] (realmListVC:RealmListViewController,realm:RealmModel) in
             realmListVC.navigationController?.popViewController(animated: true)
@@ -75,7 +75,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func selectAvatarPressed(id:Any) {
+    @objc func selectAvatarPressed(id:Any) {
         let vc = AvatarListViewController(services: self.services)
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)
@@ -91,7 +91,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         self.update()
     }
     
-    func startPressed(id:Any) {
+    @objc func startPressed(id:Any) {
         if let avatar = selectedAvatar, let realm = selectedRealm {
             _ = self.services.activity.explore(avatarId: avatar._id, realm: realm).then { [weak self] (response) -> Void in
                 self?.clear()
