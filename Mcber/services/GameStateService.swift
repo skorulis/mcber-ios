@@ -55,6 +55,11 @@ class GameStateService {
         existing.maximumLevel! = max(existing.maximumLevel!, realm.level)
     }
     
+    func add(gem:ItemModModel) {
+        user?.gems.append(gem)
+        didChangeState.notify(parameters: user!)
+    }
+    
     func update(activities:[ActivityModel]) {
         user?.activities = activities
         didChangeState.notify(parameters: user!)

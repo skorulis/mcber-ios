@@ -26,6 +26,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ExperienceGainCell.self)
         collectionView.register(clazz: RealmUnlockCell.self)
         collectionView.register(clazz: ItemCell.self)
+        collectionView.register(clazz: GemCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
         if let unlock = self.result.realmUnlock {
@@ -65,6 +66,19 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
             
             self.sections.append(itemSection)
         }
+        
+        if result.gems.count > 0 {
+            let gemSection = SectionController()
+            gemSection.simpleNumberOfItemsInSection = result.gemCount
+            gemSection.cellForItemAt = GemCell.curriedDefaultCell(getModel: result.gemAt(indexPath:))
+
+            gemSection.fixedHeaderHeight = 40
+            gemSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Gems")
+            
+            self.sections.append(gemSection)
+        }
+        
+        
     }
     
     //MARK: Data access

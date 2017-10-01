@@ -52,6 +52,9 @@ class ActivityService: NSObject {
             if let item = response.result.item {
                 self.state.add(item: item)
             }
+            if let gem = response.result.gem {
+                self.state.add(gem: gem)
+            }
             
             if activity.autoRepeat {
                 activity.heldResults.add(result:response.result)

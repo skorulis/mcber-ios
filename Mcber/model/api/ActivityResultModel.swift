@@ -10,12 +10,14 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     let resource:ResourceModel
     let realmUnlock:RealmModel?
     let item:ItemModel?
+    let gem:ItemModModel?
     
     required init(map: Map) throws {
         experience = try map.value("experience")
         resource = try map.value("resource")
         realmUnlock = try? map.value("realmUnlock")
         item = try? map.value("item")
+        gem = try? map.value("gem")
     }
     
     func fill(ref: ReferenceService) {
@@ -23,6 +25,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         resource.fill(ref: ref)
         realmUnlock?.fill(ref: ref)
         item?.fill(ref: ref)
+        gem?.fill(ref: ref)
     }
 }
 
@@ -32,6 +35,7 @@ class CombinedActivityResult {
     var resources:[ResourceModel] = []
     var realmUnlock:RealmModel?
     var items:[ItemModel] = []
+    var gems:[ItemModModel] = []
     
     init() {
         
@@ -51,6 +55,10 @@ class CombinedActivityResult {
         if let item = result.item {
             items.append(item)
         }
+        if let gem = result.gem {
+            gems.append(gem)
+        }
+        
         if let unlock = result.realmUnlock {
             realmUnlock = unlock
         }
@@ -76,6 +84,14 @@ class CombinedActivityResult {
     
     func itemAt(indexPath:IndexPath) -> ItemModel {
         return items[indexPath.row]
+    }
+    
+    func gemCount() -> Int {
+        return gems.count
+    }
+    
+    func gemAt(indexPath:IndexPath) -> ItemModModel {
+        return gems[indexPath.row]
     }
     
 }
