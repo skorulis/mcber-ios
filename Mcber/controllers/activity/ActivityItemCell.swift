@@ -51,6 +51,8 @@ class ActivityItemCell: ThemedCollectionViewCell {
             return "Explore \(element.name) realm level \(realm.level)"
         case .craft:
             return "Craft"
+        case .craftGem:
+            return "Craft Gem"
         }
     }
     

@@ -37,9 +37,7 @@ public extension UIViewController {
                             message = errors.first!
                         }
                     }
-                } catch {
-                    
-                }
+                } catch { }
                 break;
             default:
                 break;

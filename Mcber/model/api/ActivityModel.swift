@@ -7,6 +7,7 @@ import ObjectMapper
 enum ActivityType: String {
     case explore = "explore"
     case craft = "craft"
+    case craftGem = "craft gem"
 }
 
 class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
@@ -44,6 +45,27 @@ class ActivityCalculationsModel: ImmutableMappable, ReferenceFillable {
     }
 }
 
+class ActivityGemModel: ImmutableMappable, ReferenceFillable {
+    
+    let elementId:String
+    let modId:String
+    let level:Int
+    
+    var gemRef:ItemModRef!
+    var skillRef:SkillRefModel!
+    
+    required init(map: Map) throws {
+        elementId = try map.value("elementId")
+        modId = try map.value("modId")
+        level = try map.value("level")
+    }
+    
+    func fill(ref: ReferenceService) {
+        gemRef = ref.itemMod(modId)
+        skillRef = ref.skill(elementId)
+    }
+}
+
 class ActivityModel: ImmutableMappable, ReferenceFillable {
 
     let startTimestamp:Double
@@ -51,8 +73,10 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
     let avatarId:String
     let activityType:ActivityType
     let calculated:ActivityCalculationsModel
+    
     let realm:RealmModel?
     let itemId:String?
+    let gem:ActivityGemModel?
     
     var autoRepeat:Bool = false
     
@@ -68,6 +92,7 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
         realm = try? map.value("realm")
         itemId = try? map.value("itemId")
         calculated = try map.value("calculated")
+        gem = try? map.value("gem")
     }
     
     func fill(ref: ReferenceService) {
@@ -76,6 +101,7 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
         if let itemId = itemId {
             itemRef = ref.item(itemId)
         }
+        gem?.fill(ref: ref)
     }
     
     var finishTimestamp:Double {

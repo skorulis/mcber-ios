@@ -18,23 +18,29 @@ class ActivityService: NSObject {
         self.refreshTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkActivities), userInfo: nil, repeats: true)
     }
     
-    func explore(avatarId:String,realm:RealmModel,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
-        let promise = api.explore(avatarId:avatarId,realm:realm)
+    func handleActivityResponse(promise:Promise<ActivityResponse>,continuing:ActivityModel?) {
         _ = promise.then { [unowned self] response -> Void in
             response.activity.autoRepeat = (continuing != nil)
             response.activity.heldResults = continuing?.heldResults ?? CombinedActivityResult()
             self.state.add(activity:response.activity)
         }
+    }
+    
+    func explore(avatarId:String,realm:RealmModel,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
+        let promise = api.explore(avatarId:avatarId,realm:realm)
+        handleActivityResponse(promise: promise, continuing: continuing)
         return promise
     }
     
     func craft(avatarId:String,itemRefId:String,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
         let promise = api.craft(avatarId: avatarId, itemRefId: itemRefId)
-        _ = promise.then { response -> Void in
-            response.activity.autoRepeat = (continuing != nil)
-            response.activity.heldResults = continuing?.heldResults ?? CombinedActivityResult()
-            self.state.add(activity:response.activity)
-        }
+        handleActivityResponse(promise: promise, continuing: continuing)
+        return promise
+    }
+    
+    func craftGem(avatarId:String, gem:ActivityGemModel,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
+        let promise = api.craftGem(avatarId: avatarId, gem: gem)
+        handleActivityResponse(promise: promise, continuing: continuing)
         return promise
     }
     
@@ -44,9 +50,9 @@ class ActivityService: NSObject {
             return explore(avatarId: activity.avatarId, realm: activity.realm!,continuing: activity)
         case .craft:
             return craft(avatarId: activity.avatarId, itemRefId: activity.itemId!, continuing: activity)
+        case .craftGem:
+            return craftGem(avatarId: activity.avatarId, gem: activity.gem!)
         }
-        
-        
     }
     
     func complete(activity:ActivityModel) -> Promise<ActivityCompleteResponse> {

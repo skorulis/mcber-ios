@@ -2,18 +2,15 @@
 //  Copyright © 2017 Alex Skorulis. All rights reserved.
 
 import UIKit
+import PromiseKit
 
-class StartExploreViewController: BaseSectionCollectionViewController {
+class StartExploreViewController: BaseStartActivityViewController {
 
     var selectedRealm:RealmModel?
-    var selectedAvatar:AvatarModel?
-    var estimatedActivity:ActivityModel?
-    
     let realmSection = SectionController()
-    let avatarSection = SectionController()
     
-    func estimate(indexPath:IndexPath) -> ActivityViewModel? {
-        return estimatedActivity.map { ActivityViewModel(activity:$0,user:self.services.state.user!,theme:self.theme) }
+    func realmCount() -> Int {
+        return self.selectedRealm != nil ? 1 : 0
     }
     
     override func viewDidLoad() {
@@ -21,15 +18,11 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         self.title = "Explore"
         
         collectionView.register(clazz: RealmCell.self)
-        collectionView.register(clazz: AvatarCell.self)
-        collectionView.register(clazz: ActivityEstimateCell.self)
-        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
-        collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
-        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
         realmSection.fixedHeaderHeight = 40
         realmSection.fixedCellCount = 0
         realmSection.fixedHeight = 70
+        realmSection.simpleNumberOfItemsInSection = realmCount
         realmSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Realm")(collectionView,kind,indexPath)
             header.addTapTarget(target: self, action: #selector(self.selectRealmPressed(id:)))
@@ -43,38 +36,11 @@ class StartExploreViewController: BaseSectionCollectionViewController {
             return cell;
         }
         
-        avatarSection.fixedHeaderHeight = 40
-        avatarSection.fixedCellCount = 0
-        avatarSection.fixedHeight = 120
-        avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
-            let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)
-            header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(id:)))
-            return header
-        }
-        avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
-            
-        let startSection = StartActivityHelpers.startSection(title: "Start Exploring!", getEstimate: estimate(indexPath:), startTarget: self, startAction: #selector(startPressed(id:)))
+        let startSection = self.startSection(title: "Start Exploring!")
         
         sections.append(realmSection)
         sections.append(avatarSection)
         sections.append(startSection)
-    }
-    
-    func update() {
-        realmSection.fixedCellCount = selectedRealm != nil ? 1 : 0
-        avatarSection.fixedCellCount = selectedAvatar != nil ? 1 : 0
-        tryUpdateEstimate()
-        self.collectionView.reloadData()
-    }
-    
-    func tryUpdateEstimate() {
-        if let avatar = selectedAvatar, let realm = selectedRealm {
-            let promise = self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
-            _ = promise.then { [weak self] (response) -> Void in
-                self?.estimatedActivity = response.activity
-                self?.collectionView.reloadData()
-            }
-        }
     }
     
     @objc func selectRealmPressed(id:Any) {
@@ -82,36 +48,22 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         vc.didSelectRealm = {[unowned self] (realmListVC:RealmListViewController,realm:RealmModel) in
             realmListVC.navigationController?.popViewController(animated: true)
             self.selectedRealm = realm
-            self.update()
+            self.tryUpdateEstimate()
+            self.collectionView.reloadData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func selectAvatarPressed(id:Any) {
-        let vc = AvatarListViewController(services: self.services)
-        vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
-            vc.navigationController?.popViewController(animated: true)
-            self.selectedAvatar = avatar
-            self.update()
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+    override func startActivity(avatar:AvatarModel) -> Promise<ActivityResponse>? {
+        return selectedRealm.map({ (realm) -> Promise<ActivityResponse> in
+            return self.services.activity.explore(avatarId: avatar._id, realm: realm)
+        })
     }
     
-    func clear() {
-        selectedRealm = nil
-        selectedAvatar = nil
-        estimatedActivity = nil
-        self.update()
+    override func getEstimate(avatar:AvatarModel) -> Promise<ActivityResponse>? {
+        return selectedRealm.map({ (realm) -> Promise<ActivityResponse> in
+            return self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
+        })
     }
     
-    @objc func startPressed(id:Any) {
-        if let avatar = selectedAvatar, let realm = selectedRealm {
-            _ = self.services.activity.explore(avatarId: avatar._id, realm: realm).then { [weak self] (response) -> Void in
-                self?.clear()
-                self?.navigationController?.popViewController(animated: true)
-            }.catch { [weak self] error in
-                self?.show(error: error)
-            }
-        }
-    }
 }
