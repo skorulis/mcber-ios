@@ -43,6 +43,7 @@
 		FA75CEF01F809A2B0001D08E /* MonitoredArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */; };
 		FA75CEF21F80A5280001D08E /* GemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEF11F80A5280001D08E /* GemCell.swift */; };
 		FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E420B1F80CF9E00F343CD /* GemModel.swift */; };
+		FA7E42101F81CC7400F343CD /* ActivityEstimateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E420F1F81CC7400F343CD /* ActivityEstimateCell.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -143,6 +144,7 @@
 		FA75CEEF1F809A2B0001D08E /* MonitoredArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredArrayTests.swift; sourceTree = "<group>"; };
 		FA75CEF11F80A5280001D08E /* GemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemCell.swift; sourceTree = "<group>"; };
 		FA7E420B1F80CF9E00F343CD /* GemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemModel.swift; sourceTree = "<group>"; };
+		FA7E420F1F81CC7400F343CD /* ActivityEstimateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEstimateCell.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */,
 				FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */,
 				FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */,
+				FA7E420F1F81CC7400F343CD /* ActivityEstimateCell.swift */,
 			);
 			path = activity;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 			files = (
 				FABE08721F75C757006A6CD6 /* AvatarEquipmentViewController.swift in Sources */,
 				FABE08701F7513DE006A6CD6 /* AvatarStatsModel.swift in Sources */,
+				FA7E42101F81CC7400F343CD /* ActivityEstimateCell.swift in Sources */,
 				FAA191F21F673A4B0076CDC7 /* ObserverSet.swift in Sources */,
 				FAA192011F673F200076CDC7 /* RealmModel.swift in Sources */,
 				FA6CF1651F6A91640026D126 /* StartExploreViewController.swift in Sources */,

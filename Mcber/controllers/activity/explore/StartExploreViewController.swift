@@ -7,9 +7,19 @@ class StartExploreViewController: BaseSectionCollectionViewController {
 
     var selectedRealm:RealmModel?
     var selectedAvatar:AvatarModel?
+    var estimatedActivity:ActivityModel?
+    
     let realmSection = SectionController()
     let avatarSection = SectionController()
     let startSection = SectionController()
+    
+    func isReady() -> Bool {
+        return selectedRealm != nil && selectedAvatar != nil
+    }
+    
+    func estimate(indexPath:IndexPath) -> ActivityModel? {
+        return estimatedActivity
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +27,10 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         
         collectionView.register(clazz: RealmCell.self)
         collectionView.register(clazz: AvatarCell.self)
+        collectionView.register(clazz: ActivityEstimateCell.self)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
         realmSection.fixedHeaderHeight = 40
         realmSection.fixedCellCount = 0
@@ -45,14 +58,19 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         }
         avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
             
-        startSection.fixedHeaderHeight = 40
+        startSection.fixedFooterHeight = 40
         startSection.fixedCellCount = 0
         startSection.fixedHeight = 60
         startSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
+            if (kind == UICollectionElementKindSectionHeader) {
+                return SectionHeaderView.curriedHeaderFunc(theme: ThemeService.theme, text: "Preview")(collectionView,kind,indexPath)
+            }
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Start Exploring!")(collectionView,kind,indexPath)
+            header.textColor = self.isReady() ? self.theme.color.defaultText : self.theme.color.disabledText
             header.addTapTarget(target: self, action: #selector(self.startPressed(id:)))
             return header
         }
+        startSection.cellForItemAt = ActivityEstimateCell.curriedDefaultCell(getModel: self.estimate(indexPath:))
         
         sections.append(realmSection)
         sections.append(avatarSection)
@@ -62,6 +80,15 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     func update() {
         realmSection.fixedCellCount = selectedRealm != nil ? 1 : 0
         avatarSection.fixedCellCount = selectedAvatar != nil ? 1 : 0
+        startSection.fixedCellCount = self.isReady() ? 1 : 0
+        startSection.fixedHeaderHeight = self.isReady() ? 40 : 0
+        if let avatar = selectedAvatar, let realm = selectedRealm {
+            let promise = self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
+            _ = promise.then { [weak self] (response) -> Void in
+                self?.estimatedActivity = response.activity
+                self?.collectionView.reloadData()
+            }
+        }
         self.collectionView.reloadData()
     }
     
@@ -88,6 +115,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     func clear() {
         selectedRealm = nil
         selectedAvatar = nil
+        estimatedActivity = nil
         self.update()
     }
     

@@ -10,21 +10,32 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
     let chevron = UILabel()
     let gesture = UITapGestureRecognizer(target: nil, action: nil)
     
+    var textColor:UIColor = ThemeService.theme.color.defaultText {
+        didSet {
+            label.textColor = textColor
+            updateChevron()
+        }
+    }
+    
+    private func updateChevron() {
+        let icon = FAKFontAwesome.chevronRightIcon(withSize: 24)
+        icon?.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: textColor)
+        chevron.attributedText = icon?.attributedString()
+    }
     
     override func buildView(theme: ThemeService) {
         self.addSubview(label)
         label.text = "Something"
         label.font = theme.font.title
-        label.textColor = theme.color.defaultText
+        label.textColor = textColor
         
-        let icon = FAKFontAwesome.chevronRightIcon(withSize: 24)
-        icon?.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: theme.color.defaultText)
+        updateChevron()
         
         self.addSubview(chevron)
-        chevron.attributedText = icon?.attributedString()
-        
+
         self.addGestureRecognizer(gesture)
     }
+    
     
     override func buildLayout(theme: ThemeService) {
         label.snp.makeConstraints { (make) in
@@ -51,6 +62,5 @@ class ForwardNavigationHeader: ThemedCollectionReusableView {
         gesture.removeTarget(nil, action: nil)
         gesture.addTarget(target, action: action)
     }
-
 
 }

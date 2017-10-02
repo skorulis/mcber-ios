@@ -93,8 +93,8 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
-    func explore(avatarId:String,realm:RealmModel) -> Promise<ActivityResponse> {
-        let dict = ["avatarId":avatarId,"realm":["elementId":realm.elementId,"level":realm.level]] as [String : Any]
+    func explore(avatarId:String,realm:RealmModel,estimate:Bool = false) -> Promise<ActivityResponse> {
+        let dict = ["avatarId":avatarId,"realm":["elementId":realm.elementId,"level":realm.level],"estimateOnly":estimate] as [String : Any]
         let req = self.jsonPostRequest(path: "action/explore", dict: dict)
         return doAuthRequest(req: req)
     }

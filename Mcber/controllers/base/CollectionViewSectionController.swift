@@ -10,6 +10,7 @@ class SectionController: NSObject {
     var fixedCellCount:Int = 1
     
     var fixedHeaderHeight:CGFloat?
+    var fixedFooterHeight:CGFloat?
     
     var cellForItemAt: ((UICollectionView,IndexPath) -> UICollectionViewCell)!
     var didSelectItemAt: ((UICollectionView,IndexPath) -> () )?
@@ -62,6 +63,13 @@ class SectionController: NSObject {
         return CGSize.zero
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if let f = fixedFooterHeight {
+            return CGSize(width: collectionView.frame.size.width, height: f)
+        }
+        return CGSize.zero
+    }
+    
 }
 
 class BaseSectionCollectionViewController: BaseCollectionViewController {
@@ -78,6 +86,10 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return sections[section].collectionView(collectionView,layout:collectionViewLayout,referenceSizeForHeaderInSection:section)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return sections[section].collectionView(collectionView,layout:collectionViewLayout,referenceSizeForFooterInSection:section)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

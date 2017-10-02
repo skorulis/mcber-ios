@@ -9,7 +9,7 @@ protocol SimpleModelCell {
 }
 
 extension SimpleModelCell {
-    static func defaultCell(collectionView:UICollectionView,indexPath:IndexPath,model:ModelType) -> Self {
+    static func defaultCell(collectionView:UICollectionView,indexPath:IndexPath,model:ModelType?) -> Self {
         let ident = String(describing: Self.self)
         var cell:Self = collectionView.dequeueReusableCell(withReuseIdentifier: ident, for: indexPath) as! Self
         if let themedCell = cell as? ThemedCollectionViewCell {
@@ -19,13 +19,13 @@ extension SimpleModelCell {
         return cell
     }
     
-    static func curriedDefaultCell(withModel: ModelType) -> (UICollectionView,IndexPath) -> Self {
+    static func curriedDefaultCell(withModel: ModelType?) -> (UICollectionView,IndexPath) -> Self {
         return { collectionView,indexPath in
             return defaultCell(collectionView: collectionView, indexPath: indexPath, model: withModel)
         }
     }
     
-    static func curriedDefaultCell(getModel:@escaping (IndexPath) -> ModelType) -> (UICollectionView,IndexPath) -> Self {
+    static func curriedDefaultCell(getModel:@escaping (IndexPath) -> ModelType?) -> (UICollectionView,IndexPath) -> Self {
         return { collectionView,indexPath in
             return defaultCell(collectionView: collectionView, indexPath: indexPath, model: getModel(indexPath))
         }

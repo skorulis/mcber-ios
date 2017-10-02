@@ -24,7 +24,7 @@ class RootViewController: BaseViewController {
     
     func checkLoginState() {
         if self.services.login.isLoggedIn {
-            _ = services.api.getCurrentUser().then { response -> Void in
+            _ = services.api.refreshToken().then { response -> Void in
                 self.services.state.resetState(user: response.user)
                 self.showMainUI()
             }.catch(execute: { (error) in

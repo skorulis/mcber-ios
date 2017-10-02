@@ -51,6 +51,7 @@ public class ThemeImages: NSObject {
 public class ThemeColors: NSObject {
     
     public let defaultText = UIColor(netHex: 0x252525)
+    public let disabledText = UIColor(netHex: 0xABABAB)
     
     public let defaultBackground:UIColor
     
