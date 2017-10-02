@@ -11,14 +11,9 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     
     let realmSection = SectionController()
     let avatarSection = SectionController()
-    var startSection:SectionController?
     
-    func isReady() -> Bool {
-        return selectedRealm != nil && selectedAvatar != nil
-    }
-    
-    func estimate(indexPath:IndexPath) -> ActivityModel? {
-        return estimatedActivity
+    func estimate(indexPath:IndexPath) -> ActivityViewModel? {
+        return estimatedActivity.map { ActivityViewModel(activity:$0,user:self.services.state.user!,theme:self.theme) }
     }
     
     override func viewDidLoad() {
@@ -58,17 +53,21 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         }
         avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
             
-        startSection = StartActivityHelpers.startSection(title: "Start Exploring!", getEstimate: estimate(indexPath:), startTarget: self, startAction: #selector(startPressed(id:)))
+        let startSection = StartActivityHelpers.startSection(title: "Start Exploring!", getEstimate: estimate(indexPath:), startTarget: self, startAction: #selector(startPressed(id:)))
         
         sections.append(realmSection)
         sections.append(avatarSection)
-        sections.append(startSection!)
+        sections.append(startSection)
     }
     
     func update() {
         realmSection.fixedCellCount = selectedRealm != nil ? 1 : 0
         avatarSection.fixedCellCount = selectedAvatar != nil ? 1 : 0
-        startSection?.fixedHeaderHeight = self.isReady() ? 40 : 0
+        tryUpdateEstimate()
+        self.collectionView.reloadData()
+    }
+    
+    func tryUpdateEstimate() {
         if let avatar = selectedAvatar, let realm = selectedRealm {
             let promise = self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
             _ = promise.then { [weak self] (response) -> Void in
@@ -76,7 +75,6 @@ class StartExploreViewController: BaseSectionCollectionViewController {
                 self?.collectionView.reloadData()
             }
         }
-        self.collectionView.reloadData()
     }
     
     @objc func selectRealmPressed(id:Any) {

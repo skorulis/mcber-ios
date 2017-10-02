@@ -3,6 +3,27 @@
 
 import UIKit
 
+struct ActivityViewModel {
+    let activity:ActivityModel
+    let user:UserModel
+    let theme:ThemeService
+    
+    func leftText() -> String {
+        return "Duration \(activity.calculated.duration) seconds\nSkill level \(activity.calculated.skillLevel)"
+    }
+    
+    func rightText() -> NSAttributedString {
+        let mas = NSMutableAttributedString()
+        for r in activity.calculated.resources {
+            let color = user.hasResource(resource: r) ? theme.color.defaultText : theme.color.error
+            let string = "\(r.quantity) \(r.refModel.name)\n"
+            let att = NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor:color])
+            mas.append(att)
+        }
+        return mas
+    }
+}
+
 final class ActivityEstimateCell: ThemedCollectionViewCell, AutoSizeModelCell {
  
     let leftLabel = UILabel()
@@ -15,15 +36,17 @@ final class ActivityEstimateCell: ThemedCollectionViewCell, AutoSizeModelCell {
         return cell
     }()
     
-    typealias ModelType = ActivityModel
-    var model:ActivityModel? {
+    typealias ModelType = ActivityViewModel
+    var model:ActivityViewModel? {
         didSet {
             guard let model = model else {
                 return
             }
-            leftLabel.text = "Duration \(model.calculated.duration) seconds\nSkill level \(model.calculated.skillLevel)"
+            
+            leftLabel.text = model.leftText()
             rightHeader.text = "Resources"
-            rightLabel.text = "Fire 1\n Something 10"
+            
+            rightLabel.attributedText = model.rightText()
         }
     }
     
@@ -53,7 +76,7 @@ final class ActivityEstimateCell: ThemedCollectionViewCell, AutoSizeModelCell {
         rightLabel.snp.makeConstraints { (make) in
             make.left.right.equalTo(rightHeader)
             make.top.equalTo(rightHeader.snp.bottom)
-            make.bottom.equalToSuperview().inset(theme.padding.edges)
+            make.bottom.lessThanOrEqualToSuperview().inset(theme.padding.edges)
         }
         
     }

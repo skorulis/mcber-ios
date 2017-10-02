@@ -37,12 +37,14 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
             self.sections.append(unlockSection)
         }
         
-        let resourceSection = SectionController()
-        resourceSection.simpleNumberOfItemsInSection = result.resourceCount
-        resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: result.resourceAt(indexPath:))
-        resourceSection.fixedHeaderHeight = 40
-        resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
-        self.sections.append(resourceSection)
+        if (result.resources.count > 0) {
+            let resourceSection = SectionController()
+            resourceSection.simpleNumberOfItemsInSection = result.resourceCount
+            resourceSection.cellForItemAt = ResourceCell.curriedDefaultCell(getModel: result.resourceAt(indexPath:))
+            resourceSection.fixedHeaderHeight = 40
+            resourceSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Resources")
+            self.sections.append(resourceSection)
+        }
         
         if (xpCount() > 0) {
             let xpSection = SectionController()

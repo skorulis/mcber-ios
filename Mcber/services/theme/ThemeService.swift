@@ -53,6 +53,8 @@ public class ThemeColors: NSObject {
     public let defaultText = UIColor(netHex: 0x252525)
     public let disabledText = UIColor(netHex: 0xABABAB)
     
+    public let error = UIColor(netHex: 0xAA4444)
+    
     public let defaultBackground:UIColor
     
     public let deselectedColor = UIColor(netHex: 0xAAAAAA)

@@ -7,10 +7,14 @@ class StartCraftViewController: BaseSectionCollectionViewController {
 
     var selectedItem:ItemBaseTypeRef?
     var selectedAvatar:AvatarModel?
+    var estimatedActivity:ActivityModel?
     
     let avatarSection = SectionController()
     let itemSection = SectionController()
-    let startSection = SectionController()
+    
+    func estimate(indexPath:IndexPath) -> ActivityViewModel? {
+        return estimatedActivity.map { ActivityViewModel(activity:$0,user:self.services.state.user!,theme:self.theme) }
+    }
     
     func avatarCount() -> Int {
         return self.selectedAvatar != nil ? 1 : 0
@@ -30,7 +34,10 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         
         collectionView.register(clazz: AvatarCell.self)
         collectionView.register(clazz: BaseItemCell.self)
+        collectionView.register(clazz: ActivityEstimateCell.self)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
         itemSection.fixedHeaderHeight = 40
         itemSection.fixedHeight = 70
@@ -53,18 +60,21 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         }
         avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
         
-        startSection.fixedHeaderHeight = 40
-        startSection.fixedCellCount = 0
-        startSection.fixedHeight = 60
-        startSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
-            let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Craft!")(collectionView,kind,indexPath)
-            header.addTapTarget(target: self, action: #selector(self.startPressed(id:)))
-            return header
-        }
+        let startSection = StartActivityHelpers.startSection(title: "Start Crafting", getEstimate: estimate(indexPath:), startTarget: self, startAction: #selector(startPressed(id:)))
         
         sections.append(itemSection)
         sections.append(avatarSection)
         sections.append(startSection)
+    }
+    
+    func tryUpdateEstimate() {
+        if let avatar = selectedAvatar, let item = selectedItem {
+            let promise = self.services.api.craft(avatarId: avatar._id, itemRefId: item.name,estimate: true)
+            _ = promise.then { [weak self] (response) -> Void in
+                self?.estimatedActivity = response.activity
+                self?.collectionView.reloadData()
+            }
+        }
     }
     
     @objc func selectAvatarPressed(id:Any) {
@@ -72,6 +82,7 @@ class StartCraftViewController: BaseSectionCollectionViewController {
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)
             self.selectedAvatar = avatar
+            self.tryUpdateEstimate()
             self.collectionView.reloadData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -79,8 +90,9 @@ class StartCraftViewController: BaseSectionCollectionViewController {
     
     @objc func selectItemPressed(sender:Any) {
         let vc = ItemTypeSelectionViewController(services: self.services)
-        vc.didSelectItem = { item in
+        vc.didSelectItem = {[unowned self] item in
             self.selectedItem = item
+            self.tryUpdateEstimate()
             self.collectionView.reloadData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -88,10 +100,12 @@ class StartCraftViewController: BaseSectionCollectionViewController {
     
     @objc func startPressed(id:Any) {
         if let avatar = selectedAvatar, let item = selectedItem {
-            _ = self.services.activity.craft(avatar: avatar, itemRef: item).then { [weak self] (response) -> Void in
+            _ = self.services.activity.craft(avatarId: avatar._id, itemRefId: item.name).then { [weak self] (response) -> Void in
                 self?.clear()
-                self?.collectionView.reloadData()
-            }
+                self?.navigationController?.popViewController(animated: true)
+                }.catch { [weak self] error in
+                    self?.show(error: error)
+                }
         }
     }
     

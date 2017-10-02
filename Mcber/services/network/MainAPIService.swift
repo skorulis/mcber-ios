@@ -99,8 +99,8 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
-    func craft(avatarId:String,itemRefId:String) -> Promise<ActivityResponse> {
-        let dict = ["avatarId":avatarId,"itemName":itemRefId]
+    func craft(avatarId:String,itemRefId:String,estimate:Bool = false) -> Promise<ActivityResponse> {
+        let dict:[String:Any] = ["avatarId":avatarId,"itemId":itemRefId,"estimateOnly":estimate]
         let req  = self.jsonPostRequest(path: "action/craft", dict: dict)
         return doAuthRequest(req: req)
     }

@@ -7,14 +7,14 @@ import ObjectMapper
 class ActivityResult: ImmutableMappable, ReferenceFillable {
     
     let experience:[ExperienceGainModel]
-    let resource:ResourceModel
+    let resource:ResourceModel?
     let realmUnlock:RealmModel?
     let item:ItemModel?
     let gem:ItemGemModel?
     
     required init(map: Map) throws {
         experience = try map.value("experience")
-        resource = try map.value("resource")
+        resource = try? map.value("resource")
         realmUnlock = try? map.value("realmUnlock")
         item = try? map.value("item")
         gem = try? map.value("gem")
@@ -22,7 +22,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     
     func fill(ref: ReferenceService) {
         self.experience.forEach { $0.fill(ref: ref) }
-        resource.fill(ref: ref)
+        resource?.fill(ref: ref)
         realmUnlock?.fill(ref: ref)
         item?.fill(ref: ref)
         gem?.fill(ref: ref)
@@ -70,12 +70,15 @@ class CombinedActivityResult {
                 self.experience.append(xp)
             }
         }
-        let matching = self.resources.filter { $0.resourceId == result.resource.resourceId }.first
-        if let matching = matching {
-            matching.quantity += result.resource.quantity
-        } else {
-            resources.append(result.resource)
+        if let resource = result.resource {
+            let matching = self.resources.filter { $0.resourceId == resource.resourceId }.first
+            if let matching = matching {
+                matching.quantity += resource.quantity
+            } else {
+                resources.append(resource)
+            }
         }
+       
     }
     
     func itemCount() -> Int {

@@ -70,6 +70,12 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         return items.array.filter { slot.types.contains($0.type) }
     }
     
+    func hasResource(resource:ResourceModel) -> Bool {
+        if let index = resources.index(where: { $0.resourceId == resource.resourceId }) {
+            return resources[index].quantity >= resource.quantity
+        }
+        return false
+    }
 }
 
 class UserResponse: ImmutableMappable, ReferenceFillable {

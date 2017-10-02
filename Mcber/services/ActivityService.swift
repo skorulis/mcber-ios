@@ -28,16 +28,25 @@ class ActivityService: NSObject {
         return promise
     }
     
-    func craft(avatar:AvatarModel,itemRef:ItemBaseTypeRef) -> Promise<ActivityResponse> {
-        let promise = api.craft(avatarId: avatar._id, itemRefId: itemRef.name)
+    func craft(avatarId:String,itemRefId:String,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
+        let promise = api.craft(avatarId: avatarId, itemRefId: itemRefId)
         _ = promise.then { response -> Void in
-            
+            response.activity.autoRepeat = (continuing != nil)
+            response.activity.heldResults = continuing?.heldResults ?? CombinedActivityResult()
+            self.state.add(activity:response.activity)
         }
         return promise
     }
     
     func restartActivity(activity:ActivityModel) -> Promise<ActivityResponse> {
-        return explore(avatarId: activity.avatarId, realm: activity.realm!,continuing: activity)
+        switch (activity.activityType) {
+        case .explore:
+            return explore(avatarId: activity.avatarId, realm: activity.realm!,continuing: activity)
+        case .craft:
+            return craft(avatarId: activity.avatarId, itemRefId: activity.itemId!, continuing: activity)
+        }
+        
+        
     }
     
     func complete(activity:ActivityModel) -> Promise<ActivityCompleteResponse> {
@@ -45,7 +54,10 @@ class ActivityService: NSObject {
         _ = promise.then { [unowned self] response -> Void in
             self.state.update(activities:response.activities)
             self.state.update(avatar:response.avatar)
-            self.state.add(resource:response.result.resource)
+            if let resource = response.result.resource {
+                self.state.add(resource:resource)
+            }
+            
             if let realm = response.result.realmUnlock {
                 self.state.add(realm:realm)
             }

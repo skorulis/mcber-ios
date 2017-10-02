@@ -26,10 +26,31 @@ public extension UIViewController {
     }
     
     public func show(error:Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        var message = error.localizedDescription
+        if let pmkError = error as? PMKURLError {
+            switch(pmkError) {
+            case .badResponse(_, let data, _):
+                do {
+                    if let data = data {
+                        let obj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                        if let errors = obj["errors"] as? [String] {
+                            message = errors.first!
+                        }
+                    }
+                } catch {
+                    
+                }
+                break;
+            default:
+                break;
+            }
+        }
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
 }
 
 open class BaseViewController: UIViewController {

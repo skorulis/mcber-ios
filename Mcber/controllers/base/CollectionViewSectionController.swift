@@ -14,10 +14,12 @@ class SectionController: NSObject {
     
     var cellForItemAt: ((UICollectionView,IndexPath) -> UICollectionViewCell)!
     var didSelectItemAt: ((UICollectionView,IndexPath) -> () )?
-    var sizeForItemAt: ((UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize)?
     var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
     var simpleNumberOfItemsInSection: (() ->Int)?
+    
+    var sizeForItemAt: ((UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize)?
+    var referenceSizeForHeader: ((UICollectionView,UICollectionViewLayout, Int) -> CGSize)?
     
     convenience init(fixedHeight:CGFloat,cellForItemAt:((UICollectionView,IndexPath) -> UICollectionViewCell)!) {
         self.init()
@@ -57,6 +59,11 @@ class SectionController: NSObject {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if let block = referenceSizeForHeader {
+            return block(collectionView, collectionViewLayout, section)
+        }
+        
         if let f = fixedHeaderHeight {
             return CGSize(width: collectionView.frame.size.width, height: f)
         }

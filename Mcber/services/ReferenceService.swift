@@ -77,6 +77,10 @@ class ReferenceService: NetAPIService {
         })!
     }
     
+    func item(_ itemId:String) -> ItemBaseTypeRef {
+        return items!.itemIdMap[itemId]!
+    }
+    
     func itemMod(_ modId:String) -> ItemModRef {
         return mods!.idMap[modId]!
     }

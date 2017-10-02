@@ -51,9 +51,17 @@ class ItemsReferenceModel: ImmutableMappable {
     let baseTypes:[ItemBaseTypeRef]
     let itemSlots:[ItemSlotRef]
     
+    let itemIdMap:[String:ItemBaseTypeRef]
+    
     required init(map: Map) throws {
         baseTypes = try map.value("baseTypes")
         itemSlots = try map.value("itemSlots")
+        
+        var map = [String:ItemBaseTypeRef]()
+        for item in baseTypes {
+            map[item.name] = item
+        }
+        itemIdMap = map
     }
 }
 
