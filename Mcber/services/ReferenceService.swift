@@ -107,5 +107,9 @@ class ReferenceService: NetAPIService {
         return self.items?.baseTypes ?? []
     }
     
+    func allGems() -> [ItemModRef] {
+        return self.mods?.mods ?? []
+    }
+    
     
 }

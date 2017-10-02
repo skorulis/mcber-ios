@@ -51,6 +51,14 @@ protocol AutoSizeModelCell: SimpleModelCell {
 }
 
 extension AutoSizeModelCell {
+    
+    static func setupCell(cell:Self) -> Self {
+        if let themedCell = cell as? ThemedCollectionViewCell {
+            themedCell.setup(theme: ThemeService.theme)
+        }
+        return cell
+    }
+    
     static func calculateSize(model:ModelType?, collectionView:UICollectionView) -> CGSize {
         var view = (sizingCell as! UIView)
         if let cell = sizingCell as? UICollectionViewCell {
@@ -69,6 +77,12 @@ extension AutoSizeModelCell {
     static func curriedCalculateSize(getModel:@escaping (IndexPath) -> ModelType?) -> (UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize {
         return { collectionView,layout,indexPath in
             return calculateSize(model: getModel(indexPath), collectionView: collectionView)
+        }
+    }
+    
+    static func curriedCalculateSize(withModel:ModelType?) -> (UICollectionView,UICollectionViewLayout, IndexPath) -> CGSize {
+        return { collectionView,layout,indexPath in
+            return calculateSize(model: withModel, collectionView: collectionView)
         }
     }
 }

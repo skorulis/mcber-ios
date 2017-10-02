@@ -16,6 +16,8 @@
 		FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */; };
 		FA3FD9BA1F823E0600C1C700 /* StartCraftGemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FD9B91F823E0600C1C700 /* StartCraftGemViewController.swift */; };
 		FA3FD9BC1F823FBF00C1C700 /* BaseStartActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FD9BB1F823FBF00C1C700 /* BaseStartActivityViewController.swift */; };
+		FA3FD9BE1F82D43F00C1C700 /* BaseGemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FD9BD1F82D43E00C1C700 /* BaseGemCell.swift */; };
+		FA3FD9C01F82DA8C00C1C700 /* GemTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FD9BF1F82DA8C00C1C700 /* GemTypeSelectionViewController.swift */; };
 		FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */; };
 		FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */; };
 		FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9451F71CC7E00A3646A /* ItemModel.swift */; };
@@ -86,6 +88,7 @@
 		FAEE36581F774B470048CD8E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE36571F774B470048CD8E /* UserService.swift */; };
 		FAEE365C1F774BD50048CD8E /* NetAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365B1F774B740048CD8E /* NetAPIService.swift */; };
 		FAEE365D1F774BD70048CD8E /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365A1F774B740048CD8E /* MainAPIService.swift */; };
+		FAF1F0521F82DDB000D5789D /* StepperCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1F0511F82DDB000D5789D /* StepperCountCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,8 @@
 		FA3A11931F733F3800024AA4 /* ActivityResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityResultModel.swift; sourceTree = "<group>"; };
 		FA3FD9B91F823E0600C1C700 /* StartCraftGemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCraftGemViewController.swift; sourceTree = "<group>"; };
 		FA3FD9BB1F823FBF00C1C700 /* BaseStartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStartActivityViewController.swift; sourceTree = "<group>"; };
+		FA3FD9BD1F82D43E00C1C700 /* BaseGemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGemCell.swift; sourceTree = "<group>"; };
+		FA3FD9BF1F82DA8C00C1C700 /* GemTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicKeyValueCell.swift; sourceTree = "<group>"; };
 		FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmUnlockCell.swift; sourceTree = "<group>"; };
 		FA49A9451F71CC7E00A3646A /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 		FAEE36571F774B470048CD8E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FAEE365A1F774B740048CD8E /* MainAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
 		FAEE365B1F774B740048CD8E /* NetAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetAPIService.swift; sourceTree = "<group>"; };
+		FAF1F0511F82DDB000D5789D /* StepperCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperCountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +264,9 @@
 			isa = PBXGroup;
 			children = (
 				FA3FD9B91F823E0600C1C700 /* StartCraftGemViewController.swift */,
+				FA3FD9BD1F82D43E00C1C700 /* BaseGemCell.swift */,
+				FAF1F0511F82DDB000D5789D /* StepperCountCell.swift */,
+				FA3FD9BF1F82DA8C00C1C700 /* GemTypeSelectionViewController.swift */,
 			);
 			path = "craft-gem";
 			sourceTree = "<group>";
@@ -820,16 +829,19 @@
 				FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */,
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAD01BD01F6CD96100DE39B3 /* AvatarDetailViewController.swift in Sources */,
+				FAF1F0521F82DDB000D5789D /* StepperCountCell.swift in Sources */,
 				FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
 				FAD01BCE1F6CC3DF00DE39B3 /* SectionHeaderView.swift in Sources */,
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
+				FA3FD9BE1F82D43F00C1C700 /* BaseGemCell.swift in Sources */,
 				FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
 				FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */,
 				FAD01BD41F6CDE3F00DE39B3 /* ProgressView.swift in Sources */,
 				FAA191FA1F673BF40076CDC7 /* RootViewController.swift in Sources */,
 				FAA191F11F673A4B0076CDC7 /* ThemeService.swift in Sources */,
+				FA3FD9C01F82DA8C00C1C700 /* GemTypeSelectionViewController.swift in Sources */,
 				FA6CF1691F6A94EF0026D126 /* ForwardNavigationHeader.swift in Sources */,
 				FA6CF1271F6919350026D126 /* LoginViewController.swift in Sources */,
 				FAEE36581F774B470048CD8E /* UserService.swift in Sources */,
