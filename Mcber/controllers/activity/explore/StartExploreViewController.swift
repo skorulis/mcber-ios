@@ -11,7 +11,7 @@ class StartExploreViewController: BaseSectionCollectionViewController {
     
     let realmSection = SectionController()
     let avatarSection = SectionController()
-    let startSection = SectionController()
+    var startSection:SectionController?
     
     func isReady() -> Bool {
         return selectedRealm != nil && selectedAvatar != nil
@@ -58,30 +58,17 @@ class StartExploreViewController: BaseSectionCollectionViewController {
         }
         avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
             
-        startSection.fixedFooterHeight = 40
-        startSection.fixedCellCount = 0
-        startSection.fixedHeight = 60
-        startSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
-            if (kind == UICollectionElementKindSectionHeader) {
-                return SectionHeaderView.curriedHeaderFunc(theme: ThemeService.theme, text: "Preview")(collectionView,kind,indexPath)
-            }
-            let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Start Exploring!")(collectionView,kind,indexPath)
-            header.textColor = self.isReady() ? self.theme.color.defaultText : self.theme.color.disabledText
-            header.addTapTarget(target: self, action: #selector(self.startPressed(id:)))
-            return header
-        }
-        startSection.cellForItemAt = ActivityEstimateCell.curriedDefaultCell(getModel: self.estimate(indexPath:))
+        startSection = StartActivityHelpers.startSection(title: "Start Exploring!", getEstimate: estimate(indexPath:), startTarget: self, startAction: #selector(startPressed(id:)))
         
         sections.append(realmSection)
         sections.append(avatarSection)
-        sections.append(startSection)
+        sections.append(startSection!)
     }
     
     func update() {
         realmSection.fixedCellCount = selectedRealm != nil ? 1 : 0
         avatarSection.fixedCellCount = selectedAvatar != nil ? 1 : 0
-        startSection.fixedCellCount = self.isReady() ? 1 : 0
-        startSection.fixedHeaderHeight = self.isReady() ? 40 : 0
+        startSection?.fixedHeaderHeight = self.isReady() ? 40 : 0
         if let avatar = selectedAvatar, let realm = selectedRealm {
             let promise = self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
             _ = promise.then { [weak self] (response) -> Void in

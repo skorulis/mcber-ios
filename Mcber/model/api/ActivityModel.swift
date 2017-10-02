@@ -32,10 +32,12 @@ class ActivityCalculationsModel: ImmutableMappable {
     
     let duration:Double
     let skillLevel:Int
+    let resources:[ResourceModel]
     
     required init(map: Map) throws {
         duration = try map.value("duration")
         skillLevel = try map.value("skillLevel")
+        resources = (try? map.value("resources")) ?? []
     }
 }
 
