@@ -18,17 +18,8 @@ class TestSizeCell: ThemedCollectionViewCell {
     override func buildLayout(theme: ThemeService) {
         label.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
-            //make.width.greaterThanOrEqualTo(200)
-            //make.width.equalTo(250)
-        }
-        self.contentView.snp.makeConstraints { (make) in
-            //make.width.equalTo(200)
         }
         
-        self.contentView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        //label.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
-        //label.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
     }
 
 }

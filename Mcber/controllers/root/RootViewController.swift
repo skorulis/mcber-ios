@@ -43,7 +43,7 @@ class RootViewController: BaseViewController {
         let activites = ActivityListViewController(services: self.services)
         let avatars = AvatarListViewController(services: self.services)
         let realms = RealmListViewController(services: self.services)
-        let test = TestSizeViewController(services: self.services)
+        let test = TestSectionSizeViewController(services: self.services)
         
         let controllers:[UIViewController] = [user,activites,avatars,realms,test]
         let tab = UITabBarController()

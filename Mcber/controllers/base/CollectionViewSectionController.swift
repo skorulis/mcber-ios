@@ -5,6 +5,9 @@ import UIKit
 
 class SectionController: NSObject {
     
+    var fillCellWidth:Bool = false
+    var useAutoHeightCells:Bool = false
+    
     var fixedSize:CGSize?
     var fixedHeight:CGFloat?
     var fixedCellCount:Int = 1
@@ -17,6 +20,12 @@ class SectionController: NSObject {
     var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
     var simpleNumberOfItemsInSection: (() ->Int)?
+    
+    convenience init(fillCellWidth:Bool,useAutoHeightCells:Bool) {
+        self.init()
+        self.fillCellWidth = fillCellWidth
+        self.useAutoHeightCells = useAutoHeightCells
+    }
     
     convenience init(fixedHeight:CGFloat,cellForItemAt:((UICollectionView,IndexPath) -> UICollectionViewCell)!) {
         self.init()
@@ -36,10 +45,22 @@ class SectionController: NSObject {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         assert(cellForItemAt != nil) //Must be set by this point
-        return cellForItemAt(collectionView, indexPath)
+        let cell = cellForItemAt(collectionView, indexPath)
+        if self.fillCellWidth {
+            cell.contentView.snp.remakeConstraints { (make) in
+                make.width.equalTo(collectionView.frame.size.width)
+            }
+        }
+        return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if self.useAutoHeightCells {
+            return UICollectionViewFlowLayoutAutomaticSize
+        }
+        
         let wid = collectionView.frame.size.width
         
         if let s = sizeForItemAt {
@@ -96,6 +117,20 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         section.didSelectItemAt?(collectionView, indexPath)
+    }
+    
+    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView?.visibleCells.forEach { (cell) in
+            let indexPath = collectionView!.indexPath(for: cell)
+            let section = self.sections[indexPath!.section]
+            if section.fillCellWidth {
+                cell.contentView.snp.remakeConstraints({ (make) in
+                    make.width.equalTo(size.width)
+                })
+                cell.setNeedsLayout()
+            }
+        }
     }
     
 }

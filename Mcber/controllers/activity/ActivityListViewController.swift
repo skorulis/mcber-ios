@@ -21,9 +21,10 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         self.collectionView.register(clazz: ActivityItemCell.self)
         self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
-        let startSection = SectionController()
+        self.flowLayout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        
+        let startSection = SectionController(fillCellWidth: true, useAutoHeightCells: false)
         startSection.fixedCellCount = types.count
-        startSection.fixedHeight = 40
         startSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:ForwardNavigationCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.label.text = types[indexPath.row].rawValue
@@ -45,7 +46,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             }
         }
         
-        let activitySection = SectionController()
+        let activitySection = SectionController(fillCellWidth: false, useAutoHeightCells: false)
         activitySection.numberOfItemsInSection = {[unowned self] (c:UICollectionView,s:Int) in
             return self.activities.count
         }

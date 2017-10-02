@@ -17,6 +17,7 @@ class SectionHeaderView: ThemedCollectionReusableView {
     override func buildLayout(theme: ThemeService) {
         label.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
     
