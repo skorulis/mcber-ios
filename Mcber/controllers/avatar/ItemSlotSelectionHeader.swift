@@ -3,17 +3,19 @@
 
 import UIKit
 
-class ItemSlotSelectionHeader: ForwardNavigationHeader, SimpleModelCell {
+class ItemSlotViewModel : ForwardNavigationViewModel {
+    
+    let slot:ItemSlotRef
+    
+    init(slot:ItemSlotRef) {
+        self.slot = slot
+        super.init(text: slot.name)
+    }
+}
 
-    typealias ModelType = ItemSlotRef
+class ItemSlotSelectionHeader: ForwardNavigationHeader {
     
     var selectBlock: ( (ItemSlotRef) -> () )?
-    
-    var model: ItemSlotRef? {
-        didSet {
-            self.label.text = model?.name
-        }
-    }
     
     override func buildView(theme: ThemeService) {
         super.buildView(theme: theme)
@@ -21,7 +23,10 @@ class ItemSlotSelectionHeader: ForwardNavigationHeader, SimpleModelCell {
     }
     
     @objc func pressed(sender:Any) {
-        selectBlock?(model!)
+        if let itemModel = self.model as? ItemSlotViewModel {
+            selectBlock?(itemModel.slot)
+        }
+        
     }
     
 

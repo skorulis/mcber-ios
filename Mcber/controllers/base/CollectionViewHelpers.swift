@@ -120,15 +120,18 @@ protocol SimpleTargetModelCell: SimpleModelCell {
 
 extension SimpleTargetModelCell {
     
-    static func curriedDefaultCell(withModel: ModelType?, target:Any, action:Selector) -> (UICollectionView,IndexPath) -> Self {
+    static func curriedDefaultCell(withModel: ModelType?, target:Any?, action:Selector?) -> (UICollectionView,IndexPath) -> Self {
         return { collectionView,indexPath in
             var cell = defaultCell(collectionView: collectionView, indexPath: indexPath, model: withModel)
-            cell.addTapTarget(target: target, action: action)
+            if let target = target, let action = action {
+                cell.addTapTarget(target: target, action: action)
+            }
+            
             return cell
         }
     }
     
-    static func curriedSupplementaryView(withModel model:ModelType, target:Any, action:Selector) -> (UICollectionView,String,IndexPath) -> Self {
+    static func curriedSupplementaryView(withModel model:ModelType, target:Any?, action:Selector?) -> (UICollectionView,String,IndexPath) -> Self {
         return { collectionView,kind,indexPath in
             let ident = String(describing: Self.self)
             var view:Self = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ident, for: indexPath) as! Self
@@ -136,7 +139,9 @@ extension SimpleTargetModelCell {
                 themedView.setup(theme: ThemeService.theme)
             }
             view.model = model
-            view.addTapTarget(target: target, action: action)
+            if let target = target, let action = action {
+                view.addTapTarget(target: target, action: action)
+            }
             return view
         }
     }

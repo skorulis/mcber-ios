@@ -14,11 +14,20 @@ class ForwardNavigationViewModel {
     }
 }
 
-class ForwardNavigationHeader: ThemedCollectionReusableView {
+class ForwardNavigationHeader: ThemedCollectionReusableView, SimpleTargetModelCell {
 
     let label = UILabel()
     let chevron = UILabel()
     let gesture = UITapGestureRecognizer(target: nil, action: nil)
+    
+    typealias ModelType = ForwardNavigationViewModel
+    var model: ForwardNavigationViewModel? {
+        didSet {
+            guard let model = model else { return }
+            self.textColor = model.color
+            label.text = model.text
+        }
+    }
     
     var textColor:UIColor = ThemeService.theme.color.defaultText {
         didSet {

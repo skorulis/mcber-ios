@@ -52,8 +52,9 @@ class AvatarEquipmentViewController: BaseSectionCollectionViewController {
     func makeSection(slot:ItemSlotRef) -> SectionController {
         let section = SectionController()
         section.fixedHeaderHeight = 40
+        let vm = ItemSlotViewModel(slot: slot)
         section.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
-            let header = ItemSlotSelectionHeader.curriedSupplementaryView(withModel: slot)(collectionView,kind,indexPath)
+            let header = ItemSlotSelectionHeader.curriedSupplementaryView(withModel: vm)(collectionView,kind,indexPath)
             header.selectBlock = { [unowned self] slot in
                 let vc = ItemSelectionViewController(services: self.services)
                 vc.avatar = self.avatar.value
