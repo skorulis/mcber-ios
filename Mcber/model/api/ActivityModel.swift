@@ -47,22 +47,30 @@ class ActivityCalculationsModel: ImmutableMappable, ReferenceFillable {
 
 class ActivityGemModel: ImmutableMappable, ReferenceFillable {
     
-    let elementId:String
+    let elementId:String?
     let modId:String
     let level:Int
     
     var gemRef:ItemModRef!
-    var skillRef:SkillRefModel!
+    var skillRef:SkillRefModel?
     
     required init(map: Map) throws {
-        elementId = try map.value("elementId")
+        elementId = try? map.value("elementId")
         modId = try map.value("modId")
         level = try map.value("level")
     }
     
+    init(modId:String,level:Int, elementId:String?) {
+        self.modId = modId
+        self.level = level
+        self.elementId = elementId
+    }
+    
     func fill(ref: ReferenceService) {
         gemRef = ref.itemMod(modId)
-        skillRef = ref.skill(elementId)
+        if let e = elementId {
+            skillRef = ref.skill(e)
+        }
     }
 }
 

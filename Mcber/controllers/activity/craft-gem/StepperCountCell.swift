@@ -13,7 +13,7 @@ class StepperCellViewModel {
     }
 }
 
-final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell {
+final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell, ModelChangeFeedbackCell {
 
     let stepper = UIStepper()
     let label = UILabel()
@@ -31,6 +31,7 @@ final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell {
             valueLabel.text = "\(model.value)"
         }
     }
+    var modelDidChangeBlock: ((StepperCellViewModel) -> ())?
     
     override func buildView(theme: ThemeService) {
         stepper.addTarget(self, action: #selector(stepperValueChanged(sender:)), for: .valueChanged)
@@ -58,5 +59,6 @@ final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell {
     @objc func stepperValueChanged(sender:UIStepper) {
         model?.value = Int(sender.value)
         valueLabel.text = "\(model!.value)"
+        modelDidChangeBlock?(model!)
     }
 }

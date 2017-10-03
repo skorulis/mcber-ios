@@ -86,3 +86,59 @@ extension AutoSizeModelCell {
         }
     }
 }
+
+protocol ModelChangeFeedbackCell: SimpleModelCell {
+    
+    var modelDidChangeBlock: ((ModelType) -> ())? {get set}
+
+}
+
+extension ModelChangeFeedbackCell {
+    
+    static func curriedDefaultCell(getModel:@escaping (IndexPath) -> ModelType?,changeBlock:@escaping (ModelType) -> () ) -> (UICollectionView,IndexPath) -> Self {
+        return { collectionView,indexPath in
+            var cell = defaultCell(collectionView: collectionView, indexPath: indexPath, model: getModel(indexPath))
+            cell.modelDidChangeBlock = changeBlock
+            return cell
+        }
+    }
+    
+    static func curriedDefaultCell(withModel: ModelType?, changeBlock:@escaping (ModelType) -> ()) -> (UICollectionView,IndexPath) -> Self {
+        return { collectionView,indexPath in
+            var cell = defaultCell(collectionView: collectionView, indexPath: indexPath, model: withModel)
+            cell.modelDidChangeBlock = changeBlock
+            return cell
+        }
+    }
+}
+
+protocol SimpleTargetModelCell: SimpleModelCell {
+ 
+    mutating func addTapTarget(target:Any, action:Selector)
+    
+}
+
+extension SimpleTargetModelCell {
+    
+    static func curriedDefaultCell(withModel: ModelType?, target:Any, action:Selector) -> (UICollectionView,IndexPath) -> Self {
+        return { collectionView,indexPath in
+            var cell = defaultCell(collectionView: collectionView, indexPath: indexPath, model: withModel)
+            cell.addTapTarget(target: target, action: action)
+            return cell
+        }
+    }
+    
+    static func curriedSupplementaryView(withModel model:ModelType, target:Any, action:Selector) -> (UICollectionView,String,IndexPath) -> Self {
+        return { collectionView,kind,indexPath in
+            let ident = String(describing: Self.self)
+            var view:Self = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ident, for: indexPath) as! Self
+            if let themedView = view as? ThemedCollectionReusableView {
+                themedView.setup(theme: ThemeService.theme)
+            }
+            view.model = model
+            view.addTapTarget(target: target, action: action)
+            return view
+        }
+    }
+    
+}

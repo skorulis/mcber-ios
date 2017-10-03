@@ -11,11 +11,18 @@ enum ItemModType: String {
     case extraAttack = "extra-attack"
 }
 
+enum GemSkillType: String {
+    case none = "none"
+    case all = "all"
+    case elemental = "elemental"
+    case trade = "trade"
+}
+
 class ItemModRef: ImmutableMappable {
 
     let type:String
     let postfix:String
-    let skillType:String
+    let skillType:GemSkillType
     let powerMult:Int
     let levelMult:Int
     let descriptionFormatter:String

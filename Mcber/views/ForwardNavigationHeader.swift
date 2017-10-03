@@ -4,6 +4,16 @@
 import UIKit
 import FontAwesomeKit
 
+class ForwardNavigationViewModel {
+    let text:String
+    let color:UIColor
+    
+    init(text:String,color:UIColor = ThemeService.theme.color.defaultText) {
+        self.text = text
+        self.color = color
+    }
+}
+
 class ForwardNavigationHeader: ThemedCollectionReusableView {
 
     let label = UILabel()

@@ -106,7 +106,10 @@ class MainAPIService: NetAPIService {
     }
     
     func craftGem(avatarId:String,gem:ActivityGemModel,estimate:Bool = false) -> Promise<ActivityResponse> {
-        let dict:[String:Any] = ["avatarId":avatarId,"elementId":gem.elementId,"modId":gem.modId,"level":gem.level,"estimateOnly":estimate]
+        var dict:[String:Any] = ["avatarId":avatarId,"modId":gem.modId,"level":gem.level,"estimateOnly":estimate]
+        if let elementId = gem.elementId {
+            dict["elementId"] = elementId
+        }
         let req  = self.jsonPostRequest(path: "action/craftGem", dict: dict)
         return doAuthRequest(req: req)
     }
