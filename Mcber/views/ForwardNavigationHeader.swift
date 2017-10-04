@@ -5,8 +5,8 @@ import UIKit
 import FontAwesomeKit
 
 class ForwardNavigationViewModel {
-    let text:String
-    let color:UIColor
+    var text:String
+    var color:UIColor
     
     init(text:String,color:UIColor = ThemeService.theme.color.defaultText) {
         self.text = text

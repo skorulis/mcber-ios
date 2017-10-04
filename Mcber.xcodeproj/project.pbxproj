@@ -48,6 +48,9 @@
 		FA75CEF21F80A5280001D08E /* GemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75CEF11F80A5280001D08E /* GemCell.swift */; };
 		FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E420B1F80CF9E00F343CD /* GemModel.swift */; };
 		FA7E42101F81CC7400F343CD /* ActivityEstimateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E420F1F81CC7400F343CD /* ActivityEstimateCell.swift */; };
+		FA95E3541F84B3E500FC979D /* MemoryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */; };
+		FA95E3561F84B4C900FC979D /* SkillSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3551F84B4C900FC979D /* SkillSelectionViewController.swift */; };
+		FA95E3581F84B64C00FC979D /* SkillRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3571F84B64C00FC979D /* SkillRefCell.swift */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -154,6 +157,9 @@
 		FA75CEF11F80A5280001D08E /* GemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemCell.swift; sourceTree = "<group>"; };
 		FA7E420B1F80CF9E00F343CD /* GemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemModel.swift; sourceTree = "<group>"; };
 		FA7E420F1F81CC7400F343CD /* ActivityEstimateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEstimateCell.swift; sourceTree = "<group>"; };
+		FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryHelpers.swift; sourceTree = "<group>"; };
+		FA95E3551F84B4C900FC979D /* SkillSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillSelectionViewController.swift; sourceTree = "<group>"; };
+		FA95E3571F84B64C00FC979D /* SkillRefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillRefCell.swift; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 				FA3FD9BD1F82D43E00C1C700 /* BaseGemCell.swift */,
 				FAF1F0511F82DDB000D5789D /* StepperCountCell.swift */,
 				FA3FD9BF1F82DA8C00C1C700 /* GemTypeSelectionViewController.swift */,
+				FA95E3551F84B4C900FC979D /* SkillSelectionViewController.swift */,
+				FA95E3571F84B64C00FC979D /* SkillRefCell.swift */,
 			);
 			path = "craft-gem";
 			sourceTree = "<group>";
@@ -436,6 +444,7 @@
 			children = (
 				FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */,
 				FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */,
+				FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -857,12 +866,14 @@
 				FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */,
 				FA14C2F01F77B573005C0B63 /* ItemTypeSelectionViewController.swift in Sources */,
 				FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */,
+				FA95E3561F84B4C900FC979D /* SkillSelectionViewController.swift in Sources */,
 				FABE08181F73CDC3006A6CD6 /* TestSizeViewController.swift in Sources */,
 				FA49A9951F72567600A3646A /* ItemModReferenceModel.swift in Sources */,
 				FA14C2EE1F77B263005C0B63 /* StartCraftViewController.swift in Sources */,
 				FABE08741F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift in Sources */,
 				FABE087C1F75FA8B006A6CD6 /* MonitoredObject.swift in Sources */,
 				FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */,
+				FA95E3581F84B64C00FC979D /* SkillRefCell.swift in Sources */,
 				FA14C2F21F77B58D005C0B63 /* BaseItemCell.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
@@ -877,6 +888,7 @@
 				FA49A9501F71DE1F00A3646A /* APIModelProtocols.swift in Sources */,
 				FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */,
 				FAA191EB1F673A4B0076CDC7 /* BaseViewController.swift in Sources */,
+				FA95E3541F84B3E500FC979D /* MemoryHelpers.swift in Sources */,
 				FA6CF12B1F693E850026D126 /* LoginService.swift in Sources */,
 				FA6CF1671F6A93550026D126 /* ForwardNavigationCell.swift in Sources */,
 				FA6CF16B1F6A9B3A0026D126 /* RealmCell.swift in Sources */,

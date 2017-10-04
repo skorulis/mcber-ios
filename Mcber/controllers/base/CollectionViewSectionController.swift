@@ -83,6 +83,22 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     
     var sections = [SectionController]()
     
+    //MARK: Section management
+    
+    func add(section:SectionController,after:SectionController) {
+        if sections.contains(section) {
+            return
+        }
+        let index = sections.index(of: after)!
+        sections.insert(section, at: index + 1)
+    }
+    
+    func remove(section:SectionController) {
+        sections = sections.filter { $0 != section }
+    }
+    
+    //MARK: UICollectionView overrides
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
