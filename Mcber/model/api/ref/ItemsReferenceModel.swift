@@ -19,12 +19,12 @@ enum BaseItemType: String {
 
 class ItemBaseTypeRef: ImmutableMappable {
     
-    let name:String
+    let id:String
     let type:String
     let resources:[ResourceModel]
     
     required init(map: Map) throws {
-        name = try map.value("name")
+        id = try map.value("id")
         type = try map.value("type")
         resources = try map.value("resources")
     }
@@ -59,7 +59,7 @@ class ItemsReferenceModel: ImmutableMappable {
         
         var map = [String:ItemBaseTypeRef]()
         for item in baseTypes {
-            map[item.name] = item
+            map[item.id] = item
         }
         itemIdMap = map
     }

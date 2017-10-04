@@ -26,7 +26,7 @@ class ItemCell: ThemedCollectionViewCell, SimpleModelCell {
                 self.modTextLabel.text = nil
                 return
             }
-            self.nameLabel.text = "Level \(m.totalPower) \(m.name)"
+            self.nameLabel.text = "Level \(m.totalPower) \(m.refId)"
             modTextLabel.text = m.modDescriptions()
         }
     }

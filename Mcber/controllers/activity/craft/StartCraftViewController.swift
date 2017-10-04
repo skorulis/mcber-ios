@@ -53,13 +53,13 @@ class StartCraftViewController: BaseStartActivityViewController {
     
     override func startActivity(avatar:AvatarModel) -> Promise<ActivityResponse>? {
         return selectedItem.map({ (item) -> Promise<ActivityResponse> in
-            return self.services.activity.craft(avatarId: avatar._id, itemRefId: item.name)
+            return self.services.activity.craft(avatarId: avatar._id, itemRefId: item.id)
         })
     }
     
     override func getEstimate(avatar:AvatarModel) -> Promise<ActivityResponse>? {
         return selectedItem.map({ (item) -> Promise<ActivityResponse> in
-            return self.services.api.craft(avatarId: avatar._id, itemRefId: item.name,estimate: true)
+            return self.services.api.craft(avatarId: avatar._id, itemRefId: item.id,estimate: true)
         })
     }
     

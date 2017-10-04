@@ -8,7 +8,7 @@ class BaseItemCell: BasicKeyValueCell, SimpleModelCell {
     typealias ModelType = ItemBaseTypeRef
     var model: ItemBaseTypeRef? {
         didSet {
-            self.nameLabel.text = model?.name
+            self.nameLabel.text = model?.id
         }
     }
     
