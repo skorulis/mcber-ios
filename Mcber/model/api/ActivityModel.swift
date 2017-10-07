@@ -8,17 +8,16 @@ enum ActivityType: String {
     case explore = "explore"
     case craft = "craft"
     case craftGem = "craft gem"
+    case socketGem = "socket gem"
 }
 
 class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
-    let type:SkillType
     var xp:Int
     let skillId:String
     
     var refSkill:SkillRefModel!
     
     required init(map: Map) throws {
-        type = try map.value("type")
         xp = try map.value("xp")
         skillId = try map.value("skillId")
     }
@@ -74,6 +73,21 @@ class ActivityGemModel: ImmutableMappable, ReferenceFillable {
     }
 }
 
+class ActivitySocketGemModel: ImmutableMappable {
+    let itemId:String
+    let gemId:String
+    
+    required init(map: Map) throws {
+        gemId = try map.value("gemId")
+        itemId = try map.value("itemId")
+    }
+    
+    init(gemId:String,itemId:String) {
+        self.gemId = gemId
+        self.itemId = itemId
+    }
+}
+
 class ActivityModel: ImmutableMappable, ReferenceFillable {
 
     let startTimestamp:Double
@@ -85,6 +99,7 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
     let realm:RealmModel?
     let itemId:String?
     let gem:ActivityGemModel?
+    let socketGem:ActivitySocketGemModel?
     
     var autoRepeat:Bool = false
     
@@ -101,6 +116,7 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
         itemId = try? map.value("itemId")
         calculated = try map.value("calculated")
         gem = try? map.value("gem")
+        socketGem = try? map.value("socketGem")
     }
     
     func fill(ref: ReferenceService) {

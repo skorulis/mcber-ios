@@ -53,6 +53,8 @@ class ActivityItemCell: ThemedCollectionViewCell {
             return "Craft"
         case .craftGem:
             return "Craft Gem"
+        case .socketGem:
+            return "Socket gem"
         }
     }
     

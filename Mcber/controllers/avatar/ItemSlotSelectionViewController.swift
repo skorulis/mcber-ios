@@ -1,23 +1,25 @@
-//  Created by Alexander Skorulis on 7/10/17.
+//  Created by Alexander Skorulis on 23/9/17.
 //  Copyright © 2017 Alex Skorulis. All rights reserved.
 
 import UIKit
 
-class ItemSelectionViewController: BaseSectionCollectionViewController {
-
-    var didSelectItem: ( (ItemModel) -> () )?
+class ItemSlotSelectionViewController: BaseSectionCollectionViewController {
     
+    var didSelectItem: ( (ItemModel?,ItemSlotRef) -> () )?
+    
+    var slot:ItemSlotRef!
+    var avatar:AvatarModel!
     var user:UserModel {
         return self.services.state.user!
     }
     
     var items:[ItemModel] {
-        return user.items.array
+        return user.itemsForSlot(slot: slot)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = "Select Item"
         
         collectionView.register(clazz: ItemCell.self)
@@ -29,8 +31,8 @@ class ItemSelectionViewController: BaseSectionCollectionViewController {
         itemSection.cellForItemAt = ItemCell.curriedDefaultCell(getModel: itemAt)
         itemSection.sizeForItemAt = ItemCell.curriedCalculateSize(getModel: itemAt)
         itemSection.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let item = itemAt(indexPath)!
-            self.didSelectItem?(item)
+            let item = itemAt(indexPath)
+            self.didSelectItem?(item,self.slot)
             self.navigationController?.popViewController(animated: true)
         }
         

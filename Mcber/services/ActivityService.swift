@@ -44,6 +44,12 @@ class ActivityService: NSObject {
         return promise
     }
     
+    func socketGem(avatarId:String, socket:ActivitySocketGemModel,continuing:ActivityModel? = nil) -> Promise<ActivityResponse> {
+        let promise = api.socketGem(avatarId: avatarId, socket: socket)
+        handleActivityResponse(promise: promise, continuing: continuing)
+        return promise
+    }
+    
     func restartActivity(activity:ActivityModel) -> Promise<ActivityResponse> {
         switch (activity.activityType) {
         case .explore:
@@ -52,6 +58,8 @@ class ActivityService: NSObject {
             return craft(avatarId: activity.avatarId, itemRefId: activity.itemId!, continuing: activity)
         case .craftGem:
             return craftGem(avatarId: activity.avatarId, gem: activity.gem!)
+        case .socketGem:
+            return socketGem(avatarId: activity.avatarId, socket: activity.socketGem!)
         }
     }
     
@@ -60,8 +68,8 @@ class ActivityService: NSObject {
         _ = promise.then { [unowned self] response -> Void in
             self.state.update(activities:response.activities)
             self.state.update(avatar:response.avatar)
-            if let resource = response.result.resource {
-                self.state.add(resource:resource)
+            for res in response.result.resources {
+                self.state.add(resource: res)
             }
             
             if let realm = response.result.realmUnlock {

@@ -15,7 +15,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
 
         self.title = "Activities"
-        let types:[ActivityType] = [.explore, .craft, .craftGem]
+        let types:[ActivityType] = [.explore, .craft, .craftGem, .socketGem]
         
         self.collectionView.register(clazz: ForwardNavigationCell.self)
         self.collectionView.register(clazz: ActivityItemCell.self)
@@ -42,6 +42,10 @@ class ActivityListViewController: BaseSectionCollectionViewController {
                 break;
             case .craftGem:
                 let vc = StartCraftGemViewController(services: self.services)
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            case .socketGem:
+                let vc = StartSocketGemViewController(services: self.services)
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             }

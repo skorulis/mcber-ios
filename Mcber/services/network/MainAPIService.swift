@@ -114,6 +114,12 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func socketGem(avatarId:String,socket:ActivitySocketGemModel,estimate:Bool = false) -> Promise<ActivityResponse> {
+        var dict:[String:Any] = ["avatarId":avatarId,"gemId":socket.gemId,"itemId":socket.itemId,"estimateOnly":estimate]
+        let req  = self.jsonPostRequest(path: "action/socketGem", dict: dict)
+        return doAuthRequest(req: req)
+    }
+    
     func complete(activityId:String) -> Promise<ActivityCompleteResponse> {
         let dict = ["activityId":activityId]
         let req = self.jsonPostRequest(path: "action/complete", dict: dict)

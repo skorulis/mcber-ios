@@ -56,7 +56,7 @@ class AvatarEquipmentViewController: BaseSectionCollectionViewController {
         section.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ItemSlotSelectionHeader.curriedSupplementaryView(withModel: vm)(collectionView,kind,indexPath)
             header.selectBlock = { [unowned self] slot in
-                let vc = ItemSelectionViewController(services: self.services)
+                let vc = ItemSlotSelectionViewController(services: self.services)
                 vc.avatar = self.avatar.value
                 vc.slot = slot
                 vc.didSelectItem = self.didSelectItem(item:slot:)

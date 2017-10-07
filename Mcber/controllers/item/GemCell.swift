@@ -4,7 +4,7 @@
 import UIKit
 import FontAwesomeKit
 
-class GemCell: ThemedCollectionViewCell, SimpleModelCell {
+final class GemCell: ThemedCollectionViewCell, SimpleModelCell, AutoSizeModelCell {
     
     let modTextLabel = UILabel()
     
@@ -16,6 +16,7 @@ class GemCell: ThemedCollectionViewCell, SimpleModelCell {
         }
     }
     
+    static var sizingCell: GemCell = setupCell(cell: GemCell())
     typealias ModelType = ItemGemModel
     var model: ItemGemModel? {
         didSet {
