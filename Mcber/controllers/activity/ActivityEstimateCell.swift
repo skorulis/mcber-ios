@@ -9,7 +9,12 @@ struct ActivityViewModel {
     let theme:ThemeService
     
     func leftText() -> String {
-        return "Duration \(activity.calculated.duration) seconds\nSkill level \(activity.calculated.skillLevel)"
+        var text = "Duration \(activity.calculated.duration) seconds\nSkill level \(activity.calculated.skillLevel)"
+        if let failure = activity.calculated.failureChance {
+            let failureInt = Int(failure*100)
+            text = text + "\nFailure chance \(failure)%"
+        }
+        return text
     }
     
     func rightText() -> NSAttributedString {

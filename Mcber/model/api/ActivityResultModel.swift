@@ -6,6 +6,7 @@ import ObjectMapper
 
 class ActivityResult: ImmutableMappable, ReferenceFillable {
     
+    let success:Bool
     let experience:[ExperienceGainModel]
     let resources:[ResourceModel]
     let realmUnlock:RealmModel?
@@ -18,6 +19,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         realmUnlock = try? map.value("realmUnlock")
         item = try? map.value("item")
         gem = try? map.value("gem")
+        success = try map.value("success")
     }
     
     func fill(ref: ReferenceService) {
@@ -31,6 +33,8 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
 
 class CombinedActivityResult {
     
+    var title:String
+    var resultCount:Int = 0
     var experience:[ExperienceGainModel] = []
     var resources:[ResourceModel] = []
     var realmUnlock:RealmModel?
@@ -38,11 +42,12 @@ class CombinedActivityResult {
     var gems:[ItemGemModel] = []
     
     init() {
-        
+        title = "Result"
     }
     
     convenience init(result:ActivityResult) {
         self.init()
+        self.title = result.success ? "Success" : "Failure"
         self.add(result: result)
     }
     
@@ -52,6 +57,7 @@ class CombinedActivityResult {
     }
     
     func add(result:ActivityResult) {
+        resultCount = resultCount + 1
         if let item = result.item {
             items.append(item)
         }

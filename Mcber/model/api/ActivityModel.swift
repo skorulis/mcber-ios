@@ -31,11 +31,13 @@ class ActivityCalculationsModel: ImmutableMappable, ReferenceFillable {
     
     let duration:Double
     let skillLevel:Int
+    let failureChance:Double?
     let resources:[ResourceModel]
     
     required init(map: Map) throws {
         duration = try map.value("duration")
         skillLevel = try map.value("skillLevel")
+        failureChance = try? map.value("failureChance")
         resources = (try? map.value("resources")) ?? []
     }
     

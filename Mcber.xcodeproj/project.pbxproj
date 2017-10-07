@@ -79,6 +79,8 @@
 		FABE087C1F75FA8B006A6CD6 /* MonitoredObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */; };
 		FACF91F11F885F74002F1BE4 /* StartSocketGemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F01F885F74002F1BE4 /* StartSocketGemViewController.swift */; };
 		FACF91F31F886F7A002F1BE4 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F21F886F7A002F1BE4 /* ItemSelectionViewController.swift */; };
+		FACF91F61F888609002F1BE4 /* SectionControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F51F888609002F1BE4 /* SectionControllerExtensions.swift */; };
+		FACF91F81F888C21002F1BE4 /* GemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F71F888C21002F1BE4 /* GemSelectionViewController.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
@@ -196,6 +198,8 @@
 		FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredObject.swift; sourceTree = "<group>"; };
 		FACF91F01F885F74002F1BE4 /* StartSocketGemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSocketGemViewController.swift; sourceTree = "<group>"; };
 		FACF91F21F886F7A002F1BE4 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
+		FACF91F51F888609002F1BE4 /* SectionControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionControllerExtensions.swift; sourceTree = "<group>"; };
+		FACF91F71F888C21002F1BE4 /* GemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemSelectionViewController.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 		FAA191DA1F673A4B0076CDC7 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FACF91F41F8885F6002F1BE4 /* common */,
 				FABE08161F73CD37006A6CD6 /* test */,
 				FA49A9961F726E6D00A3646A /* item */,
 				FA6CF1251F6919150026D126 /* login */,
@@ -562,8 +567,17 @@
 			isa = PBXGroup;
 			children = (
 				FACF91F01F885F74002F1BE4 /* StartSocketGemViewController.swift */,
+				FACF91F71F888C21002F1BE4 /* GemSelectionViewController.swift */,
 			);
 			path = "socket-gem";
+			sourceTree = "<group>";
+		};
+		FACF91F41F8885F6002F1BE4 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				FACF91F51F888609002F1BE4 /* SectionControllerExtensions.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		FAEE36591F774B740048CD8E /* network */ = {
@@ -853,6 +867,7 @@
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAD01BD01F6CD96100DE39B3 /* AvatarDetailViewController.swift in Sources */,
 				FAF1F0521F82DDB000D5789D /* StepperCountCell.swift in Sources */,
+				FACF91F61F888609002F1BE4 /* SectionControllerExtensions.swift in Sources */,
 				FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,
 				FAD01BCE1F6CC3DF00DE39B3 /* SectionHeaderView.swift in Sources */,
@@ -887,6 +902,7 @@
 				FABE08741F75CB28006A6CD6 /* ItemSlotSelectionHeader.swift in Sources */,
 				FABE087C1F75FA8B006A6CD6 /* MonitoredObject.swift in Sources */,
 				FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */,
+				FACF91F81F888C21002F1BE4 /* GemSelectionViewController.swift in Sources */,
 				FA95E3581F84B64C00FC979D /* SkillRefCell.swift in Sources */,
 				FA14C2F21F77B58D005C0B63 /* BaseItemCell.swift in Sources */,
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,

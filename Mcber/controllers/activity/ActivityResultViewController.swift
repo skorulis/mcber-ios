@@ -20,7 +20,7 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Result"
+        self.title = result.title
         
         collectionView.register(clazz: ResourceCell.self)
         collectionView.register(clazz: ExperienceGainCell.self)

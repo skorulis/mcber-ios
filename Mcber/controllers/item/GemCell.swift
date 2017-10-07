@@ -20,6 +20,7 @@ final class GemCell: ThemedCollectionViewCell, SimpleModelCell, AutoSizeModelCel
     typealias ModelType = ItemGemModel
     var model: ItemGemModel? {
         didSet {
+            deleteButton.isHidden = deleteBlock == nil
             self.modTextLabel.text = model?.userDescription()
         }
     }
@@ -36,7 +37,7 @@ final class GemCell: ThemedCollectionViewCell, SimpleModelCell, AutoSizeModelCel
     
     override func buildLayout(theme: ThemeService) {
         modTextLabel.snp.makeConstraints { (make) in
-            make.left.top.equalToSuperview().inset(theme.padding.edges)
+            make.left.top.bottom.equalToSuperview().inset(theme.padding.edges)
             make.right.equalTo(deleteButton.snp.left)
         }
         

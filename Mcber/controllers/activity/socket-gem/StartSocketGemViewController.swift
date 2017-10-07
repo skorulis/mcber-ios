@@ -46,11 +46,19 @@ class StartSocketGemViewController: BaseStartActivityViewController {
     }
 
     override func getEstimate(avatar:AvatarModel) -> Promise<ActivityResponse>? {
-        return nil
+        guard let gem = selectedGem,let item = selectedItem else {
+            return nil
+        }
+        let model = ActivitySocketGemModel(gemId: gem._id, itemId: item._id)
+        return self.services.api.socketGem(avatarId: avatar._id, socket: model, estimate: true)
     }
     
     override func startActivity(avatar:AvatarModel) -> Promise<ActivityResponse>? {
-        return nil
+        guard let gem = selectedGem,let item = selectedItem else {
+            return nil
+        }
+        let model = ActivitySocketGemModel(gemId: gem._id, itemId: item._id)
+        return self.services.activity.socketGem(avatarId: avatar._id, socket: model)
     }
     
     //MARK: Actions
@@ -62,12 +70,17 @@ class StartSocketGemViewController: BaseStartActivityViewController {
             self.tryUpdateEstimate()
             self.collectionView.reloadData()
         }
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func selectGemPressed(sender:Any) {
-        
+        let vc = GemSelectionViewController(services: self.services);
+        vc.didSelectGem = {[unowned self] (gem) in
+            self.selectedGem = gem
+            self.tryUpdateEstimate()
+            self.collectionView.reloadData()
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
