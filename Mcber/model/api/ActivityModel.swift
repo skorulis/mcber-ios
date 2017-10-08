@@ -11,6 +11,10 @@ enum ActivityType: String {
     case socketGem = "socket gem"
 }
 
+enum InstantActivityType: String {
+    case battle = "battle"
+}
+
 class ExperienceGainModel: ImmutableMappable, ReferenceFillable {
     var xp:Int
     let skillId:String

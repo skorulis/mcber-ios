@@ -16,6 +16,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
 
         self.title = "Activities"
         let types:[ActivityType] = [.explore, .craft, .craftGem, .socketGem]
+        let instantTypes:[InstantActivityType] = [.battle]
         
         self.collectionView.register(clazz: ForwardNavigationCell.self)
         self.collectionView.register(clazz: ActivityItemCell.self)
@@ -31,24 +32,20 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         }
         startSection.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let type = types[indexPath.row]
-            switch(type) {
-            case .explore:
-                let vc = StartExploreViewController(services: self.services)
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            case .craft:
-                let vc = StartCraftViewController(services: self.services)
-                self.navigationController?.pushViewController(vc, animated: true)
-                break;
-            case .craftGem:
-                let vc = StartCraftGemViewController(services: self.services)
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            case .socketGem:
-                let vc = StartSocketGemViewController(services: self.services)
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            }
+            self.showActivityController(type: type)
+        }
+        
+        let instantSection = SectionController()
+        instantSection.fixedCellCount = instantTypes.count
+        instantSection.fixedHeight = 40
+        instantSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let cell:ForwardNavigationCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
+            cell.label.text = instantTypes[indexPath.row].rawValue
+            return cell
+        }
+        instantSection.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let type = instantTypes[indexPath.row]
+            self.showInstantController(type: type)
         }
         
         let activitySection = SectionController()
@@ -67,6 +64,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
         activitySection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "In Progress")
         
         self.sections.append(startSection)
+        self.sections.append(instantSection)
         self.sections.append(activitySection)
     }
     
@@ -102,6 +100,36 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             vc.result = CombinedActivityResult(result: response.result)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
             strongSelf.collectionView.reloadData()
+        }
+    }
+    
+    func showInstantController(type:InstantActivityType) {
+        switch(type) {
+        case .battle:
+            let vc = RandomBattleViewController(services: self.services)
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        }
+    }
+    
+    func showActivityController(type:ActivityType) {
+        switch(type) {
+        case .explore:
+            let vc = StartExploreViewController(services: self.services)
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case .craft:
+            let vc = StartCraftViewController(services: self.services)
+            self.navigationController?.pushViewController(vc, animated: true)
+            break;
+        case .craftGem:
+            let vc = StartCraftGemViewController(services: self.services)
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case .socketGem:
+            let vc = StartSocketGemViewController(services: self.services)
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
         }
     }
 

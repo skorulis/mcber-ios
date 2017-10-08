@@ -3,12 +3,19 @@
 
 import UIKit
 
+protocol ArrayDataSourceProtocol {
+    associatedtype ElementType
+    func elementAt(indexPath:IndexPath) -> ElementType
+    func elementCount() -> Int
+}
+
 protocol IdObjectProtocol {
     var _id:String { get }
 }
 
-class MonitoredObject<T> {
-
+class MonitoredObject<T>: ArrayDataSourceProtocol {
+    typealias ElementType = T;
+    
     var value:T
     
     var valueDidChange:( (T,T) -> ())?
@@ -31,12 +38,17 @@ class MonitoredObject<T> {
         self.valueDidChange?(oldValue,newValue)
     }
     
-    func at(indexpath:IndexPath) -> T {
+    func elementAt(indexPath:IndexPath) -> T {
         return value
+    }
+    
+    func elementCount() -> Int {
+        return 1
     }
 }
 
-class MonitoredArray<Element> {
+class MonitoredArray<Element>: ArrayDataSourceProtocol {
+    typealias ElementType = Element;
     
     let observers = ObserverSet<MonitoredArray<Element>>()
     
@@ -75,6 +87,26 @@ class MonitoredArray<Element> {
         set(newValue) { self.array[index] = newValue }
     }
 
+}
 
-
+class OptionalMonitoredObject<Element>: MonitoredArray<Element> {
+    
+    var object:Element? {
+        didSet {
+            if let e = object {
+                array = [e]
+            } else {
+                array = []
+            }
+        }
+    }
+    
+    init(element:Element?) {
+        var a:[Element] = []
+        if let e = element {
+            a.append(e)
+        }
+        super.init(array: a)
+    }
+    
 }

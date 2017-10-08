@@ -4,7 +4,7 @@
 import UIKit
 import SnapKit
 
-class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
+final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
 
     private let levelLabel = UILabel()
     private let healthLabel = UILabel()
@@ -14,6 +14,7 @@ class AvatarCell: ThemedCollectionViewCell, SimpleModelCell {
     
     private let ref = ReferenceService.instance!
     
+    static var sizingCell: AvatarCell = setupCell(cell: AvatarCell())
     typealias ModelType = AvatarModel
     var model:AvatarModel? {
         didSet {

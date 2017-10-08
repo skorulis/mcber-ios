@@ -48,7 +48,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         
         let topSection = SectionController()
         topSection.fixedHeight = 120
-        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: avatar.at(indexpath:))
+        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: avatar.elementAt(indexPath:))
         
         let itemSection = SectionController()
         itemSection.fixedHeaderHeight = 40

@@ -85,6 +85,10 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     
     //MARK: Section management
     
+    func add(section:SectionController) {
+        sections.append(section)
+    }
+    
     func add(section:SectionController,after:SectionController) {
         if sections.contains(section) {
             return

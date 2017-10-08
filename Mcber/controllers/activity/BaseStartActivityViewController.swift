@@ -6,12 +6,8 @@ import PromiseKit
 
 class BaseStartActivityViewController: BaseSectionCollectionViewController {
 
-    var selectedAvatar:AvatarModel?
+    let selectedAvatar = OptionalMonitoredObject<AvatarModel>(element:nil)
     var estimatedActivity:ActivityModel?
-    
-    func avatarCount() -> Int {
-        return self.selectedAvatar != nil ? 1 : 0
-    }
     
     let avatarSection = SectionController()
     
@@ -29,15 +25,14 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
         avatarSection.fixedHeaderHeight = 40
-        avatarSection.fixedCellCount = 0
         avatarSection.fixedHeight = 120
-        avatarSection.simpleNumberOfItemsInSection = avatarCount
+        avatarSection.simpleNumberOfItemsInSection = self.selectedAvatar.elementCount
         avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)
             header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(id:)))
             return header
         }
-        avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar! })
+        avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar.object! })
         
     }
     
@@ -73,7 +68,7 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
         let vc = AvatarListViewController(services: self.services)
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)
-            self.selectedAvatar = avatar
+            self.selectedAvatar.object = avatar
             self.tryUpdateEstimate()
             self.collectionView.reloadData()
         }
@@ -81,7 +76,7 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
     }
     
     @objc func startPressed(id:Any) {
-        if let avatar = self.selectedAvatar {
+        if let avatar = self.selectedAvatar.object {
             guard let promise = self.startActivity(avatar: avatar) else {
                 return
             }
@@ -94,7 +89,7 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
     }
     
     func tryUpdateEstimate() {
-        if let avatar = selectedAvatar {
+        if let avatar = selectedAvatar.object {
             let promise = getEstimate(avatar:avatar)
             _ = promise?.then { [weak self] (response) -> Void in
                 self?.estimatedActivity = response.activity
