@@ -115,7 +115,7 @@ class MainAPIService: NetAPIService {
     }
     
     func socketGem(avatarId:String,socket:ActivitySocketGemModel,estimate:Bool = false) -> Promise<ActivityResponse> {
-        var dict:[String:Any] = ["avatarId":avatarId,"gemId":socket.gemId,"itemId":socket.itemId,"estimateOnly":estimate]
+        let dict:[String:Any] = ["avatarId":avatarId,"gemId":socket.gemId,"itemId":socket.itemId,"estimateOnly":estimate]
         let req  = self.jsonPostRequest(path: "action/socketGem", dict: dict)
         return doAuthRequest(req: req)
     }

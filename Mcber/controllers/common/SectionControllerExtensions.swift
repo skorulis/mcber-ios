@@ -6,7 +6,6 @@ import UIKit
 extension AutoSizeModelCell {
     
     static func defaultArraySection(data:MonitoredArray<ModelType>,collectionView:UICollectionView) -> SectionController {
-        
         collectionView.register(clazz: self as! AnyClass)
         let section = SectionController()
         
@@ -17,6 +16,19 @@ extension AutoSizeModelCell {
         }
         
         section.sizeForItemAt = curriedCalculateSize(getModel: data.elementAt(indexPath:))
+        
+        return section
+    }
+    
+    static func defaultObjectSection(data:MonitoredObject<ModelType>,collectionView:UICollectionView) -> SectionController {
+        collectionView.register(clazz: self as! AnyClass)
+        let section = SectionController()
+        section.fixedCellCount = 1
+        section.cellForItemAt = { (collectionView:UICollectionView,indexPath:IndexPath) in
+            let cell = curriedDefaultCell(getModel: data.at(indexpath:))(collectionView,indexPath)
+            return cell as! UICollectionViewCell
+        }
+        section.sizeForItemAt = curriedCalculateSize(getModel: data.at(indexpath: ))
         
         return section
     }

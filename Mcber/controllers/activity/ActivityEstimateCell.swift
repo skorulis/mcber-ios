@@ -12,7 +12,7 @@ struct ActivityViewModel {
         var text = "Duration \(activity.calculated.duration) seconds\nSkill level \(activity.calculated.skillLevel)"
         if let failure = activity.calculated.failureChance {
             let failureInt = Int(failure*100)
-            text = text + "\nFailure chance \(failure)%"
+            text = text + "\nFailure chance \(failureInt)%"
         }
         return text
     }

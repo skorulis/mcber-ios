@@ -7,7 +7,7 @@ protocol IdObjectProtocol {
     var _id:String { get }
 }
 
-class MonitoredObject<T:IdObjectProtocol> {
+class MonitoredObject<T> {
 
     var value:T
     
@@ -19,7 +19,11 @@ class MonitoredObject<T:IdObjectProtocol> {
     }
     
     func updateIfEqual(newValue:T) {
-        guard (self.value._id == newValue._id) else {
+        guard let idValue = self.value as? IdObjectProtocol, let newIdValue = newValue as? IdObjectProtocol else {
+            return
+        }
+        
+        guard (idValue._id == newIdValue._id) else {
             return
         }
         let oldValue = self.value

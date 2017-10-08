@@ -14,9 +14,6 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Enabling this starts adjusting cells even when explicit sizes are given
-        //self.layout.estimatedItemSize = CGSize(width: 1, height: 1)
-        
         itemSizingCell.frame = self.view.bounds
         itemSizingCell.setup(theme: self.theme)
 
@@ -27,6 +24,9 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ItemCell.self)
         collectionView.register(clazz: GemCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
+        
+        let topSection = UserCell.defaultObjectSection(data: self.services.state.monitoredUser!, collectionView: collectionView)
+        self.sections.append(topSection)
         
         let resourceSection = SectionController()
         resourceSection.simpleNumberOfItemsInSection = resources.elementCount

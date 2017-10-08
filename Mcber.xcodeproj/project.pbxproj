@@ -81,6 +81,7 @@
 		FACF91F31F886F7A002F1BE4 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F21F886F7A002F1BE4 /* ItemSelectionViewController.swift */; };
 		FACF91F61F888609002F1BE4 /* SectionControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F51F888609002F1BE4 /* SectionControllerExtensions.swift */; };
 		FACF91F81F888C21002F1BE4 /* GemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F71F888C21002F1BE4 /* GemSelectionViewController.swift */; };
+		FACF91FA1F89CBD3002F1BE4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF91F91F89CBD3002F1BE4 /* UserCell.swift */; };
 		FAD01BC81F6CB4A500DE39B3 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */; };
 		FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */; };
 		FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */; };
@@ -200,6 +201,7 @@
 		FACF91F21F886F7A002F1BE4 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
 		FACF91F51F888609002F1BE4 /* SectionControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionControllerExtensions.swift; sourceTree = "<group>"; };
 		FACF91F71F888C21002F1BE4 /* GemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemSelectionViewController.swift; sourceTree = "<group>"; };
+		FACF91F91F89CBD3002F1BE4 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		FAD01BC71F6CB4A500DE39B3 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		FAD01BC91F6CB6C700DE39B3 /* ActivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FAD01BCB1F6CC20100DE39B3 /* ActivityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemCell.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			children = (
 				FA6CF12E1F69DF010026D126 /* UserDetailsViewController.swift */,
 				FAD01BD51F6D05A000DE39B3 /* ResourceCell.swift */,
+				FACF91F91F89CBD3002F1BE4 /* UserCell.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				FA6CF1331F69E0FD0026D126 /* GameStateService.swift in Sources */,
 				FAD01BD01F6CD96100DE39B3 /* AvatarDetailViewController.swift in Sources */,
 				FAF1F0521F82DDB000D5789D /* StepperCountCell.swift in Sources */,
+				FACF91FA1F89CBD3002F1BE4 /* UserCell.swift in Sources */,
 				FACF91F61F888609002F1BE4 /* SectionControllerExtensions.swift in Sources */,
 				FAD01BCA1F6CB6C700DE39B3 /* ActivityService.swift in Sources */,
 				FAA191EF1F673A4B0076CDC7 /* ThemedCollectionReusableView.swift in Sources */,

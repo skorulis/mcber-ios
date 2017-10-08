@@ -12,6 +12,8 @@ class GameStateService {
     
     var user:UserModel?
     
+    var monitoredUser:MonitoredObject<UserModel>?
+    
     var hasState: Bool {
         return user != nil
     }
@@ -26,6 +28,11 @@ class GameStateService {
     
     func resetState(user:UserModel) {
         self.user = user
+        if self.monitoredUser == nil {
+            self.monitoredUser = MonitoredObject(initialValue: user)
+            didChangeState.add(object: monitoredUser!, self.monitoredUser!.updateIfEqual(newValue:))
+        }
+        
         didChangeState.notify(parameters: user)
     }
     
