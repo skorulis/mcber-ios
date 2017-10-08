@@ -41,6 +41,10 @@ class GameStateService {
         didChangeState.notify(parameters: user!)
     }
     
+    func add(currency:Int) {
+        user!.currency = user!.currency + currency
+    }
+    
     func add(resource:ResourceModel) {
         if let index = user?.resources.index(where: { $0.resourceId == resource.resourceId }) {
             let existing = user!.resources[index]

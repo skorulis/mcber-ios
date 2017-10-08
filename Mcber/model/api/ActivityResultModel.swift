@@ -7,6 +7,7 @@ import ObjectMapper
 class ActivityResult: ImmutableMappable, ReferenceFillable {
     
     let success:Bool
+    let currency:Int
     let experience:[ExperienceGainModel]
     let resources:[ResourceModel]
     let realmUnlock:RealmModel?
@@ -14,6 +15,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     let gem:ItemGemModel?
     
     required init(map: Map) throws {
+        currency = try map.value("currency")
         experience = try map.value("experience")
         resources = try map.value("resources")
         realmUnlock = try? map.value("realmUnlock")
@@ -35,6 +37,7 @@ class CombinedActivityResult {
     
     var title:String
     var resultCount:Int = 0
+    var currency:Int = 0
     var experience:[ExperienceGainModel] = []
     var resources:[ResourceModel] = []
     var realmUnlock:RealmModel?
@@ -58,6 +61,7 @@ class CombinedActivityResult {
     
     func add(result:ActivityResult) {
         resultCount = resultCount + 1
+        currency = currency + result.currency
         if let item = result.item {
             items.append(item)
         }

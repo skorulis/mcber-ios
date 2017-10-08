@@ -81,6 +81,7 @@ class ActivityService: NSObject {
             if let gem = response.result.gem {
                 self.state.add(gem: gem)
             }
+            self.state.add(currency: response.result.currency)
             
             if activity.autoRepeat {
                 activity.heldResults.add(result:response.result)

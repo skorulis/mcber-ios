@@ -7,12 +7,12 @@ import ObjectMapper
 class ResourceRefModel: ImmutableMappable {
 
     let name:String
-    let skillId:String
+    let skillId:String?
     let id:String
     
     required init(map: Map) throws {
         name = try map.value("name")
-        skillId = try map.value("skill")
+        skillId = try? map.value("skill")
         id = try map.value("id")
     }
     

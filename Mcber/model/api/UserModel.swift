@@ -51,7 +51,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         avatars = try map.value("avatars")
         realms = try map.value("realms")
         activities = try map.value("activities")
-        currency = (try? map.value("currency")) ?? 0
+        currency = try map.value("currency")
         
         self.resources = MonitoredArray(array: resourcesArray)
         self.items = MonitoredArray(array: itemsArray)

@@ -4,12 +4,23 @@
 import UIKit
 
 extension CombinedActivityResult {
+    var resourcesAndCredits:[ResourceModel] {
+        if self.currency == 0 {
+            return resources
+        }
+        let currency = ResourceModel(quantity: self.currency, resourceId: "currency")
+        currency.fill(ref: ReferenceService.instance)
+        var array = [currency]
+        array.append(contentsOf: resources)
+        return array
+    }
+    
     func resourceAt(indexPath:IndexPath) -> ResourceModel {
-        return resources[indexPath.row]
+        return resourcesAndCredits[indexPath.row]
     }
     
     func resourceCount() -> Int {
-        return resources.count
+        return resourcesAndCredits.count
     }
 }
 
