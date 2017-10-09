@@ -135,6 +135,12 @@ class MainAPIService: NetAPIService {
         return doAuthRequest(req: req)
     }
     
+    func battle(avatarId:String,realm:RealmModel) -> Promise<ActivityCompleteResponse> {
+        let dict = ["avatarId":avatarId,"realm":["elementId":realm.elementId,"level":realm.level]] as [String : Any]
+        let req = self.jsonPostRequest(path: "action/battle", dict: dict)
+        return doAuthRequest(req: req)
+    }
+    
     func breakdown(itemId:String) -> Promise<BreakdownItemResponse> {
         let req = self.jsonPostRequest(path: "item/breakdown", dict: ["itemId":itemId])
         return doAuthRequest(req: req)

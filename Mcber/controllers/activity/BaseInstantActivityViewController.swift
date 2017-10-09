@@ -2,6 +2,7 @@
 //  Copyright © 2017 Alex Skorulis. All rights reserved.
 
 import UIKit
+import PromiseKit
 
 class BaseInstantActivityViewController: BaseSectionCollectionViewController {
 
@@ -13,17 +14,53 @@ class BaseInstantActivityViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
 
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
+        collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
         avatarSection = AvatarCell.defaultArraySection(data: selectedAvatar, collectionView: collectionView)
         avatarSection.fixedHeaderHeight = 40
         avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)
-            header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(id:)))
+            header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(sender:)))
             return header
         }
     }
     
-    @objc func selectAvatarPressed(id:Any) {
+    func startSection(title:String) -> SectionController {
+        let theme = ThemeService.theme!
+        let startSection = SectionController()
+        startSection.fixedFooterHeight = 40
+        startSection.fixedCellCount = 0
+        
+        startSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
+            let header = ForwardNavigationHeader.curriedDefaultHeader(text: title)(collectionView,kind,indexPath)
+            header.textColor = self.isReady() ? theme.color.defaultText : theme.color.disabledText
+            header.addTapTarget(target: self, action: #selector(self.startPressed(sender:)))
+            return header
+        }
+        return startSection
+    }
+    
+    func isReady() -> Bool {
+        return self.selectedAvatar.object != nil
+    }
+    
+    func performActivity(avatar:AvatarModel) -> Promise<ActivityCompleteResponse>? {
+        return nil
+    }
+    
+    //MARK: Actions
+    
+    @objc func startPressed(sender:Any) {
+        if !self.isReady() {
+            return
+        }
+        let promise = performActivity(avatar:self.selectedAvatar.object!)
+        _ = promise?.then(execute: { (response) -> Void in
+            
+        })
+    }
+    
+    @objc func selectAvatarPressed(sender:Any) {
         let vc = AvatarListViewController(services: self.services)
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)

@@ -57,6 +57,7 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
         elementBalance.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalTo(speedLabel.snp.bottom)
+            make.height.equalTo(24).priority(750)
         }
         
         tradeBalance.snp.makeConstraints { (make) in

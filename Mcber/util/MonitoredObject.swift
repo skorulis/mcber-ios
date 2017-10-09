@@ -92,12 +92,15 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
 class OptionalMonitoredObject<Element>: MonitoredArray<Element> {
     
     var object:Element? {
-        didSet {
-            if let e = object {
+        set {
+            if let e = newValue {
                 array = [e]
             } else {
                 array = []
             }
+        }
+        get {
+            return array.first
         }
     }
     

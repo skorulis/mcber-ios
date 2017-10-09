@@ -6,12 +6,8 @@ import PromiseKit
 
 class StartExploreViewController: BaseStartActivityViewController {
 
-    var selectedRealm:RealmModel?
+    var selectedRealm = OptionalMonitoredObject<RealmModel>(element:nil)
     let realmSection = SectionController()
-    
-    func realmCount() -> Int {
-        return self.selectedRealm != nil ? 1 : 0
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +18,7 @@ class StartExploreViewController: BaseStartActivityViewController {
         realmSection.fixedHeaderHeight = 40
         realmSection.fixedCellCount = 0
         realmSection.fixedHeight = 70
-        realmSection.simpleNumberOfItemsInSection = realmCount
+        realmSection.simpleNumberOfItemsInSection = selectedRealm.elementCount
         realmSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Realm")(collectionView,kind,indexPath)
             header.addTapTarget(target: self, action: #selector(self.selectRealmPressed(id:)))
@@ -31,8 +27,8 @@ class StartExploreViewController: BaseStartActivityViewController {
         
         realmSection.cellForItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
             let cell:RealmCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-            cell.realm = self.selectedRealm!
-            cell.selectedLevel = self.selectedRealm!.level
+            cell.realm = self.selectedRealm.object!
+            cell.selectedLevel = self.selectedRealm.object!.level
             return cell;
         }
         
@@ -47,7 +43,7 @@ class StartExploreViewController: BaseStartActivityViewController {
         let vc = RealmListViewController(services: self.services)
         vc.didSelectRealm = {[unowned self] (realmListVC:RealmListViewController,realm:RealmModel) in
             realmListVC.navigationController?.popViewController(animated: true)
-            self.selectedRealm = realm
+            self.selectedRealm.object = realm
             self.tryUpdateEstimate()
             self.collectionView.reloadData()
         }
@@ -55,13 +51,13 @@ class StartExploreViewController: BaseStartActivityViewController {
     }
     
     override func startActivity(avatar:AvatarModel) -> Promise<ActivityResponse>? {
-        return selectedRealm.map({ (realm) -> Promise<ActivityResponse> in
+        return selectedRealm.object.map({ (realm) -> Promise<ActivityResponse> in
             return self.services.activity.explore(avatarId: avatar._id, realm: realm)
         })
     }
     
     override func getEstimate(avatar:AvatarModel) -> Promise<ActivityResponse>? {
-        return selectedRealm.map({ (realm) -> Promise<ActivityResponse> in
+        return selectedRealm.object.map({ (realm) -> Promise<ActivityResponse> in
             return self.services.api.explore(avatarId: avatar._id, realm: realm, estimate: true)
         })
     }

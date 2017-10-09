@@ -91,6 +91,11 @@ class ActivityService: NSObject {
         return promise
     }
     
+    func battle(avatar:AvatarModel,realm:RealmModel) -> Promise<ActivityCompleteResponse> {
+        let promise = self.api.battle(avatarId: avatar._id, realm: realm);
+        return promise
+    }
+    
     @objc func checkActivities() {
         let time = Date().timeIntervalSince1970
         for a in state.activities {
