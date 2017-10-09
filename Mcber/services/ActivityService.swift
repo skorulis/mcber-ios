@@ -66,22 +66,7 @@ class ActivityService: NSObject {
     func complete(activity:ActivityModel) -> Promise<ActivityCompleteResponse> {
         let promise = api.complete(activityId:activity._id)
         _ = promise.then { [unowned self] response -> Void in
-            self.state.update(activities:response.activities)
-            self.state.update(avatar:response.avatar)
-            for res in response.result.resources {
-                self.state.add(resource: res)
-            }
-            
-            if let realm = response.result.realmUnlock {
-                self.state.add(realm:realm)
-            }
-            if let item = response.result.item {
-                self.state.add(item: item)
-            }
-            if let gem = response.result.gem {
-                self.state.add(gem: gem)
-            }
-            self.state.add(currency: response.result.currency)
+            self.handleCompleteResponse(response: response)
             
             if activity.autoRepeat {
                 activity.heldResults.add(result:response.result)
@@ -93,7 +78,29 @@ class ActivityService: NSObject {
     
     func battle(avatar:AvatarModel,realm:RealmModel) -> Promise<ActivityCompleteResponse> {
         let promise = self.api.battle(avatarId: avatar._id, realm: realm);
+        _ = promise.then { [unowned self] response -> Void in
+            self.handleCompleteResponse(response: response)
+        }
         return promise
+    }
+    
+    private func handleCompleteResponse(response:ActivityCompleteResponse) {
+        self.state.update(activities:response.activities)
+        self.state.update(avatar:response.avatar)
+        for res in response.result.resources {
+            self.state.add(resource: res)
+        }
+        
+        if let realm = response.result.realmUnlock {
+            self.state.add(realm:realm)
+        }
+        if let item = response.result.item {
+            self.state.add(item: item)
+        }
+        if let gem = response.result.gem {
+            self.state.add(gem: gem)
+        }
+        self.state.add(currency: response.result.currency)
     }
     
     @objc func checkActivities() {

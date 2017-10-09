@@ -13,6 +13,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     let realmUnlock:RealmModel?
     let item:ItemModel?
     let gem:ItemGemModel?
+    let battleResult:BattleResultModel?
     
     required init(map: Map) throws {
         currency = try map.value("currency")
@@ -22,6 +23,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         item = try? map.value("item")
         gem = try? map.value("gem")
         success = try map.value("success")
+        battleResult = try? map.value("battleResult")
     }
     
     func fill(ref: ReferenceService) {
@@ -30,6 +32,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         realmUnlock?.fill(ref: ref)
         item?.fill(ref: ref)
         gem?.fill(ref: ref)
+        battleResult?.fill(ref: ref)
     }
 }
 

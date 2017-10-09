@@ -4,10 +4,22 @@
 import UIKit
 import FontAwesomeKit
 
-class ForwardNavigationCell: ThemedCollectionViewCell {
+struct BasicTextViewModel {
+    let text:String
+}
+
+final class ForwardNavigationCell: ThemedCollectionViewCell, AutoSizeModelCell {
 
     let label = UILabel()
     let chevron = UILabel()
+    
+    static var sizingCell: ForwardNavigationCell = setupCell(cell: ForwardNavigationCell())
+    typealias ModelType = BasicTextViewModel
+    var model: BasicTextViewModel? {
+        didSet {
+            self.label.text = model?.text
+        }
+    }
     
     override func buildView(theme: ThemeService) {
         self.contentView.addSubview(label)

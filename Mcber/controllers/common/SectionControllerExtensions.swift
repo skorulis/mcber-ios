@@ -5,6 +5,11 @@ import UIKit
 
 extension AutoSizeModelCell {
     
+    static func defaultSection(object:ModelType,collectionView:UICollectionView) -> SectionController {
+        let monitor = MonitoredObject(initialValue: object)
+        return defaultObjectSection(data: monitor, collectionView: collectionView)
+    }
+    
     static func defaultArraySection(data:MonitoredArray<ModelType>,collectionView:UICollectionView) -> SectionController {
         collectionView.register(clazz: self as! AnyClass)
         let section = SectionController()

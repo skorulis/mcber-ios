@@ -55,7 +55,10 @@ class BaseInstantActivityViewController: BaseSectionCollectionViewController {
             return
         }
         let promise = performActivity(avatar:self.selectedAvatar.object!)
-        _ = promise?.then(execute: { (response) -> Void in
+        _ = promise?.then(execute: {[unowned self] (response) -> Void in
+            let vc = BattleResultViewController(services: self.services)
+            vc.result = response.result
+            self.navigationController?.pushViewController(vc, animated: true)
             
         })
     }
