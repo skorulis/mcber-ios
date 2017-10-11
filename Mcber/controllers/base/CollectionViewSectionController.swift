@@ -13,6 +13,7 @@ class SectionController: NSObject {
     var fixedFooterHeight:CGFloat?
     
     var cellForItemAt: ((UICollectionView,IndexPath) -> UICollectionViewCell)!
+    var willDisplayCell: ((UICollectionView,UICollectionViewCell,IndexPath) -> ())?
     var didSelectItemAt: ((UICollectionView,IndexPath) -> () )?
     var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
@@ -135,6 +136,10 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         section.didSelectItemAt?(collectionView, indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        sections[indexPath.section].willDisplayCell?(collectionView,cell,indexPath)
     }
     
 }

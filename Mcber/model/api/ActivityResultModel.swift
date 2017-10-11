@@ -14,6 +14,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
     let item:ItemModel?
     let gem:ItemGemModel?
     let battleResult:BattleResultModel?
+    let foundAvatar:AvatarModel?
     
     required init(map: Map) throws {
         currency = try map.value("currency")
@@ -24,6 +25,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         gem = try? map.value("gem")
         success = try map.value("success")
         battleResult = try? map.value("battleResult")
+        foundAvatar = try? map.value("foundAvatar")
     }
     
     func fill(ref: ReferenceService) {
@@ -33,6 +35,7 @@ class ActivityResult: ImmutableMappable, ReferenceFillable {
         item?.fill(ref: ref)
         gem?.fill(ref: ref)
         battleResult?.fill(ref: ref)
+        foundAvatar?.fill(ref: ref)
     }
 }
 
@@ -40,12 +43,14 @@ class CombinedActivityResult {
     
     var title:String
     var resultCount:Int = 0
+    var failureCount:Int = 0
     var currency:Int = 0
     var experience:[ExperienceGainModel] = []
     var resources:[ResourceModel] = []
     var realmUnlock:RealmModel?
     var items:[ItemModel] = []
     var gems:[ItemGemModel] = []
+    var foundAvatars:[AvatarModel] = []
     
     init() {
         title = "Result"
@@ -64,6 +69,9 @@ class CombinedActivityResult {
     
     func add(result:ActivityResult) {
         resultCount = resultCount + 1
+        if (!result.success) {
+            failureCount = failureCount + 1
+        }
         currency = currency + result.currency
         if let item = result.item {
             items.append(item)
@@ -74,6 +82,9 @@ class CombinedActivityResult {
         
         if let unlock = result.realmUnlock {
             realmUnlock = unlock
+        }
+        if let avatar = result.foundAvatar {
+            foundAvatars.append(avatar)
         }
         for xp in result.experience {
             let matching = self.experience.filter { $0.skillId == xp.skillId }.first

@@ -15,6 +15,14 @@ class UserService: NSObject {
         super.init()
     }
     
+    func buyAvatarSlot() -> Promise<UserResponse> {
+        let promise = self.api.buyAvatarSlot()
+        _ = promise.then { response -> Void in
+            self.state.resetState(user: response.user)
+        }
+        return promise
+    }
+    
     func breakdown(item:ItemModel) -> Promise<BreakdownItemResponse> {
         let promise = self.api.breakdown(itemId: item._id)
         _ = promise.then { response -> Void in

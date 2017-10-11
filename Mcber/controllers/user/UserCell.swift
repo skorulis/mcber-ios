@@ -8,6 +8,7 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
     let usernameLabel = UILabel()
     let currencyLabel = UILabel()
     let avatarCountLabel = UILabel()
+    let buyAvatarButton = UIButton()
     
     static var sizingCell: UserCell = setupCell(cell: UserCell())
     typealias ModelType = UserModel
@@ -16,14 +17,17 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
             guard let model = model else { return }
             usernameLabel.text = model.email ?? "Unknown"
             currencyLabel.text = "Credits:  \(model.currency)"
-            avatarCountLabel.text = "Avatars: \(model.avatars.count)"
+            avatarCountLabel.text = "Avatars: \(model.avatars.count) / \(model.maxAvatars)"
         }
     }
     
     override func buildView(theme: ThemeService) {
+        buyAvatarButton.setTitleColor(UIColor.blue, for: .normal)
+        buyAvatarButton.setTitle("+", for: .normal)
         contentView.addSubview(usernameLabel)
         contentView.addSubview(currencyLabel)
         contentView.addSubview(avatarCountLabel)
+        contentView.addSubview(buyAvatarButton)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -39,6 +43,10 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
             make.top.equalTo(currencyLabel.snp.bottom).offset(theme.padding.innerY)
             make.left.equalToSuperview()
             make.bottom.equalToSuperview().inset(theme.padding.bot)
+        }
+        buyAvatarButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(avatarCountLabel)
+            make.left.equalTo(avatarCountLabel.snp.right).offset(10);
         }
     }
     

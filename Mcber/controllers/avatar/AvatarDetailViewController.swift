@@ -36,8 +36,7 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
         
         self.title = "Avatar"
-        self.avatar.valueDidChange = { old,new in
-            print("Got value change")
+        self.avatar.observers.add(object: self) { _ in
             self.collectionView.reloadData()
         }
 

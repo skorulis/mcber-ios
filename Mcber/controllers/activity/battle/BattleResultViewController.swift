@@ -18,7 +18,7 @@ class BattleResultViewController: BaseSectionCollectionViewController {
         
         let avatarSection = AvatarCell.defaultArraySection(data: avatars, collectionView: self.collectionView)
         
-        let summary = BattleSummaryCell.defaultObjectSection(data: battleResMonitor, collectionView: self.collectionView)
+        let summary = BattleSummaryCell.defaultArraySection(data: battleResMonitor, collectionView: self.collectionView)
         
         let nextVM = BasicTextViewModel(text: "Rewards")
         let nextSection = ForwardNavigationCell.defaultSection(object: nextVM, collectionView: collectionView)

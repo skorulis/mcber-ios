@@ -13,40 +13,6 @@ protocol IdObjectProtocol {
     var _id:String { get }
 }
 
-class MonitoredObject<T>: ArrayDataSourceProtocol {
-    typealias ElementType = T;
-    
-    var value:T
-    
-    var valueDidChange:( (T,T) -> ())?
-    
-    
-    init(initialValue:T) {
-        self.value = initialValue
-    }
-    
-    func updateIfEqual(newValue:T) {
-        guard let idValue = self.value as? IdObjectProtocol, let newIdValue = newValue as? IdObjectProtocol else {
-            return
-        }
-        
-        guard (idValue._id == newIdValue._id) else {
-            return
-        }
-        let oldValue = self.value
-        self.value = newValue
-        self.valueDidChange?(oldValue,newValue)
-    }
-    
-    func elementAt(indexPath:IndexPath) -> T {
-        return value
-    }
-    
-    func elementCount() -> Int {
-        return 1
-    }
-}
-
 class MonitoredArray<Element>: ArrayDataSourceProtocol {
     typealias ElementType = Element;
     
@@ -87,6 +53,34 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
         set(newValue) { self.array[index] = newValue }
     }
 
+}
+
+class MonitoredObject<Element>: MonitoredArray<Element> {
+    
+    var value:Element {
+        set {
+            array[0] = newValue
+        }
+        get {
+            return array[0]
+        }
+    }
+    
+    init(initialValue:Element) {
+        super.init(array: [initialValue])
+    }
+    
+    func updateIfEqual(newValue:Element) {
+        guard let idValue = self.value as? IdObjectProtocol, let newIdValue = newValue as? IdObjectProtocol else {
+            return
+        }
+        
+        guard (idValue._id == newIdValue._id) else {
+            return
+        }
+        self.value = newValue
+    }
+    
 }
 
 class OptionalMonitoredObject<Element>: MonitoredArray<Element> {

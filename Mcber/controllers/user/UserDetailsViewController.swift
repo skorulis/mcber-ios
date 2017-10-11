@@ -25,7 +25,11 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: GemCell.self)
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         
-        let topSection = UserCell.defaultObjectSection(data: self.services.state.monitoredUser!, collectionView: collectionView)
+        let topSection = UserCell.defaultArraySection(data: self.services.state.monitoredUser!, collectionView: collectionView)
+        topSection.willDisplayCell = {[unowned self] (c,cell,indexPath) in
+            guard let userCell = cell as? UserCell else { return }
+            userCell.buyAvatarButton.addTarget(self, action: #selector(self.buyAvatarPressed(sender:)), for: .touchUpInside)
+        }
         self.sections.append(topSection)
         
         let resourceSection = SectionController()
@@ -87,6 +91,14 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     }
     
     //MARK: Actions
+    
+    @objc func buyAvatarPressed(sender:Any) {
+        _ = self.services.user.buyAvatarSlot().then {[weak self] response -> Void in
+            self?.collectionView.reloadData()
+        } .catch {[weak self] (error) in
+            self?.show(error: error)
+        }
+    }
     
     @objc func logoutPressed(sender:UIBarButtonItem) {
         self.services.login.logout()

@@ -36,6 +36,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     var realms:[RealmModel]
     var activities:[ActivityModel]
     var currency:Int
+    let maxAvatars:Int
     
     let resources:MonitoredArray<ResourceModel>
     let items:MonitoredArray<ItemModel>
@@ -52,6 +53,8 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         realms = try map.value("realms")
         activities = try map.value("activities")
         currency = try map.value("currency")
+        
+        maxAvatars = try map.value("maxAvatars")
         
         self.resources = MonitoredArray(array: resourcesArray)
         self.items = MonitoredArray(array: itemsArray)
