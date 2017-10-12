@@ -6,15 +6,14 @@ import UIKit
 //This service is purely for storing and notifying about state changes. It should not be doing any logic except for merging partial states
 class GameStateService {
 
-    let didChangeState = ObserverSet<UserModel>()
-    let didChangeAvatar = ObserverSet<AvatarModel>()
-    
     var user:UserModel?
     
     var monitoredUser:MonitoredObject<UserModel>?
     let monitoredResources:MonitoredArray<ResourceModel> = MonitoredArray(array: [])
     let monitoredItems:MonitoredArray<ItemModel> = MonitoredArray(array: [])
     let monitoredGems:MonitoredArray<ItemGemModel> = MonitoredArray(array: [])
+    let monitoredAvatars:MonitoredArray<AvatarModel> = MonitoredArray(array: [])
+    let monitoredActivities:MonitoredArray<ActivityModel> = MonitoredArray(array: [])
     
     init() {
         monitoredResources.observers.add(object: self) {[unowned self] (change) in
@@ -25,6 +24,12 @@ class GameStateService {
         }
         monitoredItems.observers.add(object: self) {[unowned self] (change) in
             self.user?.items = change.array.array
+        }
+        monitoredAvatars.observers.add(object: self) {[unowned self] (change) in
+            self.user?.avatars = change.array.array
+        }
+        monitoredActivities.observers.add(object: self) {[unowned self] (change) in
+            self.user?.activities = change.array.array
         }
     }
     
@@ -44,22 +49,22 @@ class GameStateService {
         self.user = user
         if self.monitoredUser == nil {
             self.monitoredUser = MonitoredObject(initialValue: user)
-            didChangeState.add(object: monitoredUser!, self.monitoredUser!.updateIfEqual(newValue:))
         }
         monitoredUser?.watch(array: monitoredResources)
         monitoredUser?.watch(array: monitoredGems)
         monitoredUser?.watch(array: monitoredItems)
+        monitoredUser?.watch(array: monitoredAvatars)
+        monitoredUser?.watch(array:monitoredActivities)
         
         monitoredResources.array = user.resources
         monitoredGems.array = user.gems
         monitoredItems.array = user.items
-        
-        didChangeState.notify(parameters: user)
+        monitoredAvatars.array = user.avatars
+        monitoredActivities.array = user.activities
     }
     
     func add(activity:ActivityModel) {
-        user?.activities.append(activity)
-        didChangeState.notify(parameters: user!)
+        monitoredActivities.array.append(activity)
     }
     
     func add(currency:Int) {
@@ -78,8 +83,7 @@ class GameStateService {
     }
     
     func add(item:ItemModel) {
-        user?.items.append(item)
-        didChangeState.notify(parameters: user!)
+        monitoredItems.array.append(item)
     }
     
     func add(realm:RealmModel) {
@@ -88,22 +92,17 @@ class GameStateService {
     }
     
     func add(gem:ItemGemModel) {
-        user?.gems.append(gem)
-        didChangeState.notify(parameters: user!)
+        monitoredGems.array.append(gem)
     }
     
     func update(activities:[ActivityModel]) {
-        user?.activities = activities
-        didChangeState.notify(parameters: user!)
+        monitoredActivities.array = activities
+
     }
     
     func update(avatar:AvatarModel) {
-        if let u = user {
-            let index = u.avatars.index { $0._id == avatar._id }!
-            u.avatars[index] = avatar
-            didChangeAvatar.notify(parameters: avatar)
-            didChangeState.notify(parameters: u)
-        }
+        let index = self.monitoredAvatars.array.index { $0._id == avatar._id }!
+        self.monitoredAvatars.array[index] = avatar
     }
     
     func remove(item:ItemModel) {
@@ -116,7 +115,11 @@ class GameStateService {
     
     func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {
         let m = MonitoredObject(initialValue: avatar)
-        didChangeAvatar.add(object: m, m.updateIfEqual(newValue:))
+        monitoredAvatars.observers.add(object: m) { (change) in
+            for a in change.array.array {
+                m.updateIfEqual(newValue: a)
+            }
+        }
         return m
     }
     
