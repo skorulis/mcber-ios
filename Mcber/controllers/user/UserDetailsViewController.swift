@@ -13,6 +13,10 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.services.state.monitoredUser?.observers.add(object: self, { _ in
+            print("Reload user page")
+            self.collectionView.reloadData()
+        })
         
         itemSizingCell.frame = self.view.bounds
         itemSizingCell.setup(theme: self.theme)

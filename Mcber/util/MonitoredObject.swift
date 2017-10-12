@@ -13,19 +13,30 @@ protocol IdObjectProtocol {
     var _id:String { get }
 }
 
+struct MonitoredArrayChange<Element> {
+    let array: MonitoredArray<Element>
+    let oldValue: [Element]
+}
+
 class MonitoredArray<Element>: ArrayDataSourceProtocol {
     typealias ElementType = Element;
     
-    let observers = ObserverSet<MonitoredArray<Element>>()
+    let observers = ObserverSet<MonitoredArrayChange<Element>>()
+    
+    private var arrayPrivate:[Element]
     
     var array:[Element] {
-        didSet {
-            observers.notify(parameters: self)
+        get { return arrayPrivate}
+        set {
+            let change = MonitoredArrayChange(array: self, oldValue: arrayPrivate)
+            arrayPrivate = newValue
+            observers.notify(parameters: change)
         }
+        
     }
     
     init(array:[Element]) {
-        self.array = array
+        self.arrayPrivate = array
     }
     
     func elementAt(indexPath:IndexPath) -> Element {
@@ -51,6 +62,15 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
     subscript(index: Int) -> Element {
         get { return self.array[index] }
         set(newValue) { self.array[index] = newValue }
+    }
+    
+    func watch<T>(array:MonitoredArray<T>) {
+        array.observers.add(object: self) {[weak self] (_) in
+            if let s = self {
+                let change = MonitoredArrayChange(array: s, oldValue: s.arrayPrivate)
+                s.observers.notify(parameters: change)
+            }
+        }
     }
 
 }

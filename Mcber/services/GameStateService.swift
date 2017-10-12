@@ -31,7 +31,13 @@ class GameStateService {
         if self.monitoredUser == nil {
             self.monitoredUser = MonitoredObject(initialValue: user)
             didChangeState.add(object: monitoredUser!, self.monitoredUser!.updateIfEqual(newValue:))
+            self.monitoredUser?.observers.add(object: self, { (array) in
+                //TODO: Copy old observers across
+            })
         }
+        self.monitoredUser?.watch(array: user.gems)
+        self.monitoredUser?.watch(array: user.items)
+        self.monitoredUser?.watch(array: user.resources)
         
         didChangeState.notify(parameters: user)
     }

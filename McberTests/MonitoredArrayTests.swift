@@ -12,12 +12,41 @@ class MonitoredArrayTests: XCTestCase {
         var result = [String]()
         
         let monitor = MonitoredArray(array:[String]())
-        monitor.observers.add(object: self) { (monitoredArray) in
-            result = monitoredArray.array
+        monitor.observers.add(object: self) { (change) in
+            XCTAssertEqual([], change.oldValue)
+            result = change.array.array
         }
         monitor.array.append("TEST1")
         
         XCTAssertEqual(result, ["TEST1"])
+    }
+    
+    func testCascadeUp() {
+        let a1 = MonitoredArray(array: ["TEST"])
+        let a2 = MonitoredArray(array: [Int]())
+        
+        a1.watch(array:a2)
+        
+        var result = [String]()
+        
+        a1.observers.add(object: self) { (change) in
+            result = change.array.array
+        }
+        a2.array = [1]
+        
+        XCTAssertEqual(result, ["TEST"])
+        XCTAssertEqual(a2.array, [1])
+    }
+    
+    func testPreventDoubleWatch() {
+        let a1 = MonitoredArray(array: ["TEST"])
+        let a2 = MonitoredArray(array: [Int]())
+        
+        a1.watch(array: a2)
+        a1.watch(array: a2)
+        
+        XCTAssertEqual(a2.observers.observerCount(),1)
+        
     }
     
     

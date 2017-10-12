@@ -24,6 +24,7 @@ public class ObserverSet<Parameters>: CustomStringConvertible {
     public init() {}
     
     public func add(object: AnyObject, _ f: @escaping (Parameters) -> Void) {
+        remove(object: object) //Remove the old monitor
         let entry = ObserverSetEntry<Parameters>(object: object, f: f)
         self.entries.append(entry)
     }
@@ -44,6 +45,10 @@ public class ObserverSet<Parameters>: CustomStringConvertible {
         self.entries.forEach { (entry) in
             entry.f(parameters)
         }
+    }
+    
+    func observerCount() -> Int {
+        return self.entries.count
     }
     
     
