@@ -15,10 +15,10 @@ class ItemSelectionViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
         
         self.title = "Select Item"
-        
-        let itemSection = ItemCell.defaultArraySection(data: self.user.items,collectionView: collectionView)
+        let items = self.services.state.monitoredItems
+        let itemSection = ItemCell.defaultArraySection(data: items,collectionView: collectionView)
         itemSection.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let item = self.user.items.elementAt(indexPath: indexPath)
+            let item = items.elementAt(indexPath: indexPath)
             self.didSelectItem?(item)
             self.navigationController?.popViewController(animated: true)
         }

@@ -7,12 +7,26 @@ import UIKit
 class GameStateService {
 
     let didChangeState = ObserverSet<UserModel>()
-    let didChangeRealms = ObserverSet<UserModel>()
     let didChangeAvatar = ObserverSet<AvatarModel>()
     
     var user:UserModel?
     
     var monitoredUser:MonitoredObject<UserModel>?
+    let monitoredResources:MonitoredArray<ResourceModel> = MonitoredArray(array: [])
+    let monitoredItems:MonitoredArray<ItemModel> = MonitoredArray(array: [])
+    let monitoredGems:MonitoredArray<ItemGemModel> = MonitoredArray(array: [])
+    
+    init() {
+        monitoredResources.observers.add(object: self) {[unowned self] (change) in
+            self.user?.resources = change.array.array
+        }
+        monitoredGems.observers.add(object: self) {[unowned self] (change) in
+            self.user?.gems = change.array.array
+        }
+        monitoredItems.observers.add(object: self) {[unowned self] (change) in
+            self.user?.items = change.array.array
+        }
+    }
     
     var hasState: Bool {
         return user != nil
@@ -31,13 +45,14 @@ class GameStateService {
         if self.monitoredUser == nil {
             self.monitoredUser = MonitoredObject(initialValue: user)
             didChangeState.add(object: monitoredUser!, self.monitoredUser!.updateIfEqual(newValue:))
-            self.monitoredUser?.observers.add(object: self, { (array) in
-                //TODO: Copy old observers across
-            })
         }
-        self.monitoredUser?.watch(array: user.gems)
-        self.monitoredUser?.watch(array: user.items)
-        self.monitoredUser?.watch(array: user.resources)
+        monitoredUser?.watch(array: monitoredResources)
+        monitoredUser?.watch(array: monitoredGems)
+        monitoredUser?.watch(array: monitoredItems)
+        
+        monitoredResources.array = user.resources
+        monitoredGems.array = user.gems
+        monitoredItems.array = user.items
         
         didChangeState.notify(parameters: user)
     }
@@ -56,9 +71,9 @@ class GameStateService {
             let existing = user!.resources[index]
             let resourceTotal = ResourceModel(quantity: existing.quantity + resource.quantity, resourceId: existing.resourceId)
             resourceTotal.refModel = existing.refModel
-            user?.resources[index] = resourceTotal
+            monitoredResources[index] = resourceTotal
         } else {
-            user?.resources.append(resource)
+            monitoredResources.append(resource)
         }
     }
     
@@ -92,11 +107,11 @@ class GameStateService {
     }
     
     func remove(item:ItemModel) {
-        user!.items.array = user!.items.array.filter { $0._id != item._id }
+        monitoredItems.array = monitoredItems.array.filter { $0._id != item._id }
     }
     
     func remove(gem:ItemGemModel) {
-        user!.gems.array = user!.gems.array.filter { $0._id != gem._id}
+        monitoredGems.array = monitoredGems.array.filter { $0._id != gem._id}
     }
     
     func monitor(avatar:AvatarModel) -> MonitoredObject<AvatarModel> {

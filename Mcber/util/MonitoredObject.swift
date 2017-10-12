@@ -72,6 +72,10 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
             }
         }
     }
+    
+    func copyObservers(from:MonitoredArray<Element>) {
+        self.observers.copyObservers(from: from.observers)
+    }
 
 }
 

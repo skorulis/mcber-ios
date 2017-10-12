@@ -51,6 +51,10 @@ public class ObserverSet<Parameters>: CustomStringConvertible {
         return self.entries.count
     }
     
+    func copyObservers(from:ObserverSet<Parameters>) {
+        self.entries.append(contentsOf: from.entries.filter { $0.object != nil})
+    }
+    
     
     // MARK: CustomStringConvertible
     

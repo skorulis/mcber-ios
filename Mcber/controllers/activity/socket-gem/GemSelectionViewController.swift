@@ -15,10 +15,10 @@ class GemSelectionViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
         
         self.title = "Select Gem"
-        
-        let section = GemCell.defaultArraySection(data: self.user.gems,collectionView: collectionView)
+        let gems = self.services.state.monitoredGems
+        let section = GemCell.defaultArraySection(data: gems,collectionView: collectionView)
         section.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
-            let gem = self.user.gems.elementAt(indexPath: indexPath)
+            let gem = gems.elementAt(indexPath: indexPath)
             self.didSelectGem?(gem)
             self.navigationController?.popViewController(animated: true)
         }

@@ -5,9 +5,9 @@ import UIKit
 
 class UserDetailsViewController: BaseSectionCollectionViewController {
     
-    lazy var resources = self.services.state.user!.resources
-    lazy var items = self.services.state.user!.items
-    lazy var gems = self.services.state.user!.gems
+    lazy var resources = self.services.state.monitoredResources
+    lazy var items = self.services.state.monitoredItems
+    lazy var gems = self.services.state.monitoredGems
     
     let itemSizingCell = ItemCell()
     

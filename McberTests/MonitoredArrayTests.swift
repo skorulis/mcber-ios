@@ -46,6 +46,22 @@ class MonitoredArrayTests: XCTestCase {
         a1.watch(array: a2)
         
         XCTAssertEqual(a2.observers.observerCount(),1)
+    }
+    
+    func testObserverCopy() {
+        let a1 = MonitoredArray(array: ["TEST"])
+        let a2 = MonitoredArray(array: ["TEST2"])
+        
+        var result = [String]()
+        
+        a1.observers.add(object: self) { (change) in
+            XCTAssertEqual(change.oldValue, ["TEST2"])
+            result = change.array.array
+        }
+        
+        a2.copyObservers(from: a1)
+        a2.array.append("TEST3")
+        XCTAssertEqual(result, ["TEST2","TEST3"])
         
     }
     
