@@ -29,6 +29,11 @@ class StartExploreViewController: BaseStartActivityViewController {
             let cell:RealmCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.realm = self.selectedRealm.object!
             cell.selectedLevel = self.selectedRealm.object!.level
+            cell.didSelectLevel = { [unowned self] (level:Int) in
+                let currentRealm = self.selectedRealm.object!
+                let newRealm = RealmModel(elementId: currentRealm.elementId, level: level, maximumLevel: currentRealm.maximumLevel)
+                self.didSelectRealm(realm: newRealm)
+            }
             return cell;
         }
         
@@ -43,11 +48,15 @@ class StartExploreViewController: BaseStartActivityViewController {
         let vc = RealmListViewController(services: self.services)
         vc.didSelectRealm = {[unowned self] (realmListVC:RealmListViewController,realm:RealmModel) in
             realmListVC.navigationController?.popViewController(animated: true)
-            self.selectedRealm.object = realm
-            self.tryUpdateEstimate()
-            self.collectionView.reloadData()
+            self.didSelectRealm(realm: realm)
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didSelectRealm(realm:RealmModel) {
+        self.selectedRealm.object = realm
+        self.tryUpdateEstimate()
+        self.collectionView.reloadData()
     }
     
     override func startActivity(avatar:AvatarModel) -> Promise<ActivityResponse>? {
