@@ -100,6 +100,9 @@ class ActivityService: NSObject {
         if let gem = response.result.gem {
             self.state.add(gem: gem)
         }
+        if let avatar = response.result.foundAvatar {
+            self.state.add(avatar: avatar)
+        }
         self.state.add(currency: response.result.currency)
     }
     

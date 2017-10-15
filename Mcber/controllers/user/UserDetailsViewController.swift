@@ -33,6 +33,7 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
         topSection.willDisplayCell = {[unowned self] (c,cell,indexPath) in
             guard let userCell = cell as? UserCell else { return }
             userCell.buyAvatarButton.addTarget(self, action: #selector(self.buyAvatarPressed(sender:)), for: .touchUpInside)
+            userCell.optionsButton.addTarget(self, action: #selector(self.optionsPressed(sender:)), for: .touchUpInside)
         }
         self.sections.append(topSection)
         
@@ -95,6 +96,11 @@ class UserDetailsViewController: BaseSectionCollectionViewController {
     }
     
     //MARK: Actions
+    
+    @objc func optionsPressed(sender:Any) {
+        let vc = UserOptionsViewController(services:self.services)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @objc func buyAvatarPressed(sender:Any) {
         _ = self.services.user.buyAvatarSlot().then {[weak self] response -> Void in

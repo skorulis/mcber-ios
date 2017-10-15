@@ -28,6 +28,23 @@ class ResourceModel: ImmutableMappable, ReferenceFillable {
     
 }
 
+class UserOptionModel: ImmutableMappable {
+    
+    let optionName:String
+    var optionValue:Any
+    
+    required init(map: Map) throws {
+        optionName = try map.value("optionName")
+        optionValue = try map.value("optionValue")
+    }
+    
+    init(optionName:String,optionValue:Any) {
+        self.optionName = optionName;
+        self.optionValue = optionValue
+    }
+    
+}
+
 class UserModel: ImmutableMappable, ReferenceFillable {
 
     let _id:String
@@ -41,6 +58,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
     var resources:[ResourceModel]
     var items:[ItemModel]
     var gems:[ItemGemModel]
+    var options:[UserOptionModel];
     
     required init(map: Map) throws {
         _id = try map.value("_id")
@@ -55,6 +73,7 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         self.resources = try map.value("resources");
         self.items = try map.value("items")
         self.gems = try map.value("gems")
+        self.options = try map.value("options")
     }
     
     func fill(ref: ReferenceService) {
@@ -75,6 +94,19 @@ class UserModel: ImmutableMappable, ReferenceFillable {
             return resources[index].quantity >= resource.quantity
         }
         return false
+    }
+    
+    func getOption(name:String) -> Any? {
+        return self.options.first { $0.optionName == name }?.optionValue
+    }
+    
+    func setOption(name:String,value:Any) {
+        let existing = self.options.first{ $0.optionName == name }
+        if existing != nil {
+            existing?.optionValue = value
+        } else {
+            options.append(UserOptionModel(optionName: name, optionValue: value))
+        }
     }
 }
 

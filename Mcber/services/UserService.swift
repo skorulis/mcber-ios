@@ -44,4 +44,10 @@ class UserService: NSObject {
         }
         return promise
     }
+    
+    func updateUserOptions(options:[UserOptionModel]) -> Promise<UserResponse> {
+        let dict = options.map {["optionName":$0.optionName,"optionValue":$0.optionValue]}
+        return self.api.updateOptions(options: dict)
+        
+    }
 }

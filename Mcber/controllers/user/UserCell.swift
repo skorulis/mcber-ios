@@ -2,6 +2,7 @@
 //  Copyright © 2017 Alex Skorulis. All rights reserved.
 
 import UIKit
+import FontAwesomeKit
 
 final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
     
@@ -9,6 +10,7 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
     let currencyLabel = UILabel()
     let avatarCountLabel = UILabel()
     let buyAvatarButton = UIButton()
+    let optionsButton = UIButton()
     
     static var sizingCell: UserCell = setupCell(cell: UserCell())
     typealias ModelType = UserModel
@@ -24,10 +26,17 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
     override func buildView(theme: ThemeService) {
         buyAvatarButton.setTitleColor(UIColor.blue, for: .normal)
         buyAvatarButton.setTitle("+", for: .normal)
+        
+        let cogIcon = FAKFontAwesome.cogIcon(withSize: 40)
+        cogIcon?.addAttribute(NSAttributedStringKey.foregroundColor.rawValue, value: theme.color.defaultText)
+        optionsButton.setAttributedTitle(cogIcon?.attributedString(), for: .normal)
+        
+        
         contentView.addSubview(usernameLabel)
         contentView.addSubview(currencyLabel)
         contentView.addSubview(avatarCountLabel)
         contentView.addSubview(buyAvatarButton)
+        contentView.addSubview(optionsButton)
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -47,6 +56,9 @@ final class UserCell: ThemedCollectionViewCell, AutoSizeModelCell {
         buyAvatarButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(avatarCountLabel)
             make.left.equalTo(avatarCountLabel.snp.right).offset(10);
+        }
+        optionsButton.snp.makeConstraints { (make) in
+            make.right.top.equalToSuperview().inset(theme.padding.edges)
         }
     }
     

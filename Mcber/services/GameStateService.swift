@@ -95,6 +95,10 @@ class GameStateService {
         monitoredGems.array.append(gem)
     }
     
+    func add(avatar:AvatarModel) {
+        monitoredAvatars.append(avatar)
+    }
+    
     func update(activities:[ActivityModel]) {
         monitoredActivities.array = activities
 

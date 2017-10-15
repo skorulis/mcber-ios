@@ -5,6 +5,7 @@ import UIKit
 
 class StepperCellViewModel {
     var value:Int = 1
+    var minValue = 1
     let title:String
     
     init(title:String,value:Int = 1) {
@@ -26,6 +27,7 @@ final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell, Model
             guard let model = model else {
                 return
             }
+            stepper.minimumValue = Double(model.minValue)
             stepper.value = Double(model.value)
             label.text = model.title
             valueLabel.text = "\(model.value)"
@@ -35,7 +37,6 @@ final class StepperCountCell: ThemedCollectionViewCell, AutoSizeModelCell, Model
     
     override func buildView(theme: ThemeService) {
         stepper.addTarget(self, action: #selector(stepperValueChanged(sender:)), for: .valueChanged)
-        stepper.minimumValue = 1
         
         self.contentView.addSubview(stepper)
         self.contentView.addSubview(label)
