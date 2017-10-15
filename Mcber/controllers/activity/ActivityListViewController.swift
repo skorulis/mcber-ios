@@ -58,6 +58,7 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             cell.activity = self.activities[indexPath.row]
             cell.completeBlock = self.complete(activity:)
             cell.takeResults = self.takeResults(activity:)
+            cell.cancelBlock = self.cancel(activity:)
             return cell
         }
         activitySection.fixedHeaderHeight = 40
@@ -100,6 +101,12 @@ class ActivityListViewController: BaseSectionCollectionViewController {
             vc.result = CombinedActivityResult(result: response.result)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
             strongSelf.collectionView.reloadData()
+        }
+    }
+    
+    func cancel(activity:ActivityModel) {
+        _ = self.services.activity.cancel(activity: activity).then {[unowned self] response in
+            self.collectionView.reloadData()
         }
     }
     

@@ -26,6 +26,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
             guard let activity = self.activity else { return }
             typeLabel.text = self.activityText(activity: activity)
             autoRepeatSwitch.isOn = activity.autoRepeat
+            cancelButton.isHidden = activity.isFinished()
             updateCompleteButton()
             updateProgressFrame()
             updateRemainingLabel()

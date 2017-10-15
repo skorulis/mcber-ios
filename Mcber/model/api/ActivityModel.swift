@@ -138,6 +138,11 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
         return startTimestamp + calculated.duration
     }
     
+    func isFinished() -> Bool {
+        let time = Date().timeIntervalSince1970
+        return self.finishTimestamp < time
+    }
+    
 }
 
 class ActivityResponse: ImmutableMappable, ReferenceFillable {
@@ -172,5 +177,17 @@ class ActivityCompleteResponse: ImmutableMappable, ReferenceFillable {
         activities.forEach { $0.fill(ref: ref) }
         result.fill(ref: ref)
         avatar.fill(ref: ref)
+    }
+}
+
+class ActivityCancelResponse: ImmutableMappable, ReferenceFillable {
+    let activities:[ActivityModel]
+    
+    required init(map: Map) throws {
+        activities = try map.value("activities")
+    }
+    
+    func fill(ref: ReferenceService) {
+        activities.forEach { $0.fill(ref: ref) }
     }
 }

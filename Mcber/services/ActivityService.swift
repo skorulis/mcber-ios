@@ -76,6 +76,15 @@ class ActivityService: NSObject {
         return promise
     }
     
+    func cancel(activity:ActivityModel) -> Promise<ActivityCancelResponse> {
+        let promise = api.cancelActivity(activityId:activity._id)
+        _ = promise.then { [unowned self] response -> Void in
+            self.state.update(activities:response.activities)
+        }
+        
+        return promise
+    }
+    
     func battle(avatar:AvatarModel,realm:RealmModel) -> Promise<ActivityCompleteResponse> {
         let promise = self.api.battle(avatarId: avatar._id, realm: realm);
         _ = promise.then { [unowned self] response -> Void in

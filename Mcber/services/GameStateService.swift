@@ -96,7 +96,9 @@ class GameStateService {
     }
     
     func add(avatar:AvatarModel) {
-        monitoredAvatars.append(avatar)
+        if (user!.avatars.count < user!.maxAvatars) {
+            monitoredAvatars.append(avatar)
+        }
     }
     
     func update(activities:[ActivityModel]) {
