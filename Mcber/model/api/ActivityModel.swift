@@ -94,7 +94,7 @@ class ActivitySocketGemModel: ImmutableMappable {
     }
 }
 
-class ActivityModel: ImmutableMappable, ReferenceFillable {
+class ActivityModel: ImmutableMappable, ReferenceFillable, IdUpdateableProtocol {
 
     let startTimestamp:Double
     let _id:String
@@ -107,10 +107,10 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
     let gem:ActivityGemModel?
     let socketGem:ActivitySocketGemModel?
     
-    var autoRepeat:Bool = false
-    
     var itemRef:ItemBaseTypeRef?
     
+    //Client side variables
+    var autoRepeat:Bool = false
     var heldResults = CombinedActivityResult()
     
     required init(map: Map) throws {
@@ -141,6 +141,13 @@ class ActivityModel: ImmutableMappable, ReferenceFillable {
     func isFinished() -> Bool {
         let time = Date().timeIntervalSince1970
         return self.finishTimestamp < time
+    }
+    
+    func update(old: IdUpdateableProtocol) {
+        if let oldActivity = old as? ActivityModel {
+            self.heldResults = oldActivity.heldResults
+            self.autoRepeat = oldActivity.autoRepeat
+        }
     }
     
 }

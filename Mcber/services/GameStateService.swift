@@ -103,7 +103,6 @@ class GameStateService {
     
     func update(activities:[ActivityModel]) {
         monitoredActivities.array = activities
-
     }
     
     func update(avatar:AvatarModel) {

@@ -39,7 +39,7 @@ class ActivityItemCell: ThemedCollectionViewCell {
             completeButton.alpha = activity.heldResults.experience.count > 0 ? 1 : 0
             completeButton.setTitle("Unseen results", for: .normal)
         } else {
-            completeButton.alpha = 1
+            completeButton.alpha = activity.isFinished() ? 1 : 0
             completeButton.setTitle("Complete", for: .normal)
         }
     }

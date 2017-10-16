@@ -13,9 +13,22 @@ protocol IdObjectProtocol {
     var _id:String { get }
 }
 
+protocol IdUpdateableProtocol: IdObjectProtocol {
+    func update(old:IdUpdateableProtocol)
+}
+
 struct MonitoredArrayChange<Element> {
     let array: MonitoredArray<Element>
-    let oldValue: [Element]
+    let oldValues: [Element]
+    
+    func findOldById(id:String) -> Element? {
+        return oldValues.filter { (element) -> Bool in
+            if let e = element as? IdObjectProtocol {
+                return e._id == id
+            }
+            return false
+        }.first
+    }
 }
 
 class MonitoredArray<Element>: ArrayDataSourceProtocol {
@@ -28,7 +41,14 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
     var array:[Element] {
         get { return arrayPrivate}
         set {
-            let change = MonitoredArrayChange(array: self, oldValue: arrayPrivate)
+            let change = MonitoredArrayChange(array: self, oldValues: arrayPrivate)
+            for obj in newValue {
+                if let updatingObj = obj as? IdUpdateableProtocol {
+                    if let old = change.findOldById(id: updatingObj._id) {
+                        updatingObj.update(old: old as! IdUpdateableProtocol)
+                    }
+                }
+            }
             arrayPrivate = newValue
             observers.notify(parameters: change)
         }
@@ -67,7 +87,7 @@ class MonitoredArray<Element>: ArrayDataSourceProtocol {
     func watch<T>(array:MonitoredArray<T>) {
         array.observers.add(object: self) {[weak self] (_) in
             if let s = self {
-                let change = MonitoredArrayChange(array: s, oldValue: s.arrayPrivate)
+                let change = MonitoredArrayChange(array: s, oldValues: s.arrayPrivate)
                 s.observers.notify(parameters: change)
             }
         }
@@ -129,5 +149,4 @@ class OptionalMonitoredObject<Element>: MonitoredArray<Element> {
         }
         super.init(array: a)
     }
-    
 }

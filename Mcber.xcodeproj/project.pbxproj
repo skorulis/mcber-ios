@@ -15,6 +15,7 @@
 		FA14C2F01F77B573005C0B63 /* ItemTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA14C2EF1F77B573005C0B63 /* ItemTypeSelectionViewController.swift */; };
 		FA14C2F21F77B58D005C0B63 /* BaseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA14C2F11F77B58D005C0B63 /* BaseItemCell.swift */; };
 		FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */; };
+		FA23DA041F9404630001D5CE /* MonitoredArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */; };
 		FA36590A1F8B61E500CAC94E /* BattleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3659091F8B61E500CAC94E /* BattleResultViewController.swift */; };
 		FA36590C1F8B620900CAC94E /* BattleResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36590B1F8B620900CAC94E /* BattleResultModel.swift */; };
 		FA36590E1F8B822F00CAC94E /* BattleSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36590D1F8B822F00CAC94E /* BattleSummaryCell.swift */; };
@@ -136,6 +137,7 @@
 		FA14C2EF1F77B573005C0B63 /* ItemTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA14C2F11F77B58D005C0B63 /* BaseItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseItemCell.swift; sourceTree = "<group>"; };
 		FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBalanceView.swift; sourceTree = "<group>"; };
+		FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredArrayView.swift; sourceTree = "<group>"; };
 		FA3659091F8B61E500CAC94E /* BattleResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultViewController.swift; sourceTree = "<group>"; };
 		FA36590B1F8B620900CAC94E /* BattleResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultModel.swift; sourceTree = "<group>"; };
 		FA36590D1F8B822F00CAC94E /* BattleSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSummaryCell.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				FAA191E81F673A4B0076CDC7 /* ObserverSet.swift */,
 				FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */,
 				FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */,
+				FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
+				FA23DA041F9404630001D5CE /* MonitoredArrayView.swift in Sources */,
 				FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */,
 				FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */,
 				FA3FD9BC1F823FBF00C1C700 /* BaseStartActivityViewController.swift in Sources */,
