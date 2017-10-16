@@ -3,52 +3,36 @@
 
 import UIKit
 
-
-//TODO: Make section controller
-class AvatarListViewController: BaseCollectionViewController {
+class AvatarListViewController: BaseSectionCollectionViewController {
 
     var didSelectAvatar: ((AvatarListViewController,AvatarModel) -> () )?
-    
-    var avatars:[AvatarModel] {
-        return self.services.state.user?.avatars ?? []
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Avatars"
-        self.collectionView.register(clazz: AvatarCell.self)   
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.flowLayout?.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 120)
+        
+        let avatarViewModel:MonitoredArrayView<AvatarViewModel,AvatarModel> = self.services.state.monitoredAvatars.map { avatar in
+            
+            return AvatarViewModel(avatar:avatar)
+        }
+        
+        let avatarSection = AvatarCell.defaultArraySection(data: avatarViewModel, collectionView: collectionView)
+        avatarSection.didSelectItemAt = { [unowned self] (collectionView:UICollectionView,indexPath:IndexPath) in
+            let avatar = self.services.state.monitoredAvatars[indexPath.row]
+            if let select = self.didSelectAvatar {
+                select(self,avatar)
+            } else {
+                let vc = AvatarDetailViewController(services:self.services,avatar:avatar)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        self.add(section: avatarSection)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView.reloadData()
     }
-    
-    override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.avatars.count
-    }
-    
-    override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:AvatarCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-        let vm = AvatarViewModel(avatar: avatars[indexPath.row])
-        cell.model = vm
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let select = didSelectAvatar {
-            select(self,self.avatars[indexPath.row])
-        } else {
-            let vc = AvatarDetailViewController(services: self.services,avatar:self.avatars[indexPath.row])
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
 
 }

@@ -22,6 +22,7 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
     private let speedLabel = UILabel()
     private let elementBalance = AvatarBalanceView(frame: .zero, columnCount: 10)
     private let tradeBalance = AvatarBalanceView(frame: .zero, columnCount: 5)
+    private let statusLabel = UILabel()
     
     private let ref = ReferenceService.instance!
     
@@ -37,6 +38,9 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
                 
                 elementBalance.models = avatar.stats.skills.filter { $0.ref.type == .element }
                 tradeBalance.models = avatar.stats.skills.filter { $0.ref.type == .trade }
+                
+                statusLabel.text = m.status
+                statusLabel.textColor = m.statusColor
             }
         }
     }
@@ -49,6 +53,9 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
         self.contentView.addSubview(speedLabel)
         self.contentView.addSubview(elementBalance)
         self.contentView.addSubview(tradeBalance)
+        self.contentView.addSubview(statusLabel)
+        
+        statusLabel.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/4))
     }
     
     override func buildLayout(theme: ThemeService) {
@@ -76,6 +83,12 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(elementBalance.snp.bottom).offset(2)
             make.height.equalTo(elementBalance)
+        }
+        
+        statusLabel.snp.makeConstraints { (make) in
+            make.top.right.equalToSuperview()
+            make.width.equalTo(statusLabel.snp.height)
+            make.bottom.equalTo(elementBalance.snp.top)
         }
     }
 
