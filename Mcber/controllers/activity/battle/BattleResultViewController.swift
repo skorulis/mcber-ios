@@ -14,7 +14,7 @@ class BattleResultViewController: BaseSectionCollectionViewController {
         
         let battleRes = result.battleResult!
         let battleResMonitor = MonitoredObject(initialValue: battleRes)
-        let avatars = MonitoredArray(array: [battleRes.avatar1,battleRes.avatar2])
+        let avatars = MonitoredArray(array: [battleRes.avatar1,battleRes.avatar2].map { AvatarViewModel(avatar:$0)})
         
         let avatarSection = AvatarCell.defaultArraySection(data: avatars, collectionView: self.collectionView)
         

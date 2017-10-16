@@ -9,7 +9,7 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
     let selectedAvatar = OptionalMonitoredObject<AvatarModel>(element:nil)
     var estimatedActivity:ActivityModel?
     
-    let avatarSection = SectionController()
+    var avatarSection:SectionController!
     
     func estimate(indexPath:IndexPath) -> ActivityViewModel? {
         return estimatedActivity.map { ActivityViewModel(activity:$0,user:self.services.state.user!,theme:self.theme) }
@@ -24,15 +24,15 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
+        let avatarViewModel:MonitoredArrayView<AvatarViewModel,AvatarModel> = selectedAvatar.map { AvatarViewModel(avatar:$0)}
+        
+        avatarSection = AvatarCell.defaultArraySection(data: avatarViewModel, collectionView: collectionView)
         avatarSection.fixedHeaderHeight = 40
-        avatarSection.fixedHeight = 120
-        avatarSection.simpleNumberOfItemsInSection = self.selectedAvatar.elementCount
         avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)
-            header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(id:)))
+            header.addTapTarget(target: self, action: #selector(self.selectAvatarPressed(sender:)))
             return header
         }
-        avatarSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: {[unowned self] (IndexPath)->(AvatarModel) in return self.selectedAvatar.object! })
         
     }
     
@@ -64,7 +64,7 @@ class BaseStartActivityViewController: BaseSectionCollectionViewController {
         return startSection
     }
     
-    @objc func selectAvatarPressed(id:Any) {
+    @objc func selectAvatarPressed(sender:Any) {
         let vc = AvatarListViewController(services: self.services)
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)

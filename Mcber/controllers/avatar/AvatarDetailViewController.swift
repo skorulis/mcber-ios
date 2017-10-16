@@ -36,18 +36,17 @@ class AvatarDetailViewController: BaseSectionCollectionViewController {
         super.viewDidLoad()
         
         self.title = "Avatar"
-        self.avatar.observers.add(object: self) { _ in
-            self.collectionView.reloadData()
-        }
-
-        self.collectionView.register(clazz: AvatarCell.self)
+        
         self.collectionView.register(clazz: AvatarSkillCell.self)
         self.collectionView.register(clazz: SectionHeaderView.self, forKind: UICollectionElementKindSectionHeader)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
         
-        let topSection = SectionController()
-        topSection.fixedHeight = 120
-        topSection.cellForItemAt = AvatarCell.curriedDefaultCell(getModel: avatar.elementAt(indexPath:))
+        let avatarViewModel:MonitoredArrayView<AvatarViewModel,AvatarModel> = avatar.map { AvatarViewModel(avatar:$0) }
+        avatarViewModel.observers.add(object: self) { _ in
+            self.collectionView.reloadData()
+        }
+        
+        let topSection = AvatarCell.defaultArraySection(data: avatarViewModel, collectionView: collectionView)
         
         let itemSection = SectionController()
         itemSection.fixedHeaderHeight = 40

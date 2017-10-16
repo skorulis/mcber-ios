@@ -4,6 +4,17 @@
 import UIKit
 import SnapKit
 
+class AvatarViewModel {
+    let avatar:AvatarModel
+    var status:String = ""
+    var statusColor = UIColor.green
+    
+    init(avatar:AvatarModel) {
+        self.avatar = avatar
+    }
+    
+}
+
 final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
 
     private let levelLabel = UILabel()
@@ -15,16 +26,17 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
     private let ref = ReferenceService.instance!
     
     static var sizingCell: AvatarCell = setupCell(cell: AvatarCell())
-    typealias ModelType = AvatarModel
-    var model:AvatarModel? {
+    typealias ModelType = AvatarViewModel
+    var model:AvatarViewModel? {
         didSet {
             if let m = model {
-                levelLabel.text = "Level: \(m.level)"
-                healthLabel.text = "Health: \(m.stats.otherValue(type: .health))"
-                speedLabel.text = "Speed: \(m.stats.otherValue(type: .speed))"
+                let avatar = m.avatar
+                levelLabel.text = "Level: \(avatar.level)"
+                healthLabel.text = "Health: \(avatar.stats.otherValue(type: .health))"
+                speedLabel.text = "Speed: \(avatar.stats.otherValue(type: .speed))"
                 
-                elementBalance.models = m.stats.skills.filter { $0.ref.type == .element }
-                tradeBalance.models = m.stats.skills.filter { $0.ref.type == .trade }
+                elementBalance.models = avatar.stats.skills.filter { $0.ref.type == .element }
+                tradeBalance.models = avatar.stats.skills.filter { $0.ref.type == .trade }
             }
         }
     }

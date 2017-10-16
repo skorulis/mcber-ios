@@ -92,7 +92,8 @@ class ActivityResultViewController: BaseSectionCollectionViewController {
         }
         
         if result.foundAvatars.count > 0 {
-            let monitoredArray = MonitoredArray(array: result.foundAvatars)
+            let monitoredArray = MonitoredArray(array: result.foundAvatars.map { AvatarViewModel(avatar:$0)})
+            
             let avatarSection = AvatarCell.defaultArraySection(data: monitoredArray, collectionView: collectionView)
             avatarSection.fixedHeaderHeight = 40
             avatarSection.viewForSupplementaryElementOfKind = SectionHeaderView.curriedHeaderFunc(theme: self.theme, text: "Avatars")

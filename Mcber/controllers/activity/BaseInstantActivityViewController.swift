@@ -16,7 +16,9 @@ class BaseInstantActivityViewController: BaseSectionCollectionViewController {
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionHeader)
         collectionView.register(clazz: ForwardNavigationHeader.self, forKind: UICollectionElementKindSectionFooter)
         
-        avatarSection = AvatarCell.defaultArraySection(data: selectedAvatar, collectionView: collectionView)
+        let avatarViewModel:MonitoredArrayView<AvatarViewModel,AvatarModel> = selectedAvatar.map { AvatarViewModel(avatar:$0)}
+        
+        avatarSection = AvatarCell.defaultArraySection(data: avatarViewModel, collectionView: collectionView)
         avatarSection.fixedHeaderHeight = 40
         avatarSection.viewForSupplementaryElementOfKind = { [unowned self] (collectionView:UICollectionView,kind:String,indexPath:IndexPath) in
             let header = ForwardNavigationHeader.curriedDefaultHeader(text: "Select Avatar")(collectionView,kind,indexPath)

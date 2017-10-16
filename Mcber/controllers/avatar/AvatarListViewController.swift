@@ -3,6 +3,8 @@
 
 import UIKit
 
+
+//TODO: Make section controller
 class AvatarListViewController: BaseCollectionViewController {
 
     var didSelectAvatar: ((AvatarListViewController,AvatarModel) -> () )?
@@ -34,7 +36,8 @@ class AvatarListViewController: BaseCollectionViewController {
     
     override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AvatarCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-        cell.model = avatars[indexPath.row]
+        let vm = AvatarViewModel(avatar: avatars[indexPath.row])
+        cell.model = vm
         return cell
     }
     
