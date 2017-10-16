@@ -96,6 +96,10 @@ class UserModel: ImmutableMappable, ReferenceFillable {
         return false
     }
     
+    func avatarActivity(avatarId:String) -> ActivityModel? {
+        return activities.first { $0.avatarId == avatarId }
+    }
+    
     func getOption(name:String) -> Any? {
         return self.options.first { $0.optionName == name }?.optionValue
     }

@@ -9,8 +9,10 @@ class AvatarViewModel {
     var status:String = ""
     var statusColor = UIColor.green
     
-    init(avatar:AvatarModel) {
+    init(avatar:AvatarModel,status:String="",statusColor:UIColor=UIColor.green) {
         self.avatar = avatar
+        self.status = status
+        self.statusColor = statusColor
     }
     
 }
@@ -56,6 +58,7 @@ final class AvatarCell: ThemedCollectionViewCell, AutoSizeModelCell {
         self.contentView.addSubview(statusLabel)
         
         statusLabel.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/4))
+        statusLabel.font = theme.font.stamp
     }
     
     override func buildLayout(theme: ThemeService) {

@@ -67,6 +67,7 @@ class BaseInstantActivityViewController: BaseSectionCollectionViewController {
     
     @objc func selectAvatarPressed(sender:Any) {
         let vc = AvatarListViewController(services: self.services)
+        vc.listType = .free
         vc.didSelectAvatar = {[unowned self] (vc:AvatarListViewController,avatar:AvatarModel) in
             vc.navigationController?.popViewController(animated: true)
             self.selectedAvatar.object = avatar

@@ -60,6 +60,8 @@ public class ThemeColors: NSObject {
     public let deselectedColor = UIColor(netHex: 0xAAAAAA)
     public let selectedColor = UIColor(netHex: 0x3333BB)
 
+    public let positiveColor = UIColor(netHex: 0x2bc623)
+    public let negativeColor = UIColor(netHex: 0xe03e35)
     
     public override init() {
         defaultBackground = UIColor.white
@@ -69,6 +71,8 @@ public class ThemeColors: NSObject {
 public class ThemeFonts: NSObject {
     public let title = UIFont.boldSystemFont(ofSize: 22)
     public let basic = UIFont.systemFont(ofSize: 14)
+    
+    public let stamp = UIFont(name: "DueDate", size: 16)
 }
 
 public class ThemePadding: NSObject {

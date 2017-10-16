@@ -57,6 +57,7 @@
 		FA95E3541F84B3E500FC979D /* MemoryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */; };
 		FA95E3561F84B4C900FC979D /* SkillSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3551F84B4C900FC979D /* SkillSelectionViewController.swift */; };
 		FA95E3581F84B64C00FC979D /* SkillRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E3571F84B64C00FC979D /* SkillRefCell.swift */; };
+		FAA0CF661F94C3BC00171C64 /* DueDate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA0CF651F94C37700171C64 /* DueDate.ttf */; };
 		FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */; };
 		FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B31F6739CF0076CDC7 /* Assets.xcassets */; };
 		FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA191B51F6739CF0076CDC7 /* LaunchScreen.storyboard */; };
@@ -179,6 +180,7 @@
 		FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryHelpers.swift; sourceTree = "<group>"; };
 		FA95E3551F84B4C900FC979D /* SkillSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillSelectionViewController.swift; sourceTree = "<group>"; };
 		FA95E3571F84B64C00FC979D /* SkillRefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillRefCell.swift; sourceTree = "<group>"; };
+		FAA0CF651F94C37700171C64 /* DueDate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DueDate.ttf; sourceTree = "<group>"; };
 		FAA191A91F6739CF0076CDC7 /* Mcber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mcber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA191AC1F6739CF0076CDC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA191B31F6739CF0076CDC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -354,6 +356,14 @@
 			path = explore;
 			sourceTree = "<group>";
 		};
+		FAA0CF641F94C37700171C64 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				FAA0CF651F94C37700171C64 /* DueDate.ttf */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		FAA191A01F6739CF0076CDC7 = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +389,7 @@
 		FAA191AB1F6739CF0076CDC7 /* Mcber */ = {
 			isa = PBXGroup;
 			children = (
+				FAA0CF641F94C37700171C64 /* assets */,
 				FAA191DA1F673A4B0076CDC7 /* controllers */,
 				FAA191DF1F673A4B0076CDC7 /* model */,
 				FAA191E01F673A4B0076CDC7 /* services */,
@@ -749,6 +760,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA191B71F6739CF0076CDC7 /* LaunchScreen.storyboard in Resources */,
+				FAA0CF661F94C3BC00171C64 /* DueDate.ttf in Resources */,
 				FAA191B41F6739CF0076CDC7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
