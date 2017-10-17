@@ -37,15 +37,16 @@ class RootViewController: BaseViewController {
     
     
     func showMainUI() {
-        let titles = ["User","Activities","Avatars","Realms","Test"]
+        let titles = ["User","Activities","Avatars","Realms","Map"]
         
         let user = UserDetailsViewController(services: self.services)
         let activites = ActivityListViewController(services: self.services)
         let avatars = AvatarListViewController(services: self.services)
         let realms = RealmListViewController(services: self.services)
-        let test = TestSizeViewController(services: self.services)
+        //let test = TestSizeViewController(services: self.services)
+        let map = MapViewController(services: self.services);
         
-        let controllers:[UIViewController] = [user,activites,avatars,realms,test]
+        let controllers:[UIViewController] = [user,activites,avatars,realms,map]
         let tab = UITabBarController()
         
         tab.viewControllers = controllers.enumerated().map { (offset,vc) -> UINavigationController in

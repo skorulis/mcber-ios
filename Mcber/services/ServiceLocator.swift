@@ -14,6 +14,7 @@ class ServiceLocator: NSObject {
     let activity:ActivityService
     let avatar:AvatarService
     let user:UserService
+    let map:MapService
     
     override init() {
         theme = ThemeService()
@@ -31,6 +32,7 @@ class ServiceLocator: NSObject {
         activity = ActivityService(api: api, state: state)
         avatar = AvatarService(api: api, state: state)
         user = UserService(api: api, state: state)
+        map = MapService()
     }
     
 }
