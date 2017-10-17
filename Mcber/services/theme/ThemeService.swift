@@ -18,22 +18,6 @@ extension UIColor {
     }
 }
 
-class FixedSizeButton: UIButton {
-    
-    let fixedSize:CGFloat
-    
-    init(fixedSize:CGFloat) {
-        self.fixedSize = fixedSize
-        super.init(frame: CGRect(x: 0, y: 0, width: fixedSize, height: fixedSize))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize { return CGSize(width: fixedSize, height: fixedSize) }
-}
-
 public class ThemeImages: NSObject {
     
     func mapButton() -> UIImage {

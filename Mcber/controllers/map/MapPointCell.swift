@@ -9,7 +9,7 @@ class MapPointCell: ThemedCollectionViewCell, SimpleModelCell {
     var model:MapPointModel? {
         didSet {
             guard let model = model else {return}
-            
+            contentView.layer.borderColor = self.pointColor(point: model).cgColor
         }
     }
     
@@ -25,6 +25,13 @@ class MapPointCell: ThemedCollectionViewCell, SimpleModelCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = self.frame.width/2
+    }
+    
+    func pointColor(point:MapPointModel) -> UIColor {
+        if point.affiliation.count == 0 {
+            return UIColor(netHex: 0xf4c242)
+        }
+        return point.affiliation.first!.skill.color
     }
     
 }

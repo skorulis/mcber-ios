@@ -32,7 +32,7 @@ class ServiceLocator: NSObject {
         activity = ActivityService(api: api, state: state)
         avatar = AvatarService(api: api, state: state)
         user = UserService(api: api, state: state)
-        map = MapService()
+        map = MapService(ref:ref)
     }
     
 }

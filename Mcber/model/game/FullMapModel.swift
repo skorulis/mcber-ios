@@ -13,6 +13,7 @@ class FullMapModel {
         self.paths = paths
         
         //TODO: Group map points to allow id lookup
+        //TODO: Find central city
     }
     
     func fill(ref:ReferenceService) {

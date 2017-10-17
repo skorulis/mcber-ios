@@ -24,6 +24,8 @@ class MapViewController: BaseCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(clazz: MapPointCell.self)
+        collectionView.minimumZoomScale = 0.25
+        collectionView.maximumZoomScale = 1
     }
     
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,6 +36,14 @@ class MapViewController: BaseCollectionViewController {
         let cell:MapPointCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
         cell.model = map.points[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //TODO: Center on spot
+    }
+    
+    func centreViewAt(x:Int,y:Int) {
+        
     }
 
 }

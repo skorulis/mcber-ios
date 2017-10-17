@@ -31,6 +31,7 @@
 		FA44855A1F95E48D004E0A24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4485591F95E48D004E0A24 /* MapViewController.swift */; };
 		FA44855C1F95E7F3004E0A24 /* MapCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855B1F95E7F3004E0A24 /* MapCollectionViewLayout.swift */; };
 		FA44855E1F95EDA4004E0A24 /* MapPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855D1F95EDA4004E0A24 /* MapPointCell.swift */; };
+		FA4485601F9610D8004E0A24 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */; };
 		FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */; };
 		FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */; };
 		FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9451F71CC7E00A3646A /* ItemModel.swift */; };
@@ -161,6 +162,7 @@
 		FA4485591F95E48D004E0A24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FA44855B1F95E7F3004E0A24 /* MapCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionViewLayout.swift; sourceTree = "<group>"; };
 		FA44855D1F95EDA4004E0A24 /* MapPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointCell.swift; sourceTree = "<group>"; };
+		FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicKeyValueCell.swift; sourceTree = "<group>"; };
 		FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmUnlockCell.swift; sourceTree = "<group>"; };
 		FA49A9451F71CC7E00A3646A /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 				FABE087B1F75FA8B006A6CD6 /* MonitoredObject.swift */,
 				FA95E3531F84B3E500FC979D /* MemoryHelpers.swift */,
 				FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */,
+				FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1019,6 +1022,7 @@
 				FA6CF12F1F69DF010026D126 /* UserDetailsViewController.swift in Sources */,
 				FA6CF16D1F6B2DCF0026D126 /* RealmLevelCell.swift in Sources */,
 				FAA191AD1F6739CF0076CDC7 /* AppDelegate.swift in Sources */,
+				FA4485601F9610D8004E0A24 /* UIColor+Additions.swift in Sources */,
 				FA23DA041F9404630001D5CE /* MonitoredArrayView.swift in Sources */,
 				FABE087A1F75E887006A6CD6 /* AssignItemResponse.swift in Sources */,
 				FA7E420C1F80CF9E00F343CD /* GemModel.swift in Sources */,
