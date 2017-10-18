@@ -6,6 +6,7 @@ import UIKit
 class MapViewController: BaseCollectionViewController {
     
     let map:FullMapModel
+    var originalScale:Double = 1
     
     var mapLayout:MapCollectionViewLayout! {
         return self.layout as! MapCollectionViewLayout
@@ -26,8 +27,8 @@ class MapViewController: BaseCollectionViewController {
         collectionView.register(clazz: MapPointCell.self)
         collectionView.register(clazz: MapPathCell.self)
         
-        collectionView.minimumZoomScale = 0.25
-        collectionView.maximumZoomScale = 1
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinched(gesture:)))
+        collectionView.addGestureRecognizer(pinchGesture)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -55,8 +56,22 @@ class MapViewController: BaseCollectionViewController {
         //TODO: Center on spot
     }
     
+    
     func centreViewAt(x:Int,y:Int) {
         
+    }
+    
+    //MARK: Actions
+    
+    @objc func pinched(gesture:UIPinchGestureRecognizer) {
+        if gesture.state == .began {
+            originalScale = self.mapLayout.zoomScale
+        } else if gesture.state == .changed {
+            print(gesture.scale)
+            let newScale = originalScale * Double(gesture.scale)
+            self.mapLayout.zoomScale = Double(min(max(newScale,0.25),1))
+            self.layout.invalidateLayout()
+        }
     }
 
 }

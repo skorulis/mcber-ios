@@ -4,10 +4,10 @@
 import UIKit
 
 struct MapBounds {
-    var minX:Int = 0
-    var minY:Int = 0
-    var maxX:Int = 0
-    var maxY:Int = 0
+    var minX:Int = Int.max
+    var minY:Int = Int.max
+    var maxX:Int = Int.min
+    var maxY:Int = Int.min
     
     init(points:[MapPointModel]) {
         for p in points {
