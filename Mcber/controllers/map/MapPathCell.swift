@@ -7,6 +7,7 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
     
     var offsetX:Int = 0
     var offsetY:Int = 0
+    var zoomScale:Double = 1
     
     let shapeLayer = CAShapeLayer()
     
@@ -18,6 +19,7 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
     }
     
     override func buildView(theme: ThemeService) {
+        self.clipsToBounds = true
         self.contentView.layer.addSublayer(shapeLayer)
         shapeLayer.fillColor = nil
         shapeLayer.lineWidth = 2
@@ -34,6 +36,7 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
         if let atts = layoutAttributes as? MapLayoutAttributes {
             offsetX = atts.offsetX
             offsetY = atts.offsetY
+            zoomScale = atts.zoomScale
             self.updateLine()
         }
     }
@@ -50,8 +53,8 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
     }
     
     private func toCGPoint(_ point:MapPointModel) -> CGPoint {
-        let x = CGFloat(point.x - offsetX) - self.frame.origin.x
-        let y = CGFloat(point.y - offsetY) - self.frame.origin.y
+        let x = CGFloat(point.x - offsetX)*CGFloat(zoomScale) - self.frame.origin.x
+        let y = CGFloat(point.y - offsetY)*CGFloat(zoomScale) - self.frame.origin.y
         return CGPoint(x:x,y:y)
     }
     

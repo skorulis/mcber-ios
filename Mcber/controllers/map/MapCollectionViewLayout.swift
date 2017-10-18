@@ -40,11 +40,13 @@ class MapCollectionViewLayout: UICollectionViewLayout {
             
             let x = Double(pathBounds.minX - xOffset) * zoomScale
             let y = Double(pathBounds.minY - yOffset) * zoomScale
-            let size = Double(pathSize.width) * zoomScale
+            let width = Double(pathSize.width) * zoomScale
+            let height = Double(pathSize.height) * zoomScale
             
-            att.frame = CGRect(x: x , y: y, width: size, height: size)
+            att.frame = CGRect(x: x , y: y, width: width, height: height)
             att.offsetX = xOffset
-            att.offsetY = yOffset
+            att.offsetY = yOffset 
+            att.zoomScale = zoomScale
             
             items.append(att)
             index = index + 1
