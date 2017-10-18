@@ -15,6 +15,9 @@ class MapPathModel: ImmutableMappable {
     let name:String?
     let discoveryChance:Double
     
+    var point1:MapPointModel!
+    var point2:MapPointModel!
+    
     required init(map: Map) throws {
         point1Id = try map.value("point1Id")
         point2Id = try map.value("point2Id")
@@ -27,6 +30,16 @@ class MapPathModel: ImmutableMappable {
         self.point2Id = point2Id
         self.discoveryChance = discoveryChance
         self.name = nil
+    }
+    
+    init(point1:MapPointModel,point2:MapPointModel,discoveryChance:Double=0.1) {
+        self.point1Id = point1.id
+        self.point2Id = point2.id
+        self.discoveryChance = discoveryChance
+        self.name = nil
+        
+        self.point1 = point1
+        self.point2 = point2
     }
     
 }

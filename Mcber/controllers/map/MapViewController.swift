@@ -24,18 +24,31 @@ class MapViewController: BaseCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(clazz: MapPointCell.self)
+        collectionView.register(clazz: MapPathCell.self)
+        
         collectionView.minimumZoomScale = 0.25
         collectionView.maximumZoomScale = 1
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.map.points.count
+        return section == 0 ? map.paths.count : map.points.count
     }
     
     override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:MapPointCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
-        cell.model = map.points[indexPath.row]
-        return cell
+        if (indexPath.section == 0) {
+            let cell:MapPathCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
+            cell.model = map.paths[indexPath.row]
+            return cell;
+        } else {
+            let cell:MapPointCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
+            cell.model = map.points[indexPath.row]
+            return cell
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

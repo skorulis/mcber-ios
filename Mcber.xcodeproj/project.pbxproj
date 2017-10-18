@@ -32,6 +32,7 @@
 		FA44855C1F95E7F3004E0A24 /* MapCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855B1F95E7F3004E0A24 /* MapCollectionViewLayout.swift */; };
 		FA44855E1F95EDA4004E0A24 /* MapPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855D1F95EDA4004E0A24 /* MapPointCell.swift */; };
 		FA4485601F9610D8004E0A24 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */; };
+		FA4485621F96A842004E0A24 /* MapPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4485611F96A842004E0A24 /* MapPathCell.swift */; };
 		FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */; };
 		FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */; };
 		FA49A9461F71CC7E00A3646A /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA49A9451F71CC7E00A3646A /* ItemModel.swift */; };
@@ -110,6 +111,7 @@
 		FAD01BD81F6D15A900DE39B3 /* ActivityResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */; };
 		FAD01BDA1F6D27B400DE39B3 /* CollectionViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */; };
 		FAD01BDC1F6D283700DE39B3 /* ExperienceGainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */; };
+		FAEAE6081F972BF0001AC323 /* MapLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAE6071F972BF0001AC323 /* MapLayoutAttributes.swift */; };
 		FAEE36581F774B470048CD8E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE36571F774B470048CD8E /* UserService.swift */; };
 		FAEE365C1F774BD50048CD8E /* NetAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365B1F774B740048CD8E /* NetAPIService.swift */; };
 		FAEE365D1F774BD70048CD8E /* MainAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE365A1F774B740048CD8E /* MainAPIService.swift */; };
@@ -163,6 +165,7 @@
 		FA44855B1F95E7F3004E0A24 /* MapCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionViewLayout.swift; sourceTree = "<group>"; };
 		FA44855D1F95EDA4004E0A24 /* MapPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointCell.swift; sourceTree = "<group>"; };
 		FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		FA4485611F96A842004E0A24 /* MapPathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPathCell.swift; sourceTree = "<group>"; };
 		FA49A87F1F6E205A00A3646A /* BasicKeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicKeyValueCell.swift; sourceTree = "<group>"; };
 		FA49A8811F6E20D400A3646A /* RealmUnlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmUnlockCell.swift; sourceTree = "<group>"; };
 		FA49A9451F71CC7E00A3646A /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 		FAD01BD71F6D15A900DE39B3 /* ActivityResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityResultViewController.swift; sourceTree = "<group>"; };
 		FAD01BD91F6D27B400DE39B3 /* CollectionViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelpers.swift; sourceTree = "<group>"; };
 		FAD01BDB1F6D283700DE39B3 /* ExperienceGainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceGainCell.swift; sourceTree = "<group>"; };
+		FAEAE6071F972BF0001AC323 /* MapLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLayoutAttributes.swift; sourceTree = "<group>"; };
 		FAEE36571F774B470048CD8E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FAEE365A1F774B740048CD8E /* MainAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAPIService.swift; sourceTree = "<group>"; };
 		FAEE365B1F774B740048CD8E /* NetAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetAPIService.swift; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 				FA4485591F95E48D004E0A24 /* MapViewController.swift */,
 				FA44855B1F95E7F3004E0A24 /* MapCollectionViewLayout.swift */,
 				FA44855D1F95EDA4004E0A24 /* MapPointCell.swift */,
+				FA4485611F96A842004E0A24 /* MapPathCell.swift */,
+				FAEAE6071F972BF0001AC323 /* MapLayoutAttributes.swift */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -983,6 +989,7 @@
 				FAA191EE1F673A4B0076CDC7 /* ServiceLocator.swift in Sources */,
 				FA3FD9BE1F82D43F00C1C700 /* BaseGemCell.swift in Sources */,
 				FA3A11941F733F3800024AA4 /* ActivityResultModel.swift in Sources */,
+				FAEAE6081F972BF0001AC323 /* MapLayoutAttributes.swift in Sources */,
 				FA6CF10F1F688A9B0026D126 /* AnalyticsService.swift in Sources */,
 				FA49A8801F6E205A00A3646A /* BasicKeyValueCell.swift in Sources */,
 				FAD01BD41F6CDE3F00DE39B3 /* ProgressView.swift in Sources */,
@@ -998,6 +1005,7 @@
 				FAA191EC1F673A4B0076CDC7 /* CollectionViewSectionController.swift in Sources */,
 				FA4485541F95E0CF004E0A24 /* MapService.swift in Sources */,
 				FAEE365D1F774BD70048CD8E /* MainAPIService.swift in Sources */,
+				FA4485621F96A842004E0A24 /* MapPathCell.swift in Sources */,
 				FA6CF16F1F6B2EBD0026D126 /* RealmListViewController.swift in Sources */,
 				FACF91FF1F8AC63A002F1BE4 /* BaseInstantActivityViewController.swift in Sources */,
 				FAA191FF1F673ED00076CDC7 /* LoginResponse.swift in Sources */,

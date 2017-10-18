@@ -16,6 +16,8 @@ class MapPointCell: ThemedCollectionViewCell, SimpleModelCell {
     override func buildView(theme: ThemeService) {
         self.contentView.layer.borderColor = UIColor.blue.cgColor
         self.contentView.layer.borderWidth = 2
+        self.contentView.clipsToBounds = true
+        self.contentView.backgroundColor = UIColor.white
     }
     
     override func buildLayout(theme: ThemeService) {
