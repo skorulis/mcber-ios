@@ -7,9 +7,15 @@ class MapCollectionViewLayout: UICollectionViewLayout {
 
     var map:FullMapModel
     var zoomScale:Double = 1
+    var xOffset:Int = 0
+    var yOffset:Int = 0
     
     init(map:FullMapModel) {
         self.map = map
+        let mapBounds = self.map.bounds()
+        
+        xOffset = Int(mapBounds.minX)
+        yOffset = Int(mapBounds.minY)
         super.init()
     }
     
@@ -25,10 +31,7 @@ class MapCollectionViewLayout: UICollectionViewLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var items = [UICollectionViewLayoutAttributes]()
         
-        let mapBounds = self.map.bounds()
         
-        let xOffset = Int(mapBounds.minX)
-        let yOffset = Int(mapBounds.minY)
         
         var index = 0;
         

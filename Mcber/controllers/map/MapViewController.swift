@@ -5,6 +5,9 @@ import UIKit
 
 class MapViewController: BaseCollectionViewController {
     
+    private let kPathSection = 0
+    private let kPointSection = 1
+    
     let map:FullMapModel
     var originalScale:Double = 1
     
@@ -31,16 +34,18 @@ class MapViewController: BaseCollectionViewController {
         collectionView.addGestureRecognizer(pinchGesture)
     }
     
+    //MARK: UICollectionViewDelegate
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? map.paths.count : map.points.count
+        return section == kPathSection ? map.paths.count : map.points.count
     }
     
     override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if (indexPath.section == 0) {
+        if (indexPath.section == kPathSection) {
             let cell:MapPathCell = collectionView.dequeueSetupCell(indexPath: indexPath, theme: self.theme)
             cell.model = map.paths[indexPath.row]
             return cell;
@@ -49,16 +54,24 @@ class MapViewController: BaseCollectionViewController {
             cell.model = map.points[indexPath.row]
             return cell
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == kPointSection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: Center on spot
+        let point = self.map.points[indexPath.row]
+        centreViewAt(x: point.x, y: point.y)
     }
     
-    
+    //Centre in absolute map coords
     func centreViewAt(x:Int,y:Int) {
+        let px = CGFloat(x - mapLayout.xOffset)
+        let py = CGFloat(y - mapLayout.yOffset)
+        let offset = CGPoint(x: px - collectionView.frame.width/2, y: py - collectionView.frame.height/2)
         
+        collectionView.setContentOffset(offset, animated: true)
     }
     
     //MARK: Actions
