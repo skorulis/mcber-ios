@@ -6,7 +6,7 @@ import UIKit
 class MapCollectionViewLayout: UICollectionViewLayout {
 
     var map:FullMapModel
-    var zoomScale:Double = 1
+    var zoomScale:CGFloat = 1
     var xOffset:Int = 0
     var yOffset:Int = 0
     
@@ -25,7 +25,7 @@ class MapCollectionViewLayout: UICollectionViewLayout {
     
     override var collectionViewContentSize: CGSize {
         let size = self.map.bounds().rect().size
-        return CGSize(width: Double(size.width)*zoomScale, height: Double(size.height)*zoomScale)
+        return CGSize(width: size.width*zoomScale, height: size.height*zoomScale)
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -41,10 +41,10 @@ class MapCollectionViewLayout: UICollectionViewLayout {
             let pathBounds = MapBounds(points: [path.point1,path.point2])
             let pathSize = pathBounds.rect().size
             
-            let x = Double(pathBounds.minX - xOffset) * zoomScale
-            let y = Double(pathBounds.minY - yOffset) * zoomScale
-            let width = Double(pathSize.width) * zoomScale
-            let height = Double(pathSize.height) * zoomScale
+            let x = CGFloat(pathBounds.minX - xOffset) * zoomScale
+            let y = CGFloat(pathBounds.minY - yOffset) * zoomScale
+            let width = CGFloat(pathSize.width) * zoomScale
+            let height = CGFloat(pathSize.height) * zoomScale
             
             att.frame = CGRect(x: x , y: y, width: width, height: height)
             att.offsetX = xOffset
@@ -60,9 +60,9 @@ class MapCollectionViewLayout: UICollectionViewLayout {
             let indexPath = IndexPath(item: index, section: 1)
             let att = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            let x = Double(point.x - point.radius - xOffset) * zoomScale
-            let y = Double(point.y - point.radius - yOffset) * zoomScale
-            let size = Double(point.radius * 2) * zoomScale
+            let x = CGFloat(point.x - point.radius - xOffset) * zoomScale
+            let y = CGFloat(point.y - point.radius - yOffset) * zoomScale
+            let size = CGFloat(point.radius * 2) * zoomScale
             
             att.frame = CGRect(x: x, y: y, width: size, height: size)
             att.zIndex = 1

@@ -5,9 +5,7 @@ import UIKit
 
 class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
     
-    var offsetX:Int = 0
-    var offsetY:Int = 0
-    var zoomScale:Double = 1
+    var layoutAttributes:MapLayoutAttributes?
     
     let shapeLayer = CAShapeLayer()
     
@@ -34,17 +32,16 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         if let atts = layoutAttributes as? MapLayoutAttributes {
-            offsetX = atts.offsetX
-            offsetY = atts.offsetY
-            zoomScale = atts.zoomScale
+            self.layoutAttributes = atts
             self.updateLine()
         }
     }
     
     func updateLine() {
         guard let model = self.model else {return}
-        let point1 = toCGPoint(model.point1)
-        let point2 = toCGPoint(model.point2)
+        guard let atts = self.layoutAttributes else {return}
+        let point1 = toCGPoint(model.point1,atts:atts)
+        let point2 = toCGPoint(model.point2,atts:atts)
         
         let path = UIBezierPath()
         path.move(to: point1)
@@ -52,9 +49,9 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
         shapeLayer.path = path.cgPath
     }
     
-    private func toCGPoint(_ point:MapPointModel) -> CGPoint {
-        let x = CGFloat(point.x - offsetX)*CGFloat(zoomScale) - self.frame.origin.x
-        let y = CGFloat(point.y - offsetY)*CGFloat(zoomScale) - self.frame.origin.y
+    private func toCGPoint(_ point:MapPointModel, atts:MapLayoutAttributes) -> CGPoint {
+        let x = CGFloat(point.x - atts.offsetX)*CGFloat(atts.zoomScale) - self.frame.origin.x
+        let y = CGFloat(point.y - atts.offsetY)*CGFloat(atts.zoomScale) - self.frame.origin.y
         return CGPoint(x:x,y:y)
     }
     

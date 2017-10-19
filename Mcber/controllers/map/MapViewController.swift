@@ -9,7 +9,7 @@ class MapViewController: BaseCollectionViewController {
     private let kPointSection = 1
     
     let map:FullMapModel
-    var originalScale:Double = 1
+    var originalScale:CGFloat = 1
     
     var mapLayout:MapCollectionViewLayout! {
         return self.layout as! MapCollectionViewLayout
@@ -81,8 +81,8 @@ class MapViewController: BaseCollectionViewController {
             originalScale = self.mapLayout.zoomScale
         } else if gesture.state == .changed {
             print(gesture.scale)
-            let newScale = originalScale * Double(gesture.scale)
-            self.mapLayout.zoomScale = Double(min(max(newScale,0.25),1))
+            let newScale = originalScale * gesture.scale
+            self.mapLayout.zoomScale = min(max(newScale,0.25),1)
             self.layout.invalidateLayout()
         }
     }

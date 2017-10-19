@@ -7,7 +7,7 @@ class MapLayoutAttributes: UICollectionViewLayoutAttributes {
 
     var offsetX:Int = 0
     var offsetY:Int = 0
-    var zoomScale:Double = 1
+    var zoomScale:CGFloat = 1
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy:MapLayoutAttributes = super.copy(with: zone) as! MapLayoutAttributes
