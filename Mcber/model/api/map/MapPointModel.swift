@@ -30,6 +30,7 @@ class MapPointModel: ImmutableMappable {
 
     let id:String
     let name:String
+    let center:CGPoint
     let x:Int
     let y:Int
     let radius:Int
@@ -42,6 +43,7 @@ class MapPointModel: ImmutableMappable {
         radius = try map.value("radius")
         x = try map.value("x")
         y = try map.value("y")
+        center = CGPoint(x: x, y: y)
         level = try map.value("level")
         affiliation = try map.value("affiliation")
     }
@@ -52,6 +54,7 @@ class MapPointModel: ImmutableMappable {
         self.radius = radius
         self.x = x
         self.y = y
+        self.center = CGPoint(x: x, y: y)
         self.level = level
         self.affiliation = []
     }

@@ -32,6 +32,7 @@ class MapViewController: BaseCollectionViewController {
         
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinched(gesture:)))
         collectionView.addGestureRecognizer(pinchGesture)
+        self.edgesForExtendedLayout = .left
     }
     
     //MARK: UICollectionViewDelegate
@@ -62,16 +63,21 @@ class MapViewController: BaseCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let point = self.map.points[indexPath.row]
-        centreViewAt(x: point.x, y: point.y)
+        centreViewAt(point:point.center,offset:collectionView.center, animated: true)
     }
     
     //Centre in absolute map coords
-    func centreViewAt(x:Int,y:Int) {
-        let px = CGFloat(x - mapLayout.xOffset)
-        let py = CGFloat(y - mapLayout.yOffset)
-        let offset = CGPoint(x: px - collectionView.frame.width/2, y: py - collectionView.frame.height/2)
+    func centreViewAt(point:CGPoint,offset:CGPoint, animated:Bool) {
+        let mapPoint = mapLayout.absoluteToMap(point: point)
+        var contentOffset = CGPoint(x: mapPoint.x - offset.x, y: mapPoint.y - offset.y)
         
-        collectionView.setContentOffset(offset, animated: true)
+        let maxX = mapLayout.collectionViewContentSize.width - collectionView.frame.width
+        let maxY = mapLayout.collectionViewContentSize.height - collectionView.frame.height
+        
+        contentOffset.x = min(max(contentOffset.x,0),maxX)
+        contentOffset.y = min(max(contentOffset.y,0),maxY)
+        
+        collectionView.setContentOffset(contentOffset, animated: animated)
     }
     
     //MARK: Actions
@@ -80,10 +86,21 @@ class MapViewController: BaseCollectionViewController {
         if gesture.state == .began {
             originalScale = self.mapLayout.zoomScale
         } else if gesture.state == .changed {
-            print(gesture.scale)
+            let p1 = gesture.location(ofTouch: 0, in: self.collectionView)
+            let p2 = gesture.location(ofTouch: 1, in: self.collectionView)
+            let centre = CGPoint(x: (p1.x+p2.x)/2, y: (p1.y+p2.y)/2)
+            
+            let converted = self.mapLayout.viewToAbsolute(point: centre)
+            let screenPos = CGPoint(x:centre.x - collectionView.contentOffset.x, y:centre.y - collectionView.contentOffset.y)
+            print(centre)
+            print(converted)
+            print(screenPos)
+            print("-------")
+            
             let newScale = originalScale * gesture.scale
             self.mapLayout.zoomScale = min(max(newScale,0.25),1)
             self.layout.invalidateLayout()
+            centreViewAt(point: converted, offset:screenPos, animated: false)
         }
     }
 

@@ -31,8 +31,6 @@ class MapCollectionViewLayout: UICollectionViewLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var items = [UICollectionViewLayoutAttributes]()
         
-        
-        
         var index = 0;
         
         for path in map.paths {
@@ -71,6 +69,18 @@ class MapCollectionViewLayout: UICollectionViewLayout {
         }
         
         return items
+    }
+    
+    func absoluteToMap(point:CGPoint) -> CGPoint {
+        let x = (point.x - CGFloat(xOffset)) * zoomScale
+        let y = (point.y - CGFloat(yOffset)) * zoomScale
+        return CGPoint(x:x, y:y)
+    }
+    
+    func viewToAbsolute(point:CGPoint) -> CGPoint {
+        let x = (point.x)/zoomScale + CGFloat(xOffset)
+        let y = (point.y)/zoomScale + CGFloat(yOffset)
+        return CGPoint(x:x, y:y)
     }
     
 }
