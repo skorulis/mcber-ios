@@ -33,6 +33,7 @@ class MapViewController: BaseCollectionViewController {
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinched(gesture:)))
         collectionView.addGestureRecognizer(pinchGesture)
         self.edgesForExtendedLayout = .left
+        collectionView.reloadData()
     }
     
     //MARK: UICollectionViewDelegate

@@ -21,7 +21,7 @@ class MapPathCell: ThemedCollectionViewCell, SimpleModelCell {
         self.contentView.layer.addSublayer(shapeLayer)
         shapeLayer.fillColor = nil
         shapeLayer.lineWidth = 2
-        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
     }
     
     override func layoutSubviews() {
