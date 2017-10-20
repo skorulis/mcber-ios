@@ -12,24 +12,11 @@ class MapService: NSObject {
     }
     
     func generateTestMap() -> FullMapModel {
-        let maxVal:UInt32 = 2000
+        let maxVal:UInt32 = 3000
+        let map = FullMapModel(points: [], paths: [])
         
         let mainCity = MapPointModel(id: "kings_mountain", name: "Kings Peak", x: 0, y: 0,radius:100,level:0)
-        var points = [MapPointModel]()
-        var paths = [MapPathModel]()
-        
-        for i in 0...100 {
-            let x = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
-            let y = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
-            if abs(x) < 100 || abs(y) < 100 {
-                continue
-            }
-            let point = MapPointModel(id: String(i), name: String(i), x: x, y: y)
-            let skillId = String(arc4random_uniform(9))
-            
-            point.affiliation = [MapPointAffiliation(skillId: skillId, value: 1)]
-            points.append(point)
-        }
+        map.add(point:mainCity)
         
         for skillIndex in 0...9 {
             let angle = Double(skillIndex) * 2*Double.pi / 10
@@ -43,23 +30,35 @@ class MapService: NSObject {
                 let x = Int(mult * sin(movedAngle))
                 let y = Int(mult * cos(movedAngle))
                 let point = MapPointModel(id:pointId,name:pointId,x:x,y:y)
+                point.level = pathIndex + 1
                 point.affiliation = [MapPointAffiliation(skillId: skillId, value: 1)]
-                points.append(point)
+                map.add(point:point)
                 if let previous = previousPoint {
                     let path = MapPathModel(point1: previous, point2: point)
-                    paths.append(path)
+                    map.add(path:path)
                 } else {
-                    paths.append(MapPathModel(point1: mainCity, point2: point))
+                    map.add(path:MapPathModel(point1: mainCity, point2: point))
                 }
                 previousPoint = point
             }
         }
         
-        points.append(mainCity)
+        for i in 0...200 {
+            let x = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
+            let y = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
+            let point = MapPointModel(id: String(i), name: String(i), x: x, y: y)
+            if map.overlaps(newPoint: point,buffer:20) {
+                continue
+            }
+            let skillId = String(arc4random_uniform(9))
+            
+            point.affiliation = [MapPointAffiliation(skillId: skillId, value: 1)]
+            map.add(point:point)
+        }
         
-        let map = FullMapModel(points: points, paths: paths)
         map.fill(ref: ref)
         return map
     }
+    
     
 }

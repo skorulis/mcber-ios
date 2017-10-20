@@ -27,14 +27,16 @@ class FullMapModel {
 
     var points:[MapPointModel]
     var paths:[MapPathModel]
+    var pointMap:[String:MapPointModel] = [:]
     
     init(points:[MapPointModel],paths:[MapPathModel]) {
         self.points = points
         self.paths = paths
         
+        
+        
         //TODO: Group map points to allow id lookup
         //TODO: Find central city
-        //TODO: Fill paths
     }
     
     func fill(ref:ReferenceService) {
@@ -45,9 +47,26 @@ class FullMapModel {
     
     func bounds() -> MapBounds {
         return MapBounds(points: self.points)
-        
     }
     
+    func overlaps(newPoint:MapPointModel,buffer:CGFloat) -> Bool {
+        for p in points {
+            let dist = p.center.distance(newPoint.center)
+            if (dist < CGFloat(p.radius + newPoint.radius) + buffer) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func add(point:MapPointModel) {
+        points.append(point)
+        pointMap[point.id] = point
+    }
+    
+    func add(path:MapPathModel) {
+        paths.append(path)
+    }
     
     
 }

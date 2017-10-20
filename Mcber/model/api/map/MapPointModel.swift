@@ -34,7 +34,7 @@ class MapPointModel: ImmutableMappable {
     let x:Int
     let y:Int
     let radius:Int
-    let level:Int
+    var level:Int
     var affiliation:[MapPointAffiliation]
     
     required init(map: Map) throws {

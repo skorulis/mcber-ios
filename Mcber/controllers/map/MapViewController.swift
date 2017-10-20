@@ -9,6 +9,7 @@ class MapViewController: BaseCollectionViewController {
     private let kPointSection = 1
     
     let map:FullMapModel
+    let toolbar = UIToolbar()
     var originalScale:CGFloat = 1
     
     var mapLayout:MapCollectionViewLayout! {
@@ -34,6 +35,15 @@ class MapViewController: BaseCollectionViewController {
         collectionView.addGestureRecognizer(pinchGesture)
         self.edgesForExtendedLayout = .left
         collectionView.reloadData()
+        
+        self.view.addSubview(self.toolbar)
+        toolbar.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+        }
+        
+        let infoItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(infoPressed(sender:)))
+        
+        toolbar.items = [infoItem]
     }
     
     //MARK: UICollectionViewDelegate
@@ -93,15 +103,19 @@ class MapViewController: BaseCollectionViewController {
             
             let converted = self.mapLayout.viewToAbsolute(point: centre)
             let screenPos = CGPoint(x:centre.x - collectionView.contentOffset.x, y:centre.y - collectionView.contentOffset.y)
-            print(centre)
-            print(converted)
-            print(screenPos)
-            print("-------")
+        
             
             let newScale = originalScale * gesture.scale
             self.mapLayout.zoomScale = min(max(newScale,0.25),1)
             self.layout.invalidateLayout()
             centreViewAt(point: converted, offset:screenPos, animated: false)
+        }
+    }
+    
+    @objc func infoPressed(sender:Any) {
+        if let selectedPath = collectionView.indexPathsForSelectedItems?.first {
+            let vc = MapPointEditViewController(services: self.services,point:map.points[selectedPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 
