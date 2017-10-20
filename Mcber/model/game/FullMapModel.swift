@@ -68,5 +68,8 @@ class FullMapModel {
         paths.append(path)
     }
     
+    func getPoint(_ pid:String) -> MapPointModel {
+        return pointMap[pid]!
+    }
     
 }

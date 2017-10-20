@@ -45,7 +45,17 @@ class MapPointCell: ThemedCollectionViewCell, SimpleModelCell {
         if point.affiliation.count == 0 {
             return UIColor(netHex: 0xf4c242)
         }
-        return point.affiliation.first!.skill.color
+        var color:UIColor? = nil
+        var total:CGFloat = 0
+        for a in point.affiliation {
+            total += CGFloat(a.value)
+            if let c = color {
+                color = c.mix(overlay: a.skill.color, amount: CGFloat(a.value)/total)
+            } else {
+                color = a.skill.color
+            }
+        }
+        return color!
     }
     
     override var isHighlighted: Bool {

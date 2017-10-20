@@ -43,6 +43,35 @@ class MapService: NSObject {
             }
         }
         
+        for skillIndex in 0...9 {
+            let pid1 = "\(skillIndex)-\(4)"
+            let pid2 = "\((skillIndex+1)%10)-\(4)"
+            let point1 = map.getPoint(pid1)
+            let point2 = map.getPoint(pid2)
+            
+            let midPid = "\(skillIndex)-\(skillIndex+1)-mid"
+            var x = (point1.x + point2.x)/2
+            var y = (point1.y + point2.y)/2
+            
+            let midPoint = MapPointModel(id: midPid, name: midPid, x: x, y: y)
+            let angle = midPoint.center.angle()
+            print("Convert \(x) \(y) to \(angle)")
+            let mult:CGFloat = 130 + (4  * 60)
+            x = Int(mult * sin(angle))
+            y = Int(mult * cos(angle))
+            
+            midPoint.center = CGPoint(x: x, y: y)
+            
+            
+            
+            midPoint.level = 5
+            midPoint.affiliation.append(contentsOf: point1.affiliation)
+            midPoint.affiliation.append(contentsOf: point2.affiliation)
+            map.add(point: midPoint)
+            map.add(path:MapPathModel(point1: midPoint , point2: point1))
+            map.add(path:MapPathModel(point1: midPoint , point2: point2))
+        }
+ 
         for i in 0...200 {
             let x = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
             let y = Int(arc4random_uniform(maxVal)) - Int(maxVal/2)
