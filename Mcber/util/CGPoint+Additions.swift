@@ -8,6 +8,10 @@ extension CGPoint {
         return sqrt((self.x - other.x)*(self.x - other.x) + (self.y - other.y)*(self.y - other.y))
     }
     
+    func length() -> CGFloat {
+        return self.distance(CGPoint(x: 0, y: 0))
+    }
+    
     func angle() -> CGFloat {
         let val = self.y == 0 ? 0 : atan(self.x/self.y)
         if y == 0 {

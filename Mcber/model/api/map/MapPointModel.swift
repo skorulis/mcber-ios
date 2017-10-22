@@ -28,8 +28,8 @@ class MapPointAffiliation: ImmutableMappable {
 
 class MapPointModel: ImmutableMappable {
 
-    let id:String
-    let name:String
+    var id:String
+    var name:String
     var center:CGPoint {
         didSet {
             x = Int(center.x)
@@ -38,7 +38,7 @@ class MapPointModel: ImmutableMappable {
     }
     var x:Int
     var y:Int
-    let radius:Int
+    var radius:Int
     var level:Int
     var affiliation:[MapPointAffiliation]
     

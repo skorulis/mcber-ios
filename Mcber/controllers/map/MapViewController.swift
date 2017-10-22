@@ -2,6 +2,7 @@
 //  Copyright © 2017 Alex Skorulis. All rights reserved.
 
 import UIKit
+import FontAwesomeKit
 
 class MapViewController: BaseCollectionViewController {
     
@@ -11,6 +12,8 @@ class MapViewController: BaseCollectionViewController {
     let map:FullMapModel
     let toolbar = UIToolbar()
     var originalScale:CGFloat = 1
+    
+    var pathStart:MapPointModel?
     
     var mapLayout:MapCollectionViewLayout! {
         return self.layout as! MapCollectionViewLayout
@@ -40,10 +43,16 @@ class MapViewController: BaseCollectionViewController {
         toolbar.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
         }
+        collectionView.snp.remakeConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(toolbar.snp.top)
+        }
         
         let infoItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(infoPressed(sender:)))
         
-        toolbar.items = [infoItem]
+        let pathItem = UIBarButtonItem(icon: FAKFontAwesome.chainIcon(withSize: 25), target: self, selector: #selector(addPathPressed(sender:)))
+        
+        toolbar.items = [infoItem,pathItem]
     }
     
     //MARK: UICollectionViewDelegate
@@ -74,6 +83,15 @@ class MapViewController: BaseCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let point = self.map.points[indexPath.row]
+        if let startPoint = pathStart {
+            if startPoint !== point {
+                let path = MapPathModel(point1: startPoint, point2: point)
+                map.add(path: path)
+                pathStart = nil
+                self.collectionView.reloadData()
+            }
+        }
+        
         centreViewAt(point:point.center,offset:collectionView.center, animated: true)
     }
     
@@ -116,6 +134,12 @@ class MapViewController: BaseCollectionViewController {
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first {
             let vc = MapPointEditViewController(services: self.services,point:map.points[selectedPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func addPathPressed(sender:Any) {
+        if let selectedPath = collectionView.indexPathsForSelectedItems?.first {
+            pathStart = map.points[selectedPath.row]
         }
     }
 

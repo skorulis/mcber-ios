@@ -15,6 +15,7 @@
 		FA14C2F01F77B573005C0B63 /* ItemTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA14C2EF1F77B573005C0B63 /* ItemTypeSelectionViewController.swift */; };
 		FA14C2F21F77B58D005C0B63 /* BaseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA14C2F11F77B58D005C0B63 /* BaseItemCell.swift */; };
 		FA1658C61F6DE6CC0054543A /* AvatarBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */; };
+		FA1B26DA1F9C2A7E00EBCCFE /* UIBarButtonItem+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B26D91F9C2A7E00EBCCFE /* UIBarButtonItem+Additions.swift */; };
 		FA23DA041F9404630001D5CE /* MonitoredArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */; };
 		FA36590A1F8B61E500CAC94E /* BattleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3659091F8B61E500CAC94E /* BattleResultViewController.swift */; };
 		FA36590C1F8B620900CAC94E /* BattleResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36590B1F8B620900CAC94E /* BattleResultModel.swift */; };
@@ -150,6 +151,7 @@
 		FA14C2EF1F77B573005C0B63 /* ItemTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA14C2F11F77B58D005C0B63 /* BaseItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseItemCell.swift; sourceTree = "<group>"; };
 		FA1658C51F6DE6CC0054543A /* AvatarBalanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBalanceView.swift; sourceTree = "<group>"; };
+		FA1B26D91F9C2A7E00EBCCFE /* UIBarButtonItem+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Additions.swift"; sourceTree = "<group>"; };
 		FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredArrayView.swift; sourceTree = "<group>"; };
 		FA3659091F8B61E500CAC94E /* BattleResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultViewController.swift; sourceTree = "<group>"; };
 		FA36590B1F8B620900CAC94E /* BattleResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultModel.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				FA23DA031F9404630001D5CE /* MonitoredArrayView.swift */,
 				FA44855F1F9610D8004E0A24 /* UIColor+Additions.swift */,
 				FAEAE6B11F99D4DD001AC323 /* CGPoint+Additions.swift */,
+				FA1B26D91F9C2A7E00EBCCFE /* UIBarButtonItem+Additions.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1021,6 +1024,7 @@
 				FA49A8821F6E20D400A3646A /* RealmUnlockCell.swift in Sources */,
 				FABE081A1F73CE40006A6CD6 /* TestSizeCell.swift in Sources */,
 				FAD01BCC1F6CC20100DE39B3 /* ActivityItemCell.swift in Sources */,
+				FA1B26DA1F9C2A7E00EBCCFE /* UIBarButtonItem+Additions.swift in Sources */,
 				FA14C2F01F77B573005C0B63 /* ItemTypeSelectionViewController.swift in Sources */,
 				FA6CF1311F69DF210026D126 /* ActivityListViewController.swift in Sources */,
 				FA95E3561F84B4C900FC979D /* SkillSelectionViewController.swift in Sources */,

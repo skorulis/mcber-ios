@@ -5,6 +5,8 @@ import UIKit
 
 class MapCollectionViewLayout: UICollectionViewLayout {
 
+    private let kEdgePadding:Int = 44
+    
     var map:FullMapModel
     var zoomScale:CGFloat = 1
     var xOffset:Int = 0
@@ -14,8 +16,8 @@ class MapCollectionViewLayout: UICollectionViewLayout {
         self.map = map
         let mapBounds = self.map.bounds()
         
-        xOffset = Int(mapBounds.minX)
-        yOffset = Int(mapBounds.minY)
+        xOffset = Int(mapBounds.minX) - kEdgePadding
+        yOffset = Int(mapBounds.minY) - kEdgePadding
         super.init()
     }
     
@@ -25,7 +27,7 @@ class MapCollectionViewLayout: UICollectionViewLayout {
     
     override var collectionViewContentSize: CGSize {
         let size = self.map.bounds().rect().size
-        return CGSize(width: size.width*zoomScale, height: size.height*zoomScale)
+        return CGSize(width: (size.width+CGFloat(kEdgePadding*2)) * zoomScale, height: (size.height+CGFloat(kEdgePadding*2)) * zoomScale)
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

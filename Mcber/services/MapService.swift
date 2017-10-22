@@ -55,14 +55,11 @@ class MapService: NSObject {
             
             let midPoint = MapPointModel(id: midPid, name: midPid, x: x, y: y)
             let angle = midPoint.center.angle()
-            print("Convert \(x) \(y) to \(angle)")
             let mult:CGFloat = 130 + (4  * 60)
             x = Int(mult * sin(angle))
             y = Int(mult * cos(angle))
             
             midPoint.center = CGPoint(x: x, y: y)
-            
-            
             
             midPoint.level = 5
             midPoint.affiliation.append(contentsOf: point1.affiliation)
@@ -81,7 +78,11 @@ class MapService: NSObject {
             }
             let skillId = String(arc4random_uniform(9))
             
+            let levelMid = Int(point.center.length()) / 80
+            let levelBoundary = levelMid/5
+            
             point.affiliation = [MapPointAffiliation(skillId: skillId, value: 1)]
+            point.level = (levelMid - levelBoundary) + Int(arc4random_uniform(UInt32(levelBoundary*2)))
             map.add(point:point)
         }
         
