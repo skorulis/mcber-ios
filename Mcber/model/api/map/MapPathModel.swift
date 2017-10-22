@@ -25,6 +25,13 @@ class MapPathModel: ImmutableMappable {
         discoveryChance = try map.value("discoveryChance")
     }
     
+    func mapping(map: Map) {
+        id >>> map["id"]
+        point1Id >>> map["point1Id"]
+        point2Id >>> map["point2Id"]
+        name >>> map["name"]
+    }
+    
     init(point1Id:String,point2Id:String,discoveryChance:Double=0.1) {
         self.point1Id = point1Id
         self.point2Id = point2Id

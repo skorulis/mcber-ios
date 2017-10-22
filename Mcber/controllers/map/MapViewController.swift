@@ -4,16 +4,25 @@
 import UIKit
 import FontAwesomeKit
 
+enum MapViewMode {
+    case normal
+    case addPoint
+    case movePoint(MapPointModel)
+    case addPath(MapPointModel)
+}
+
 class MapViewController: BaseCollectionViewController {
     
     private let kPathSection = 0
     private let kPointSection = 1
     
+    private var mode:MapViewMode = .normal
+    
     let map:FullMapModel
     let toolbar = UIToolbar()
     var originalScale:CGFloat = 1
     
-    var pathStart:MapPointModel?
+    var tapGesture:UITapGestureRecognizer!
     
     var mapLayout:MapCollectionViewLayout! {
         return self.layout as! MapCollectionViewLayout
@@ -37,7 +46,8 @@ class MapViewController: BaseCollectionViewController {
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinched(gesture:)))
         collectionView.addGestureRecognizer(pinchGesture)
         self.edgesForExtendedLayout = .left
-        collectionView.reloadData()
+        
+        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped(gesture:)))
         
         self.view.addSubview(self.toolbar)
         toolbar.snp.makeConstraints { (make) in
@@ -49,11 +59,20 @@ class MapViewController: BaseCollectionViewController {
         }
         
         let infoItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(infoPressed(sender:)))
-        
         let pathItem = UIBarButtonItem(icon: FAKFontAwesome.chainIcon(withSize: 25), target: self, selector: #selector(addPathPressed(sender:)))
+        let addPointItem = UIBarButtonItem(icon: FAKFontAwesome.plusIcon(withSize: 25), target: self, selector: #selector(addPointPressed(sender:)))
+        let moveItem = UIBarButtonItem(icon: FAKFontAwesome.arrowsIcon(withSize: 25), target: self, selector: #selector(movePointPressed(sender:)))
         
-        toolbar.items = [infoItem,pathItem]
+        toolbar.items = [infoItem,pathItem,addPointItem,moveItem]
+        collectionView.reloadData()
+        collectionView.layoutSubviews()
+        let deadlineTime = DispatchTime.now() + .milliseconds(1)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.centreViewAt(point: CGPoint(x:0,y:0), offset: self.collectionView.center, animated: false)
+        }
+        
     }
+    
     
     //MARK: UICollectionViewDelegate
     
@@ -83,14 +102,18 @@ class MapViewController: BaseCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let point = self.map.points[indexPath.row]
-        if let startPoint = pathStart {
+        switch(mode) {
+        case .addPath(let startPoint):
             if startPoint !== point {
                 let path = MapPathModel(point1: startPoint, point2: point)
                 map.add(path: path)
-                pathStart = nil
+                mode = .normal
                 self.collectionView.reloadData()
             }
+        default:
+            break;
         }
+        mode = .normal
         
         centreViewAt(point:point.center,offset:collectionView.center, animated: true)
     }
@@ -110,6 +133,25 @@ class MapViewController: BaseCollectionViewController {
     }
     
     //MARK: Actions
+    
+    @objc func tapped(gesture:UITapGestureRecognizer) {
+        collectionView.removeGestureRecognizer(tapGesture)
+        let p1 = gesture.location(ofTouch: 0, in: self.collectionView)
+        let converted = self.mapLayout.viewToAbsolute(point: p1)
+        switch(mode) {
+        case .addPoint:
+            let point = MapPointModel(id: map.nextPointId(), name: "Unknown", x: Int(converted.x), y: Int(converted.y))
+            self.map.add(point: point)
+        case .movePoint(let oldPoint):
+            oldPoint.center = converted
+        default:
+            break
+        }
+        
+        self.mapLayout.invalidateLayout()
+        self.collectionView.reloadData()
+        mode = .normal
+    }
     
     @objc func pinched(gesture:UIPinchGestureRecognizer) {
         if gesture.state == .began {
@@ -139,7 +181,19 @@ class MapViewController: BaseCollectionViewController {
     
     @objc func addPathPressed(sender:Any) {
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first {
-            pathStart = map.points[selectedPath.row]
+            mode = .addPath(map.points[selectedPath.row])
+        }
+    }
+    
+    @objc func addPointPressed(sender:Any) {
+        mode = .addPoint
+        collectionView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func movePointPressed(sender:Any) {
+        if let selectedPath = collectionView.indexPathsForSelectedItems?.first {
+            mode = .movePoint(map.points[selectedPath.row])
+            collectionView.addGestureRecognizer(tapGesture)
         }
     }
 

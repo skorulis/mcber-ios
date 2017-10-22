@@ -15,7 +15,8 @@ class SectionController: NSObject {
     var cellForItemAt: ((UICollectionView,IndexPath) -> UICollectionViewCell)!
     var willDisplayCell: ((UICollectionView,UICollectionViewCell,IndexPath) -> ())?
     var didSelectItemAt: ((UICollectionView,IndexPath) -> () )?
-    var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)? 
+    var viewForSupplementaryElementOfKind: ((UICollectionView,String,IndexPath) -> UICollectionReusableView)?
+    var willDisplaySupplementaryView: ((UICollectionView,UICollectionReusableView,String,IndexPath) -> ())?
     var numberOfItemsInSection: ((UICollectionView,Int) -> Int)?
     var simpleNumberOfItemsInSection: (() ->Int)?
     
@@ -140,6 +141,10 @@ class BaseSectionCollectionViewController: BaseCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         sections[indexPath.section].willDisplayCell?(collectionView,cell,indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        sections[indexPath.section].willDisplaySupplementaryView?(collectionView,view,elementKind,indexPath)
     }
     
 }

@@ -5,7 +5,7 @@ import UIKit
 
 class MapCollectionViewLayout: UICollectionViewLayout {
 
-    private let kEdgePadding:Int = 44
+    private let kEdgePadding:Int = 100
     
     var map:FullMapModel
     var zoomScale:CGFloat = 1

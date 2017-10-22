@@ -6,17 +6,23 @@ import UIKit
 class SectionHeaderView: ThemedCollectionReusableView {
 
     let label = UILabel()
+    let rightButton = UIButton()
     
     override func buildView(theme: ThemeService) {
         label.textAlignment = .center
         label.font = theme.font.title
         label.textColor = theme.color.defaultText
         self.addSubview(label)
+        self.addSubview(rightButton)
     }
     
     override func buildLayout(theme: ThemeService) {
         label.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        rightButton.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(theme.padding.right)
         }
     }
     

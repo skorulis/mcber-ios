@@ -64,6 +64,16 @@ class MapPointModel: ImmutableMappable {
         self.affiliation = []
     }
     
+    func mapping(map: Map) {
+        id >>> map["id"]
+        name >>> map["name"]
+        radius >>> map["radius"]
+        x >>> map["x"]
+        y >>> map["y"]
+        level >>> map["level"]
+        affiliation >>> map["affiliation"]
+    }
+    
     func fill(ref:ReferenceService) {
         affiliation.forEach { $0.fill(ref: ref)}
     }

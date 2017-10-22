@@ -25,18 +25,18 @@ struct MapBounds {
 
 class FullMapModel {
 
-    var points:[MapPointModel]
-    var paths:[MapPathModel]
+    var points:[MapPointModel] = []
+    var paths:[MapPathModel] = []
     var pointMap:[String:MapPointModel] = [:]
+    var pathMap:[String:MapPathModel] = [:]
     
     init(points:[MapPointModel],paths:[MapPathModel]) {
-        self.points = points
-        self.paths = paths
-        
-        
-        
-        //TODO: Group map points to allow id lookup
-        //TODO: Find central city
+        for p in points {
+            add(point: p)
+        }
+        for p in paths {
+            add(path: p)
+        }
     }
     
     func fill(ref:ReferenceService) {
@@ -66,10 +66,22 @@ class FullMapModel {
     
     func add(path:MapPathModel) {
         paths.append(path)
+        pathMap[path.id] = path
     }
     
     func getPoint(_ pid:String) -> MapPointModel {
         return pointMap[pid]!
+    }
+    
+    func nextPointId() -> String {
+        var idNum = 1
+        while true {
+            let id = "\(idNum)"
+            if pointMap[id] == nil {
+                return id
+            }
+            idNum = idNum + 1
+        }
     }
     
 }
