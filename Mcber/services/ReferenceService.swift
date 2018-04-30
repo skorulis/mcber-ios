@@ -14,6 +14,7 @@ class ReferenceService: NetAPIService {
     var resources:ResourcesRefResponse?
     var items:ItemsReferenceModel?
     var mods:ItemModsResponse?
+    var lores:LoreResponse?
     
     init() {
         var baseURL:String = ""
@@ -27,7 +28,7 @@ class ReferenceService: NetAPIService {
     }
     
     func getAllReferenceData() -> Promise<ReferenceService> {
-        let calls:[Promise<Void>] =  [getSkills().asVoid(),getResources().asVoid(),getItems().asVoid(),getItemMods().asVoid()]
+        let calls:[Promise<Void>] =  [getSkills().asVoid(),getResources().asVoid(),getItems().asVoid(),getItemMods().asVoid(),getLore().asVoid()]
         return when(fulfilled: calls).then { _ -> ReferenceService in
             print("Got all reference data")
             self.didFetchReferenceData.notify(parameters: self)
@@ -67,6 +68,15 @@ class ReferenceService: NetAPIService {
         let promise:Promise<ItemModsResponse> = self.doRequest(req: req)
         _ = promise.then { response in
             self.mods = response
+        }
+        return promise
+    }
+    
+    func getLore() -> Promise<LoreResponse> {
+        let req = self.request(path: "lores.json")
+        let promise:Promise<LoreResponse> = self.doRequest(req: req)
+        _ = promise.then { response in
+            self.lores = response
         }
         return promise
     }

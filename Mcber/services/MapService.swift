@@ -16,7 +16,9 @@ class MapService: NSObject {
         let map = FullMapModel(points: [], paths: [])
         
         let mainCity = MapPointModel(id: "kings_mountain", name: "Kings Peak", x: 0, y: 0,radius:100,level:0)
+        mainCity.loreIds = ["1","2"]
         map.add(point:mainCity)
+        
         
         for skillIndex in 0...9 {
             let angle = Double(skillIndex) * 2*Double.pi / 10

@@ -41,6 +41,8 @@ class MapPointModel: ImmutableMappable {
     var radius:Int
     var level:Int
     var affiliation:[MapPointAffiliation]
+    var loreIds:[String]
+    var lores:[LoreModel] = []
     
     required init(map: Map) throws {
         id = try map.value("id")
@@ -51,6 +53,7 @@ class MapPointModel: ImmutableMappable {
         center = CGPoint(x: x, y: y)
         level = try map.value("level")
         affiliation = try map.value("affiliation")
+        loreIds = try map.value("loreIds")
     }
     
     init(id:String,name:String,x:Int,y:Int,radius:Int=20,level:Int=1) {
@@ -62,6 +65,7 @@ class MapPointModel: ImmutableMappable {
         self.center = CGPoint(x: x, y: y)
         self.level = level
         self.affiliation = []
+        self.loreIds = []
     }
     
     func mapping(map: Map) {
@@ -72,9 +76,11 @@ class MapPointModel: ImmutableMappable {
         y >>> map["y"]
         level >>> map["level"]
         affiliation >>> map["affiliation"]
+        loreIds >>> map["loreIds"]
     }
     
     func fill(ref:ReferenceService) {
         affiliation.forEach { $0.fill(ref: ref)}
+        lores = loreIds.map {ref.lores!.idMap[$0]! }
     }
 }
